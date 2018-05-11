@@ -14,6 +14,9 @@ public class MazeGenerator : MonoBehaviour
     void Start()
 	{
         InitializeMaze();
+
+        MazeAlgorithm ma = new BinaryTreeAlgorithm(cells);
+        ma.CreateMaze();
 	}
 
     private void InitializeMaze()

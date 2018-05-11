@@ -5,14 +5,14 @@ using UnityEngine;
 public class MazeCell : MonoBehaviour
 {
     // TODO consider using an array
-    [SerializeField] bool northWallActive = true;
-    [SerializeField] bool eastWallActive = true;
-    [SerializeField] bool southWallActive = true;
-    [SerializeField] bool westWallActive = true;
+    public bool northWallActive = true;
+    public bool eastWallActive = true;
+    public bool southWallActive = true;
+    public bool westWallActive = true;
 
     internal const int cellSize = 1;
 
-    GameObject northWall, eastWall, southWall, westWall;
+    [SerializeField] GameObject northWall, eastWall, southWall, westWall;
 
     // Use this for initialization
     void Start()
