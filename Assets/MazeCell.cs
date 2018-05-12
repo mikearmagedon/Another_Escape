@@ -11,6 +11,7 @@ public class MazeCell : MonoBehaviour
     public bool westWallActive = true;
 
     internal const int cellSize = 1;
+    internal Vector2Int coordinates;
 
     [SerializeField] GameObject northWall, eastWall, southWall, westWall;
 
@@ -30,5 +31,32 @@ public class MazeCell : MonoBehaviour
         eastWall.SetActive(eastWallActive);
         southWall.SetActive(southWallActive);
         westWall.SetActive(westWallActive);
+    }
+
+    internal void Reset()
+    {
+        northWallActive = true;
+        eastWallActive = true;
+        southWallActive = true;
+        westWallActive = true;
+    }
+
+    internal void CreatePassage(MazeCell neighbour, int direction)
+    {
+        switch (direction)
+        {
+            case 0:
+                northWallActive = false;
+                // Set northern neighbour cell's southwall as passage
+                neighbour.southWallActive = false;
+                break;
+            case 1:
+                eastWallActive = false;
+                // Set northern neighbour cell's southwall as passage
+                neighbour.westWallActive = false;
+                break;
+            default:
+                break;
+        }
     }
 }

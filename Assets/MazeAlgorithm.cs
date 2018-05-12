@@ -15,5 +15,15 @@ public abstract class MazeAlgorithm
 		mazeColumns = cells.GetLength(1);
 	}
 
-	public abstract void CreateMaze();
+	public abstract IEnumerator CreateMaze();
+
+    protected MazeCell GetCell(Vector2Int coordinates)
+    {
+        return cells[coordinates.x, coordinates.y];
+    }
+
+    protected bool ContainsCoordinates(Vector2Int coordinates)
+    {
+        return (0 <= coordinates.x && coordinates.x < mazeRows && 0 <= coordinates.y && coordinates.y < mazeColumns);
+    }
 }

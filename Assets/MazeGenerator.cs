@@ -7,17 +7,33 @@ public class MazeGenerator : MonoBehaviour
 {
     [SerializeField] Vector2Int size;
     [SerializeField] MazeCell cellPrefab;
+    [SerializeField] float secondsBetweenGenerations = 5f;
 
     private MazeCell[,] cells;
+    private MazeAlgorithm ma;
 
     // Use this for initialization
     void Start()
-	{
+    {
         InitializeMaze();
+        ma = new BinaryTreeAlgorithm(cells);
+        StartCoroutine(TimeKeeper());
+    }
 
-        MazeAlgorithm ma = new BinaryTreeAlgorithm(cells);
-        ma.CreateMaze();
-	}
+    IEnumerator TimeKeeper()
+    {
+        while (true)
+        {
+            foreach (var cell in cells)
+            {
+                cell.Reset();
+            }
+            yield return new WaitForSeconds(secondsBetweenGenerations);
+
+            StartCoroutine(ma.CreateMaze());
+
+        }
+    }
 
     private void InitializeMaze()
     {
@@ -27,20 +43,21 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int c = 0; c < size.y; c++)
             {
-                CreateCell(r, c);
+                CreateCell(new Vector2Int(c, r));
             }
         }
     }
 
-    private void CreateCell(int r, int c)
+    private void CreateCell(Vector2Int coordinates)
     {
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
-        newCell.name = r + "," + c;
-        newCell.transform.position = new Vector3(r * MazeCell.cellSize, 0f, c * MazeCell.cellSize);
+        newCell.coordinates = coordinates;
+        newCell.name = coordinates.x + "," + coordinates.y;
+        newCell.transform.position = new Vector3(coordinates.x * MazeCell.cellSize, 0f, coordinates.y * MazeCell.cellSize);
 
         // Add to the maze
-        cells[r, c] = newCell;
+        cells[coordinates.x, coordinates.y] = newCell;
         return;
     }
 }

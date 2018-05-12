@@ -3,34 +3,35 @@ using System.Collections;
 
 public class BinaryTreeAlgorithm : MazeAlgorithm
 {
-	private int currentRow = 0;
-	private int currentColumn = 0;
-
-	private bool courseComplete = false;
-
 	public BinaryTreeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells)
     {
 
 	}
 
-	public override void CreateMaze()
+	public override IEnumerator CreateMaze()
     {
-		BinaryTree();
-	}
-
-	private void BinaryTree()
-    {
-        foreach (var cell in cells)
+        for (int r = 0; r < mazeRows; r++)
         {
-            int direction = Random.Range(0, 1);
-            if (direction == 1)
+            for (int c = 0; c < mazeColumns; c++)
             {
-                cell.southWallActive = false;
-            }
-            else
-            {
-                cell.eastWallActive = false;
+                int direction = Random.Range(0, 2);
+                Vector2Int neighbour;
+                if (direction == 0)
+                {
+                    neighbour = new Vector2Int(c, r + 1);
+                }
+                else
+                {
+                    neighbour = new Vector2Int(c + 1, r);
+                }
+
+                if (ContainsCoordinates(neighbour))
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    cells[c, r].CreatePassage(GetCell(neighbour), direction);
+                }
+
             }
         }
-	}
+    }    
 }
