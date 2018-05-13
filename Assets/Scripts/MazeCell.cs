@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MazeCell : MonoBehaviour
 {
-    internal const int cellSize = 1;
+    internal const int cellSize = 2;
     internal Vector2Int coordinates;
     internal MazeCell North { get; set; }
     internal MazeCell South { get; set; }
