@@ -72,14 +72,7 @@ public class MazeCell : MonoBehaviour
 
     internal void Reset()
     {
-        //links = new Dictionary<MazeCell, bool>();
-        if (links.Count > 0)
-        {
-            foreach (var cell in links.Keys)
-            {
-                links[cell] = false;
-            }
-        }
+        links.Clear();
     }
 
     internal void CreatePassage(MazeCell neighbour, bool bidirectional = true)
