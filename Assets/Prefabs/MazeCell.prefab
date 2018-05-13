@@ -594,11 +594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75f9d8ce10416468a03b4e73b0757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  northWallActive: 1
-  eastWallActive: 1
-  southWallActive: 1
-  westWallActive: 1
-  northWall: {fileID: 1595273264177648}
-  eastWall: {fileID: 1666338773602350}
-  southWall: {fileID: 1873831648615620}
-  westWall: {fileID: 1844904732673948}
+  walls:
+  - {fileID: 1595273264177648}
+  - {fileID: 1666338773602350}
+  - {fileID: 1873831648615620}
+  - {fileID: 1844904732673948}

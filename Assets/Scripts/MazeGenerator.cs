@@ -16,23 +16,9 @@ public class MazeGenerator : MonoBehaviour
     void Start()
     {
         InitializeMaze();
+        ConfigureCells();
         ma = new BinaryTreeAlgorithm(cells);
         StartCoroutine(TimeKeeper());
-    }
-
-    IEnumerator TimeKeeper()
-    {
-        while (true)
-        {
-            foreach (var cell in cells)
-            {
-                cell.Reset();
-            }
-            yield return new WaitForSeconds(secondsBetweenGenerations);
-
-            StartCoroutine(ma.CreateMaze());
-
-        }
     }
 
     private void InitializeMaze()
@@ -59,5 +45,52 @@ public class MazeGenerator : MonoBehaviour
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
         return;
+    }
+
+    /**
+     * Assigns the neighbours of each cell
+     */
+    private void ConfigureCells()
+    {
+        foreach (var cell in cells)
+        {
+            int c = cell.coordinates.x;
+            int r = cell.coordinates.y;
+
+            if (r + 1 < size.y)
+            {
+                cell.North = cells[c, r + 1];
+            }
+            if (c + 1 < size.x)
+            {
+                cell.East = cells[c + 1, r];
+            }
+            if (r - 1 >= 0)
+            {
+                cell.South = cells[c, r - 1];
+            }
+            if (c - 1 >= 0)
+            {
+                cell.West = cells[c - 1, r];
+            }
+        }
+    }
+
+    IEnumerator TimeKeeper()
+    {
+        while (true)
+        {
+            StartCoroutine(ma.CreateMaze());
+            yield return new WaitForSeconds(secondsBetweenGenerations);
+            ResetMaze();
+        }
+    }
+
+    private void ResetMaze() // TODO consider moving this function to MazeAlgorithm
+    {
+        foreach (var cell in cells)
+        {
+            cell.Reset();
+        }
     }
 }
