@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 10, y: 10}
+  player: {fileID: 0}
+  messageText: {fileID: 0}
   cellPrefab: {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3,
     type: 2}
   secondsBetweenGenerations: 30

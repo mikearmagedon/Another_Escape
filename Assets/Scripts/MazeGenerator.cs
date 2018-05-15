@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour
 {
     [SerializeField] Vector2Int size;
+    [SerializeField] Player player;
+    [SerializeField] Text messageText;
     [SerializeField] MazeCell cellPrefab;
     [SerializeField] float secondsBetweenGenerations = 5f;
 
@@ -17,8 +20,9 @@ public class MazeGenerator : MonoBehaviour
     {
         InitializeMaze();
         ConfigureCells();
+
         ma = new BinaryTreeAlgorithm(cells);
-        StartCoroutine(TimeKeeper());
+        StartCoroutine(GameLoop());
     }
 
     private void InitializeMaze()
@@ -76,14 +80,51 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    IEnumerator TimeKeeper()
+    IEnumerator GameLoop()
     {
-        while (true)
+        yield return StartCoroutine(StartGame());
+        yield return StartCoroutine(PlayGame());
+        yield return StartCoroutine(EndGame());
+
+        SceneManager.LoadScene(0);
+    }
+
+    IEnumerator StartGame()
+    {
+        player.DisableControl();
+        messageText.text = "Find all the coins and return to the start!";
+        yield return new WaitForSeconds(3f);
+    }
+
+    IEnumerator PlayGame()
+    {
+        player.EnableControl();
+
+        messageText.text = string.Empty;
+
+        StartCoroutine(MazeRegeneration());
+
+        while (!player.wonGame)
         {
-            StartCoroutine(ma.CreateMaze());
-            yield return new WaitForSeconds(secondsBetweenGenerations);
-            ResetMaze();
+            yield return null;
         }
+    }
+
+    IEnumerator MazeRegeneration()
+    {
+        yield return StartCoroutine(ma.CreateMaze());
+        yield return new WaitForSeconds(secondsBetweenGenerations);
+        ResetMaze();
+        StartCoroutine(MazeRegeneration());
+    }
+
+    IEnumerator EndGame()
+    {
+        player.DisableControl();
+
+        messageText.text = "GAME OVER";
+
+        yield return new WaitForSeconds(3f);
     }
 
     private void ResetMaze() // TODO consider moving this function to MazeAlgorithm
