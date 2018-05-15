@@ -91,6 +91,7 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        yield return new WaitForSeconds(3f);
         player.DisableControl();
         messageText.text = "Find all the coins and return to the start!";
         yield return new WaitForSeconds(3f);
