@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
+using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour
 {
+    public bool wonGame { get; private set; }
+
+    [SerializeField] Camera mapCamera;
+    
     int counter;
 
-    public bool wonGame { get; private set; }
+    private void Awake()
+    {
+    }
 
     // Use this for initialization
     void Start()
@@ -19,17 +26,20 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		
-	}
+        if (CrossPlatformInputManager.GetButtonDown("Map"))
+        {
+            mapCamera.enabled = !mapCamera.enabled;
+        }
+    }
 
     public void DisableControl()
     {
-        GetComponent<ThirdPersonUserControl>().enabled = false;
+        GetComponent<FirstPersonController>().enabled = false;
     }
 
     public void EnableControl()
     {
-        GetComponent<ThirdPersonUserControl>().enabled = true;
+        GetComponent<FirstPersonController>().enabled = true;
     }
 
     void OnTriggerEnter(Collider other)
