@@ -1,17 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour
 {
-    [SerializeField] Vector2Int initialCoordinates;
-    [SerializeField] Vector2Int size;
-    [SerializeField] Player player;
-    [SerializeField] Text messageText;
+    [SerializeField] public Vector2Int initialCoordinates;
+    [SerializeField] public Vector2Int size;
+    [SerializeField] public float secondsBetweenGenerations;
     [SerializeField] MazeCell cellPrefab;
-    [SerializeField] float secondsBetweenGenerations = 5f;
 
     private MazeCell[,] cells;
     private MazeAlgorithm ma;
@@ -23,7 +20,7 @@ public class MazeGenerator : MonoBehaviour
         ConfigureCells();
 
         ma = new BinaryTreeAlgorithm(cells);
-        StartCoroutine(GameLoop());
+        //StartCoroutine(ContinuousMazeGeneration());
     }
 
     private void InitializeMaze()
@@ -79,54 +76,14 @@ public class MazeGenerator : MonoBehaviour
                 cell.West = cells[c - 1, r];
             }
         }
-    }
+    }   
 
-    IEnumerator GameLoop()
-    {
-        yield return StartCoroutine(StartGame());
-        yield return StartCoroutine(PlayGame());
-        yield return StartCoroutine(EndGame());
-
-        SceneManager.LoadScene(0);
-    }
-
-    IEnumerator StartGame()
-    {
-        player.DisableControl();
-        yield return new WaitForSeconds(3f);
-        messageText.text = "Find all the coins and return to the start!";
-        yield return new WaitForSeconds(3f);
-    }
-
-    IEnumerator PlayGame()
-    {
-        player.EnableControl();
-
-        messageText.text = string.Empty;
-
-        StartCoroutine(MazeRegeneration());
-
-        while (!player.wonGame)
-        {
-            yield return null;
-        }
-    }
-
-    IEnumerator MazeRegeneration()
+    public IEnumerator ContinuousMazeGeneration()
     {
         yield return StartCoroutine(ma.CreateMaze());
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
-        StartCoroutine(MazeRegeneration());
-    }
-
-    IEnumerator EndGame()
-    {
-        player.DisableControl();
-
-        messageText.text = "GAME OVER";
-
-        yield return new WaitForSeconds(3f);
+        StartCoroutine(ContinuousMazeGeneration());
     }
 
     private void ResetMaze() // TODO consider moving this function to MazeAlgorithm
