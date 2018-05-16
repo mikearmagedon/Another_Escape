@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour
 {
+    [SerializeField] Vector2Int initialCoordinates;
     [SerializeField] Vector2Int size;
     [SerializeField] Player player;
     [SerializeField] Text messageText;
@@ -42,9 +43,9 @@ public class MazeGenerator : MonoBehaviour
     {
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
-        newCell.coordinates = coordinates;
-        newCell.name = coordinates.x + "," + coordinates.y;
-        newCell.transform.position = new Vector3(coordinates.x * MazeCell.cellSize, 0f, coordinates.y * MazeCell.cellSize);
+        newCell.coordinates = coordinates + initialCoordinates;
+        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.y);
+        newCell.transform.position = new Vector3((coordinates.x + initialCoordinates.x) * MazeCell.cellSize, 0f, (coordinates.y + initialCoordinates.y) * MazeCell.cellSize);
 
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
@@ -58,8 +59,8 @@ public class MazeGenerator : MonoBehaviour
     {
         foreach (var cell in cells)
         {
-            int c = cell.coordinates.x;
-            int r = cell.coordinates.y;
+            int c = cell.coordinates.x - initialCoordinates.x;
+            int r = cell.coordinates.y - initialCoordinates.y;
 
             if (r + 1 < size.y)
             {
