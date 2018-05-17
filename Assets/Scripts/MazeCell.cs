@@ -7,6 +7,8 @@ public class MazeCell : MonoBehaviour
 {
     internal const int cellSize = 4;
     internal Vector2Int coordinates;
+    internal MazeDirection? entrance = null;
+    internal MazeDirection? exit = null;
     internal MazeCell North { get; set; }
     internal MazeCell South { get; set; }
     internal MazeCell East { get; set; }
@@ -35,9 +37,10 @@ public class MazeCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Draw passages with neighbours
         if (links.Count == 0) { return; }
 
-        if (North && links.ContainsKey(North) || !walls[(int)MazeDirection.North].activeSelf)
+        if (North && links.ContainsKey(North))
         {
             walls[(int)MazeDirection.North].SetActive(false);
         }
@@ -45,7 +48,7 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.North].SetActive(true);
         }
-        if (East && links.ContainsKey(East) || !walls[(int)MazeDirection.East].activeSelf)
+        if (East && links.ContainsKey(East))
         {
             walls[(int)MazeDirection.East].SetActive(false);
         }
@@ -53,7 +56,7 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.East].SetActive(true);
         }
-        if (South && links.ContainsKey(South) || !walls[(int)MazeDirection.South].activeSelf)
+        if (South && links.ContainsKey(South))
         {
             walls[(int)MazeDirection.South].SetActive(false);
         }
@@ -61,13 +64,29 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.South].SetActive(true);
         }
-        if (West && links.ContainsKey(West) || !walls[(int)MazeDirection.West].activeSelf)
+        if (West && links.ContainsKey(West))
         {
             walls[(int)MazeDirection.West].SetActive(false);
         }
         else
         {
             walls[(int)MazeDirection.West].SetActive(true);
+        }
+
+        // Draw exit/entrance
+        foreach (MazeDirection direction in Enum.GetValues(typeof(MazeDirection)))
+        {
+            if (entrance == null && exit == null) { return; }
+
+            if (direction == entrance)
+            {
+                walls[(int)direction].SetActive(false);
+            }
+
+            if (direction == exit)
+            {
+                walls[(int)direction].SetActive(false);
+            }         
         }
     }
 

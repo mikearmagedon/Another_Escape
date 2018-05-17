@@ -103,11 +103,11 @@ public class MazeGenerator : MonoBehaviour
 
     private void CreateMazeEntrance(Vector2Int coordinates, MazeDirection direction)
     {
-        cells[coordinates.x, coordinates.y].DestroyWall(direction);
+        cells[coordinates.x, coordinates.y].entrance = direction;
     }
 
     private void CreateMazeExit(Vector2Int coordinates, MazeDirection direction)
     {
-        cells[coordinates.x, coordinates.y].DestroyWall(direction);
+        cells[coordinates.x, coordinates.y].exit = direction;
     }
 }
