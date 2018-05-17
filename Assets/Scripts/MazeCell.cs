@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ public class MazeCell : MonoBehaviour
     {
         if (links.Count == 0) { return; }
 
-        if (North && links.ContainsKey(North))
+        if (North && links.ContainsKey(North) || !walls[(int)MazeDirection.North].activeSelf)
         {
             walls[(int)MazeDirection.North].SetActive(false);
         }
@@ -44,7 +45,7 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.North].SetActive(true);
         }
-        if (East && links.ContainsKey(East))
+        if (East && links.ContainsKey(East) || !walls[(int)MazeDirection.East].activeSelf)
         {
             walls[(int)MazeDirection.East].SetActive(false);
         }
@@ -52,7 +53,7 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.East].SetActive(true);
         }
-        if (South && links.ContainsKey(South))
+        if (South && links.ContainsKey(South) || !walls[(int)MazeDirection.South].activeSelf)
         {
             walls[(int)MazeDirection.South].SetActive(false);
         }
@@ -60,7 +61,7 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.South].SetActive(true);
         }
-        if (West && links.ContainsKey(West))
+        if (West && links.ContainsKey(West) || !walls[(int)MazeDirection.West].activeSelf)
         {
             walls[(int)MazeDirection.West].SetActive(false);
         }
@@ -82,5 +83,10 @@ public class MazeCell : MonoBehaviour
         {
             neighbour.CreatePassage(this, false);
         }
+    }
+
+    internal void DestroyWall(MazeDirection direction)
+    {
+        walls[(int)direction].SetActive(false);
     }
 }

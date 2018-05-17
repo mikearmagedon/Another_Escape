@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
-    [SerializeField] public Vector2Int initialCoordinates;
-    [SerializeField] public Vector2Int size;
-    [SerializeField] public float secondsBetweenGenerations;
+    public Vector2Int initialCoordinates;
+    public Vector2Int size;
+    public float secondsBetweenGenerations;
+    public Vector2Int mazeEntrance;
+    public MazeDirection mazeEntranceDirection;
+    public Vector2Int mazeExit;
+    public MazeDirection mazeExitDirection;
+
     [SerializeField] MazeCell cellPrefab;
 
     private MazeCell[,] cells;
@@ -22,8 +27,11 @@ public class MazeGenerator : MonoBehaviour
         StartCoroutine(ContinuousMazeGeneration());
     }
     
+    // TODO consider using a bool argument to set the continuous generation
     public IEnumerator ContinuousMazeGeneration()
     {
+        CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
+        CreateMazeExit(mazeExit, mazeExitDirection);
         yield return StartCoroutine(ma.CreateMaze());
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
@@ -91,5 +99,15 @@ public class MazeGenerator : MonoBehaviour
         {
             cell.Reset();
         }
+    }
+
+    private void CreateMazeEntrance(Vector2Int coordinates, MazeDirection direction)
+    {
+        cells[coordinates.x, coordinates.y].DestroyWall(direction);
+    }
+
+    private void CreateMazeExit(Vector2Int coordinates, MazeDirection direction)
+    {
+        cells[coordinates.x, coordinates.y].DestroyWall(direction);
     }
 }
