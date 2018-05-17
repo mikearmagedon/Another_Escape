@@ -7,8 +7,8 @@ public class MazeCell : MonoBehaviour
 {
     internal const int cellSize = 4;
     internal Vector2Int coordinates;
-    internal MazeDirection? entrance = null;
-    internal MazeDirection? exit = null;
+    internal MazeDirection entrance = MazeDirection.None;
+    internal MazeDirection exit = MazeDirection.None;
     internal MazeCell North { get; set; }
     internal MazeCell South { get; set; }
     internal MazeCell East { get; set; }
@@ -76,7 +76,7 @@ public class MazeCell : MonoBehaviour
         // Draw exit/entrance
         foreach (MazeDirection direction in Enum.GetValues(typeof(MazeDirection)))
         {
-            if (entrance == null && exit == null) { return; }
+            if (entrance == MazeDirection.None && exit == MazeDirection.None) { return; }
 
             if (direction == entrance)
             {

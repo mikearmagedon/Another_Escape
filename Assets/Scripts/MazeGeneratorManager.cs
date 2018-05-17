@@ -11,9 +11,9 @@ public class MazeGeneratorManager
     [SerializeField] Vector2Int size = new Vector2Int(10, 10);
     [SerializeField] float secondsBetweenGenerations = 20f;
     [SerializeField] Vector2Int mazeEntrance = new Vector2Int(0, 0);
-    [SerializeField] MazeDirection mazeEntranceDirection = MazeDirection.South;
+    [SerializeField] MazeDirection mazeEntranceDirection = MazeDirection.None;
     [SerializeField] Vector2Int mazeExit = new Vector2Int(0, 0);
-    [SerializeField] MazeDirection mazeExitDirection = MazeDirection.South;
+    [SerializeField] MazeDirection mazeExitDirection = MazeDirection.None;
 
     MazeGenerator mazeGenerator;
 
