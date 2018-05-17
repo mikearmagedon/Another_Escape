@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour
         //          call StartCoroutine(mazeGenerator.ContinuousMazeGeneration());
         //StartCoroutine(MazeRegeneration());
 
-        foreach (var mazeGenerator in mazeGenerators)
-        {
-            StartCoroutine(mazeGenerator.mazeGenerator.ContinuousMazeGeneration());
-        }
+        //foreach (var mazeGenerator in mazeGenerators)
+        //{
+        //    StartCoroutine(mazeGenerator.mazeGenerator.ContinuousMazeGeneration());
+        //}
 
         while (!player.wonGame)
         {

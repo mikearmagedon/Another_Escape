@@ -13,14 +13,21 @@ public class MazeGenerator : MonoBehaviour
     private MazeCell[,] cells;
     private MazeAlgorithm ma;
 
-    // Use this for initialization
     void Start()
     {
         InitializeMaze();
         ConfigureCells();
 
         ma = new BinaryTreeAlgorithm(cells);
-        //StartCoroutine(ContinuousMazeGeneration());
+        StartCoroutine(ContinuousMazeGeneration());
+    }
+    
+    public IEnumerator ContinuousMazeGeneration()
+    {
+        yield return StartCoroutine(ma.CreateMaze());
+        yield return new WaitForSeconds(secondsBetweenGenerations);
+        ResetMaze();
+        StartCoroutine(ContinuousMazeGeneration());
     }
 
     private void InitializeMaze()
@@ -50,7 +57,7 @@ public class MazeGenerator : MonoBehaviour
     }
 
     /**
-     * Assigns the neighbours of each cell
+     * Assign the neighbours of each cell
      */
     private void ConfigureCells()
     {
@@ -76,17 +83,9 @@ public class MazeGenerator : MonoBehaviour
                 cell.West = cells[c - 1, r];
             }
         }
-    }   
-
-    public IEnumerator ContinuousMazeGeneration()
-    {
-        yield return StartCoroutine(ma.CreateMaze());
-        yield return new WaitForSeconds(secondsBetweenGenerations);
-        ResetMaze();
-        StartCoroutine(ContinuousMazeGeneration());
     }
 
-    private void ResetMaze() // TODO consider moving this function to MazeAlgorithm
+    private void ResetMaze()
     {
         foreach (var cell in cells)
         {

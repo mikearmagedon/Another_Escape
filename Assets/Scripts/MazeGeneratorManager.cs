@@ -11,7 +11,7 @@ public class MazeGeneratorManager
     [SerializeField] Vector2Int size = new Vector2Int(10, 10);
     [SerializeField] float secondsBetweenGenerations = 20f;
 
-    [HideInInspector] public MazeGenerator mazeGenerator; // TODO make this variable private
+    MazeGenerator mazeGenerator;
 
     public void Setup()
 	{
