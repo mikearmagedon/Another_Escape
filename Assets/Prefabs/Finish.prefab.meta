@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: ebd6574e2ac3e094a921120bf6f275c1
-timeCreated: 1526319954
-licenseType: Free
+labels:
+- SceneSetup
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 100100000
