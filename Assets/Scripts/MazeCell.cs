@@ -77,6 +77,7 @@ public class MazeCell : MonoBehaviour
         foreach (MazeDirection direction in Enum.GetValues(typeof(MazeDirection)))
         {
             if (entrance == MazeDirection.None && exit == MazeDirection.None) { return; }
+            if (direction == MazeDirection.None) { continue; }
 
             if (direction == entrance)
             {
