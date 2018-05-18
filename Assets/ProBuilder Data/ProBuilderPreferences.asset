@@ -17,6 +17,7 @@ MonoBehaviour:
   - pbDisableAutoUV2Generation
   - pbForceConvex
   - pbMeshesAreAssets
+  - pbEnableBackfaceSelection
   m_Int_keys:
   - pbDefaultEditLevel
   - pbVertexColorTool
@@ -26,19 +27,22 @@ MonoBehaviour:
   - pbDefaultCollider
   - pbShadowCastingMode
   - pbDefaultStaticFlags
+  - pbDragSelectMode
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
+  - pbWeldDistance
   m_String_keys:
   - pb_VertexColorPalette::lastAssignedColorPalette
   m_Color_keys: []
   m_Material_keys:
   - pbDefaultMaterial
-  m_Bool_values: 0101010000
-  m_Int_values: 0000000000000000000000000200000000000000020000000200000000000000
+  m_Bool_values: 010101000001
+  m_Int_values: 040000000000000000000000000000000000000002000000020000000000000002000000
   m_Float_values:
   - 0
   - 0
+  - 0.03
   m_String_values:
   - Assets/ProBuilder Data/Default Color Palette.asset
   m_Color_values: []
