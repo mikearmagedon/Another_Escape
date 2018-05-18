@@ -1,0 +1,9 @@
+Camera:
+ - fixed
+ - rotating with right mouse click
+
+Player movement:
+ - wasd
+ - mouse point and click
+ - pathfinding
+ - runtime navMesh baking
