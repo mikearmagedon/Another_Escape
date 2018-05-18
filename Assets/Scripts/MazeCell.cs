@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class MazeCell : MonoBehaviour
 {
     internal const int cellSize = 4;
     internal Vector2Int coordinates;
+    internal MazeDirection entrance = MazeDirection.None;
+    internal MazeDirection exit = MazeDirection.None;
     internal MazeCell North { get; set; }
     internal MazeCell South { get; set; }
     internal MazeCell East { get; set; }
@@ -34,6 +37,7 @@ public class MazeCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Draw passages with neighbours
         if (links.Count == 0) { return; }
 
         if (North && links.ContainsKey(North))
@@ -68,6 +72,22 @@ public class MazeCell : MonoBehaviour
         {
             walls[(int)MazeDirection.West].SetActive(true);
         }
+
+        // Draw exit/entrance
+        foreach (MazeDirection direction in Enum.GetValues(typeof(MazeDirection)))
+        {
+            if (entrance == MazeDirection.None && exit == MazeDirection.None) { return; }
+
+            if (direction == entrance)
+            {
+                walls[(int)direction].SetActive(false);
+            }
+
+            if (direction == exit)
+            {
+                walls[(int)direction].SetActive(false);
+            }         
+        }
     }
 
     internal void Reset()
@@ -82,5 +102,10 @@ public class MazeCell : MonoBehaviour
         {
             neighbour.CreatePassage(this, false);
         }
+    }
+
+    internal void DestroyWall(MazeDirection direction)
+    {
+        walls[(int)direction].SetActive(false);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum MazeDirection
 {
+    None = -1,
     North,
     East,
     South,

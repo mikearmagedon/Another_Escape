@@ -1,28 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MazeGenerator : MonoBehaviour
 {
-    [SerializeField] Vector2Int size;
-    [SerializeField] Player player;
-    [SerializeField] Text messageText;
+    public Vector2Int initialCoordinates;
+    public Vector2Int size;
+    public float secondsBetweenGenerations;
+    public Vector2Int mazeEntrance;
+    public MazeDirection mazeEntranceDirection;
+    public Vector2Int mazeExit;
+    public MazeDirection mazeExitDirection;
+
     [SerializeField] MazeCell cellPrefab;
-    [SerializeField] float secondsBetweenGenerations = 5f;
 
     private MazeCell[,] cells;
     private MazeAlgorithm ma;
 
-    // Use this for initialization
     void Start()
     {
         InitializeMaze();
         ConfigureCells();
 
         ma = new BinaryTreeAlgorithm(cells);
-        StartCoroutine(GameLoop());
+        StartCoroutine(ContinuousMazeGeneration());
+    }
+    
+    // TODO consider using a bool argument to set the continuous generation
+    public IEnumerator ContinuousMazeGeneration()
+    {
+        CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
+        CreateMazeExit(mazeExit, mazeExitDirection);
+        yield return StartCoroutine(ma.CreateMaze());
+        yield return new WaitForSeconds(secondsBetweenGenerations);
+        ResetMaze();
+        StartCoroutine(ContinuousMazeGeneration());
     }
 
     private void InitializeMaze()
@@ -42,9 +55,9 @@ public class MazeGenerator : MonoBehaviour
     {
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
-        newCell.coordinates = coordinates;
-        newCell.name = coordinates.x + "," + coordinates.y;
-        newCell.transform.position = new Vector3(coordinates.x * MazeCell.cellSize, 0f, coordinates.y * MazeCell.cellSize);
+        newCell.coordinates = coordinates + initialCoordinates;
+        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.y);
+        newCell.transform.position = new Vector3((coordinates.x + initialCoordinates.x) * MazeCell.cellSize, 0f, (coordinates.y + initialCoordinates.y) * MazeCell.cellSize);
 
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
@@ -52,14 +65,14 @@ public class MazeGenerator : MonoBehaviour
     }
 
     /**
-     * Assigns the neighbours of each cell
+     * Assign the neighbours of each cell
      */
     private void ConfigureCells()
     {
         foreach (var cell in cells)
         {
-            int c = cell.coordinates.x;
-            int r = cell.coordinates.y;
+            int c = cell.coordinates.x - initialCoordinates.x;
+            int r = cell.coordinates.y - initialCoordinates.y;
 
             if (r + 1 < size.y)
             {
@@ -80,59 +93,21 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    IEnumerator GameLoop()
-    {
-        yield return StartCoroutine(StartGame());
-        yield return StartCoroutine(PlayGame());
-        yield return StartCoroutine(EndGame());
-
-        SceneManager.LoadScene(0);
-    }
-
-    IEnumerator StartGame()
-    {
-        player.DisableControl();
-        yield return new WaitForSeconds(3f);
-        messageText.text = "Find all the coins and return to the start!";
-        yield return new WaitForSeconds(3f);
-    }
-
-    IEnumerator PlayGame()
-    {
-        player.EnableControl();
-
-        messageText.text = string.Empty;
-
-        StartCoroutine(MazeRegeneration());
-
-        while (!player.wonGame)
-        {
-            yield return null;
-        }
-    }
-
-    IEnumerator MazeRegeneration()
-    {
-        yield return StartCoroutine(ma.CreateMaze());
-        yield return new WaitForSeconds(secondsBetweenGenerations);
-        ResetMaze();
-        StartCoroutine(MazeRegeneration());
-    }
-
-    IEnumerator EndGame()
-    {
-        player.DisableControl();
-
-        messageText.text = "GAME OVER";
-
-        yield return new WaitForSeconds(3f);
-    }
-
-    private void ResetMaze() // TODO consider moving this function to MazeAlgorithm
+    private void ResetMaze()
     {
         foreach (var cell in cells)
         {
             cell.Reset();
         }
+    }
+
+    private void CreateMazeEntrance(Vector2Int coordinates, MazeDirection direction)
+    {
+        cells[coordinates.x, coordinates.y].entrance = direction;
+    }
+
+    private void CreateMazeExit(Vector2Int coordinates, MazeDirection direction)
+    {
+        cells[coordinates.x, coordinates.y].exit = direction;
     }
 }
