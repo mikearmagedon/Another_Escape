@@ -87,5 +87,10 @@ public class PlayerMovement : MonoBehaviour
             thirdPersonCharachter.Move(Vector3.zero, false, false);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        
+    }
 }
 
