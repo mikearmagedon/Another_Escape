@@ -1,4 +1,4 @@
-Camera:
+Camera: done
  - fixed
  - rotating with right mouse click
 

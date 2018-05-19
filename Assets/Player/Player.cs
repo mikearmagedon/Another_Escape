@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Player : MonoBehaviour
 {
@@ -24,12 +23,12 @@ public class Player : MonoBehaviour
 
     public void DisableControl()
     {
-        GetComponent<ThirdPersonUserControl>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
     }
 
     public void EnableControl()
     {
-        GetComponent<ThirdPersonUserControl>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
     }
 
     void OnTriggerEnter(Collider other)
