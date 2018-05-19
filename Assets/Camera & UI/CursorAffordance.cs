@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,11 +17,12 @@ public class CursorAffordance : MonoBehaviour
     void Start()
     {
         cameraRaycaster = GetComponent<CameraRaycaster>();
+        cameraRaycaster.onLayerChange += OnLayerChanged; // registering
     }
 
-	void LateUpdate()
+    void OnLayerChanged(Layer newLayer)
     {
-        switch (cameraRaycaster.currentLayerHit)
+        switch (newLayer)
         {
             case Layer.Walkable:
                 Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
@@ -32,7 +34,7 @@ public class CursorAffordance : MonoBehaviour
                 Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
                 break;
             default:
-                Debug.Log("Don't know what cursor to show");
+                Debug.LogError("Don't know what cursor to show");
                 break;
         }
     }
