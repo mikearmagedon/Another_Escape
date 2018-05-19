@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float walkMoveStopRadius = 1.5f;
 
+    const int walkableLayerNumber = 8;
+    const int enemyLayerNumber = 9;
+
     ThirdPersonCharacter thirdPersonCharachter;
     CameraRaycaster cameraRaycaster;
     Vector3 currentClickTarget;
@@ -17,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
         cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
         thirdPersonCharachter = GetComponent<ThirdPersonCharacter>();
         currentClickTarget = transform.position;
+
+        cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
 
     // Fixed update is called in sync with physics
@@ -51,26 +56,26 @@ public class PlayerMovement : MonoBehaviour
         thirdPersonCharachter.Move(movement, false, false);
     }
 
+    private void ProcessMouseClick(RaycastHit raycastHit, int layerHit)
+    {
+        switch (layerHit)
+        {
+            case walkableLayerNumber:
+                currentClickTarget = raycastHit.point;
+                // If hold down button to move
+                //thirdPersonCharachter.Move(currentClickTarget - transform.position, false, false);
+                break;
+            case enemyLayerNumber:
+                currentClickTarget = raycastHit.point;
+                break;
+            default:
+                Debug.LogWarning("Don't know how to handle mouse click for player movement");
+                break;
+        }
+    }
+
     private void ProcessMouseMovement()
     {
-        if (Input.GetMouseButton(0)) // Left mouse button
-        {
-            switch (cameraRaycaster.currentLayerHit)
-            {
-                case Layer.Walkable:
-                    currentClickTarget = cameraRaycaster.hit.point;
-                    // If hold down button to move
-                    //m_Character.Move(currentClickTarget - transform.position, false, false);
-                    break;
-                case Layer.Enemy:
-                    break;
-                case Layer.RaycastEndStop:
-                    break;
-                default:
-                    break;
-            }
-        }
-
         // Prevent player animation from twitching when reaching the target
         var playertoClickPoint = currentClickTarget - transform.position;
         if (playertoClickPoint.magnitude >= walkMoveStopRadius)

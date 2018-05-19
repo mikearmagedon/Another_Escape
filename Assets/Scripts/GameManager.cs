@@ -42,22 +42,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         messageText.text = "Find all the coins and return to the start!";
         yield return new WaitForSeconds(3f);
+        messageText.text = string.Empty;
+        messageText.enabled = false;
     }
 
     IEnumerator PlayGame()
     {
         player.EnableControl();
-
-        messageText.text = string.Empty;
-
-        // TODO foreach mazeGenerator in mazeGenerators
-        //          call StartCoroutine(mazeGenerator.ContinuousMazeGeneration());
-        //StartCoroutine(MazeRegeneration());
-
-        //foreach (var mazeGenerator in mazeGenerators)
-        //{
-        //    StartCoroutine(mazeGenerator.mazeGenerator.ContinuousMazeGeneration());
-        //}
 
         while (!player.wonGame)
         {
@@ -69,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         player.DisableControl();
 
+        messageText.enabled = true;
         messageText.text = "GAME OVER";
 
         yield return new WaitForSeconds(3f);
