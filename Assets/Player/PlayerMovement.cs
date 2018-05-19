@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K)) // TODO add to controls menu
         {
             isInKeyboardMovementMode = !isInKeyboardMovementMode;
+            Debug.Log("Keyboard movement: " + isInKeyboardMovementMode);
             currentClickTarget = transform.position; // clear current click target
         }
 
