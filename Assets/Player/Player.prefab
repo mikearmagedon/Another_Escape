@@ -2529,6 +2529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ada899ccce0d364d91635d4e218e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayerNumber: 9
+  attackRadius: 2
+  damagePerHit: 10
+  minTimeBetweenHits: 0.5
+  maxHealthPoints: 100
 --- !u!136 &136388435160995834
 CapsuleCollider:
   m_ObjectHideFlags: 1
