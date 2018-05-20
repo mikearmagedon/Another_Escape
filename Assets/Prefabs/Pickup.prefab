@@ -39,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423521813528018}
   m_LocalRotation: {x: -0.30322245, y: 0.63879275, z: -0.63879275, w: -0.30322245}
-  m_LocalPosition: {x: 0, y: 1.5511028, z: 16}
-  m_LocalScale: {x: 0.7, y: 0.03, z: 0.7}
+  m_LocalPosition: {x: 20, y: 1.5511028, z: 20}
+  m_LocalScale: {x: 0.7000003, y: 0.030000005, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,6 +58,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 23c18b60abca60a47bf6eec14088ddb4, type: 2}
   m_StaticBatchInfo:
@@ -109,11 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423521813528018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e04649fe853ae04ab6733c5d1ad3878, type: 3}
+  m_Script: {fileID: 11500000, guid: 44644a974f31dd747815d9d4dc89c70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 0, y: 0.3, z: 0}
-  period: 1.5
+  movementVector: {x: 0, y: 0, z: 80}
 --- !u!114 &114910818356494742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,10 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423521813528018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4715a81769610ae4e9a3db220f9230ea, type: 3}
+  m_Script: {fileID: 11500000, guid: dadf5fd4420ec67458402cbcb8db628c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 0, y: 0, z: 80}
+  movementVector: {x: 0, y: 0.3, z: 0}
+  period: 1.5
 --- !u!136 &136472419493692380
 CapsuleCollider:
   m_ObjectHideFlags: 1
