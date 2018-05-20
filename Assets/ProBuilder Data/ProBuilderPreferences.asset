@@ -18,6 +18,7 @@ MonoBehaviour:
   - pbForceConvex
   - pbMeshesAreAssets
   - pbEnableBackfaceSelection
+  - pbUVMaterialPreview
   m_Int_keys:
   - pbDefaultEditLevel
   - pbVertexColorTool
@@ -34,17 +35,19 @@ MonoBehaviour:
   - pbWeldDistance
   m_String_keys:
   - pb_VertexColorPalette::lastAssignedColorPalette
+  - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys:
   - pbDefaultMaterial
-  m_Bool_values: 010101000001
-  m_Int_values: 040000000000000000000000000000000000000002000000020000000000000002000000
+  m_Bool_values: 01010100000101
+  m_Int_values: 000000000000000000000000000000000000000002000000020000000000000002000000
   m_Float_values:
   - 0
   - 0
   - 0.03
   m_String_values:
   - Assets/ProBuilder Data/Default Color Palette.asset
+  - Assets/ProBuilder Data/Default Material Palette.asset
   m_Color_values: []
   m_Material_values:
   - {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
