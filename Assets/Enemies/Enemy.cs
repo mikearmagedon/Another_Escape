@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public float healthAsPercentage
     {
@@ -19,6 +19,11 @@ public class Enemy : MonoBehaviour
     float currentHealtPoints = 100f;
     AICharacterControl aiCharacterControl = null;
     GameObject player = null;
+
+    void IDamageable.TakeDamage(float damage)
+    {
+        currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
+    }
 
     // Use this for initialization
     void Start()

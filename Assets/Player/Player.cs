@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     public bool wonGame { get; private set; }
     public float healthAsPercentage
@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
 
     int counter;
     float currentHealtPoints = 100f;
+
+    void IDamageable.TakeDamage(float damage)
+    {
+        currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
+    }
 
     // Use this for initialization
     void Start()
