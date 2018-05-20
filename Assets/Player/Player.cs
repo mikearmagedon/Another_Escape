@@ -100,10 +100,10 @@ public class Player : MonoBehaviour, IDamageable
             if ((Time.time - lastHitTime) > minTimeBetweenHits)
             {
                 // Damage the enemy
-                Component damageableComponent = currentTarget.GetComponent(typeof(IDamageable));
-                if (damageableComponent)
+                IDamageable damageable = currentTarget.GetComponent<IDamageable>();
+                if (damageable != null)
                 {
-                    (damageableComponent as IDamageable).TakeDamage(damagePerHit);
+                    damageable.TakeDamage(damagePerHit);
                 }
                 lastHitTime = Time.time;
             }
