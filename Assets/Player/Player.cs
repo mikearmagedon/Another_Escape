@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int counter;
-
     public bool wonGame { get; private set; }
+    public float healthAsPercentage
+    {
+        get
+        {
+            return currentHealtPoints / maxHealthPoints;
+        }
+    }
+
+    [SerializeField] float maxHealthPoints = 100f;
+
+    int counter;
+    float currentHealtPoints = 100f;
 
     // Use this for initialization
     void Start()
