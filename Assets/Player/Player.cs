@@ -34,6 +34,10 @@ public class Player : MonoBehaviour, IDamageable
     void IDamageable.TakeDamage(float damage)
     {
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
+        if (currentHealtPoints == 0)
+        {
+            wonGame = true;
+        }
     }
 
     // Use this for initialization

@@ -13,6 +13,7 @@ public class CursorAffordance : MonoBehaviour
 
     const int walkableLayerNumber = 8;
     const int enemyLayerNumber = 9;
+    const int uiLayerNumber = 5;
 
     CameraRaycaster cameraRaycaster;
 
@@ -27,6 +28,8 @@ public class CursorAffordance : MonoBehaviour
     {
         switch (newLayer)
         {
+            case uiLayerNumber:
+                // fall through
             case walkableLayerNumber:
                 Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
                 break;
