@@ -26,29 +26,10 @@ public class PlayerMovement : MonoBehaviour
         cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.K)) // TODO add to controls menu
-        {
-            isInKeyboardMovementMode = !isInKeyboardMovementMode;
-            Debug.Log("Keyboard movement: " + isInKeyboardMovementMode);
-            currentClickTarget = transform.position; // clear current click target
-        }
-
-        navigationMode.text = isInKeyboardMovementMode ? "Keyboard" : "Mouse"; // TODO remove
-    }
-
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
-        if (isInKeyboardMovementMode)
-        {
-            ProcessKeyboardMovement();
-        }
-        else
-        {
-            ProcessMouseMovement();
-        }
+        ProcessKeyboardMovement();
     }
 
     private void ProcessKeyboardMovement()
@@ -68,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
         switch (layerHit)
         {
             case walkableLayerNumber:
-                currentClickTarget = raycastHit.point;
-                // If hold down button to move
-                //thirdPersonCharachter.Move(currentClickTarget - transform.position, false, false);
                 break;
             case enemyLayerNumber:
                 currentClickTarget = raycastHit.point;
@@ -78,20 +56,6 @@ public class PlayerMovement : MonoBehaviour
             default:
                 Debug.LogWarning("Don't know how to handle mouse click for player movement");
                 break;
-        }
-    }
-
-    private void ProcessMouseMovement()
-    {
-        // Prevent player animation from twitching when reaching the target
-        var playertoClickPoint = currentClickTarget - transform.position;
-        if (playertoClickPoint.magnitude >= walkStopRadius)
-        {
-            thirdPersonCharachter.Move(playertoClickPoint, false, false);
-        }
-        else
-        {
-            thirdPersonCharachter.Move(Vector3.zero, false, false);
         }
     }
 }
