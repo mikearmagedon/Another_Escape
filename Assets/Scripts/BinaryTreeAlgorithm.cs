@@ -9,7 +9,7 @@ public class BinaryTreeAlgorithm : MazeAlgorithm
 
     }
 
-    public override IEnumerator CreateMaze()
+    public override void CreateMaze()
     {
         foreach (var cell in cells)
         {
@@ -28,7 +28,6 @@ public class BinaryTreeAlgorithm : MazeAlgorithm
             if (index < neighbours.Count)
             {
                 MazeCell neighbour = neighbours[index];
-                yield return new WaitForSeconds(0.1f);
                 cell.CreatePassage(neighbour);
             }
         }

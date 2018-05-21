@@ -32,7 +32,7 @@ public class MazeGenerator : MonoBehaviour
     {
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
-        yield return StartCoroutine(ma.CreateMaze());
+        ma.CreateMaze();
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
         StartCoroutine(ContinuousMazeGeneration());

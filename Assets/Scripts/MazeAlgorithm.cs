@@ -15,5 +15,5 @@ public abstract class MazeAlgorithm
         mazeColumns = cells.GetLength(1);
     }
 
-    public abstract IEnumerator CreateMaze();
+    public abstract void CreateMaze();
 }
