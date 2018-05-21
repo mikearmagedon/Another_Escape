@@ -711,21 +711,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114421242457005402, guid: fd8bfacf62096b04a93b622938c703e6,
-        type: 2}
-      propertyPath: m_LockCursor
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114421242457005402, guid: fd8bfacf62096b04a93b622938c703e6,
-        type: 2}
-      propertyPath: m_VerticalAutoReturn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114421242457005402, guid: fd8bfacf62096b04a93b622938c703e6,
-        type: 2}
-      propertyPath: m_TurnSpeed
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd8bfacf62096b04a93b622938c703e6, type: 2}
   m_IsPrefabParent: 0
