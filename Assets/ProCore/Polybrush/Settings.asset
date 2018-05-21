@@ -16,14 +16,21 @@ MonoBehaviour:
   - z_pref_floatingEditorWindow
   - pushpull_ignoreNonManifoldIndices
   - pushpull_brush_sticky
+  - z_pref_rebuildNormals
+  - z_pref_rebuildCollisions
+  - z_pref_lockBrushSettings
+  - z_pref_additionalVertexStreams
+  - z_pref_hideWireframe
   m_int_keys:
   - prefab_previewThumbSize
   - z_GIWorkflowMode
   m_float_keys: []
   m_string_keys: []
-  m_Color_keys: []
-  m_bool_values: 01000001
-  m_int_values: 4100000000000000
+  m_Color_keys:
+  - z_pref_brushColor
+  m_bool_values: 010000010101000101
+  m_int_values: 4100000001000000
   m_float_values: []
   m_string_values: []
-  m_Color_values: []
+  m_Color_values:
+  - {r: 0, g: 0.8, b: 1, a: 1}
