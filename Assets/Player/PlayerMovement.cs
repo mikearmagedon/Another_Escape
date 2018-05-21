@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 [RequireComponent(typeof (ThirdPersonCharacter))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float walkMoveStopRadius = 1.5f;
+    [SerializeField] Text navigationMode; // TODO remove
+    [SerializeField] float walkStopRadius = 1.5f;
 
     const int walkableLayerNumber = 8;
     const int enemyLayerNumber = 9;
@@ -13,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     ThirdPersonCharacter thirdPersonCharachter;
     CameraRaycaster cameraRaycaster;
     Vector3 currentClickTarget;
-    bool isInKeyboardMovementMode = false;
+    bool isInKeyboardMovementMode = true;
 
     private void Start()
     {
@@ -24,16 +26,21 @@ public class PlayerMovement : MonoBehaviour
         cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
     }
 
-    // Fixed update is called in sync with physics
-    private void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K)) // TODO add to controls menu
+        if (Input.GetKey(KeyCode.K)) // TODO add to controls menu
         {
             isInKeyboardMovementMode = !isInKeyboardMovementMode;
             Debug.Log("Keyboard movement: " + isInKeyboardMovementMode);
             currentClickTarget = transform.position; // clear current click target
         }
 
+        navigationMode.text = isInKeyboardMovementMode ? "Keyboard" : "Mouse"; // TODO remove
+    }
+
+    // Fixed update is called in sync with physics
+    private void FixedUpdate()
+    {
         if (isInKeyboardMovementMode)
         {
             ProcessKeyboardMovement();
@@ -78,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Prevent player animation from twitching when reaching the target
         var playertoClickPoint = currentClickTarget - transform.position;
-        if (playertoClickPoint.magnitude >= walkMoveStopRadius)
+        if (playertoClickPoint.magnitude >= walkStopRadius)
         {
             thirdPersonCharachter.Move(playertoClickPoint, false, false);
         }
