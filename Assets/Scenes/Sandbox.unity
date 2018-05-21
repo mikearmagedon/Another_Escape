@@ -347,6 +347,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4050976487582674, guid: 1210eaf3dd428364da7210f222ddaf01,
     type: 2}
   m_PrefabInternal: {fileID: 779205742}
+--- !u!114 &791387219 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114136608525435828, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 911991453}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &911991453
 Prefab:
   m_ObjectHideFlags: 0
@@ -656,7 +662,7 @@ Prefab:
         type: 2}
       propertyPath: messageText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 791387219}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: player
