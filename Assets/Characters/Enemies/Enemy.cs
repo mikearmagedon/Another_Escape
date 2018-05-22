@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] float chaseRadius = 10f;
     [SerializeField] float damagePerHit = 5f;
     [SerializeField] float minTimeBetweenHits = 0.5f;
+    [SerializeField] Weapon weaponInUse = null;
 
     // State
     public float healthAsPercentage
@@ -42,10 +44,29 @@ public class Enemy : MonoBehaviour, IDamageable
         player = GameObject.FindGameObjectWithTag("Player");
 
         currentHealtPoints = maxHealthPoints;
-	}
-	
-	// Update is called once per frame
-	void Update()
+
+        EquipWeapon();
+    }
+
+    private void EquipWeapon()
+    {
+        var weaponPrefab = weaponInUse.GetWeaponPrefab();
+        var dominantHand = RequestDominantHand();
+        var weapon = Instantiate(weaponPrefab, dominantHand.transform);
+        weapon.transform.localPosition = weaponInUse.weaponGrip.transform.position;
+        weapon.transform.localRotation = weaponInUse.weaponGrip.transform.rotation;
+    }
+
+    private GameObject RequestDominantHand()
+    {
+        var dominantHands = GetComponentsInChildren<DominantHand>();
+        Assert.IsFalse(dominantHands.Length <= 0, "No DominantHand script found on " + gameObject.name + ", please add one");
+        Assert.IsFalse(dominantHands.Length > 1, "Multiple DominantHand scripts found on " + gameObject.name + ", please have just one");
+        return dominantHands[0].gameObject;
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         float distanceToPlayer = Vector3.Distance(player.transform.position,transform.position);
 		if (distanceToPlayer <= attackRadius)

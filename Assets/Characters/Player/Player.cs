@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] float damagePerHit = 10f;
     [SerializeField] float minTimeBetweenHits = 0.5f;
     [SerializeField] float maxHealthPoints = 100f;
+    [SerializeField] Weapon weaponInUse = null;
 
     // State
     public bool wonGame { get; private set; }
@@ -43,18 +45,42 @@ public class Player : MonoBehaviour, IDamageable
     // Use this for initialization
     void Start()
     {
-        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-        cameraRaycaster.notifyMouseClickObservers += OnMouseClick; // registering
+        RegisterForMouseClick();
 
         currentHealtPoints = maxHealthPoints;
         wonGame = false;
         counter = 0;
-	}
+
+        EquipWeapon();
+    }
+
+    private void EquipWeapon()
+    {
+        var weaponPrefab = weaponInUse.GetWeaponPrefab();
+        var dominantHand = RequestDominantHand();
+        var weapon = Instantiate(weaponPrefab, dominantHand.transform);
+        weapon.transform.localPosition = weaponInUse.weaponGrip.transform.position;
+        weapon.transform.localRotation = weaponInUse.weaponGrip.transform.rotation;
+    }
+
+    private GameObject RequestDominantHand()
+    {
+        var dominantHands = GetComponentsInChildren<DominantHand>();
+        Assert.IsFalse(dominantHands.Length <= 0, "No DominantHand script found on player, please add one");
+        Assert.IsFalse(dominantHands.Length > 1, "Multiple DominantHand scripts found on player, please have just one");
+        return dominantHands[0].gameObject;
+    }
+
+    private void RegisterForMouseClick()
+    {
+        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+        cameraRaycaster.notifyMouseClickObservers += OnMouseClick; // registering
+    }
 
     // Update is called once per frame
     void Update()
     {
-		
+        ScriptableObject.CreateInstance<Weapon>();
 	}
 
     public void DisableControl()

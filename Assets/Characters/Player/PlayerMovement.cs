@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     ThirdPersonCharacter thirdPersonCharachter;
     CameraRaycaster cameraRaycaster;
     Vector3 currentClickTarget;
-    bool isInKeyboardMovementMode = true;
 
     private void Start()
     {
