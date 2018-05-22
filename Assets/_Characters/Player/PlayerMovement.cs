@@ -12,13 +12,11 @@ namespace RPG.Characters
 
         ThirdPersonCharacter thirdPersonCharachter;
         CameraRaycaster cameraRaycaster;
-        //Vector3 currentClickTarget;
 
         private void Start()
         {
             cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
             thirdPersonCharachter = GetComponent<ThirdPersonCharacter>();
-            //currentClickTarget = transform.position;
 
             cameraRaycaster.notifyMouseClickObservers += ProcessMouseClick;
         }
@@ -48,7 +46,6 @@ namespace RPG.Characters
                 case walkableLayerNumber:
                     break;
                 case enemyLayerNumber:
-                    //currentClickTarget = raycastHit.point;
                     break;
                 default:
                     Debug.LogWarning("Don't know how to handle mouse click for player movement");

@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 // TODO consider re-wire
 using RPG.CameraUI;
 using RPG.Core;
+using System;
 
 namespace RPG.Characters
 {
@@ -16,6 +17,7 @@ namespace RPG.Characters
         [SerializeField] float minTimeBetweenHits = 0.5f;
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] Weapon currentWeaponConfig = null;
+        [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         // State
         public bool wonGame { get; private set; }
@@ -50,12 +52,28 @@ namespace RPG.Characters
         void Start()
         {
             RegisterForMouseClick();
+            SetCurrentMaxHealth();
+            SetInitialWinConditionVariables();
+            EquipWeapon(currentWeaponConfig);
+            OverrideAnimatorController();
+        }
 
-            currentHealtPoints = maxHealthPoints;
+        void OverrideAnimatorController()
+        {
+            var animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController["DEFAULT ATTACK"] = currentWeaponConfig.GetAttackAnimClip(); // remove const
+        }
+
+        void SetInitialWinConditionVariables()
+        {
             wonGame = false;
             counter = 0;
+        }
 
-            EquipWeapon(currentWeaponConfig);
+        void SetCurrentMaxHealth()
+        {
+            currentHealtPoints = maxHealthPoints;
         }
 
         public void EquipWeapon(Weapon weaponConfig)
@@ -67,9 +85,10 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
+            OverrideAnimatorController();
         }
 
-        private GameObject RequestDominantHand()
+        GameObject RequestDominantHand()
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
             Assert.IsFalse(dominantHands.Length <= 0, "No DominantHand script found on player, please add one");
@@ -77,7 +96,7 @@ namespace RPG.Characters
             return dominantHands[0].gameObject;
         }
 
-        private void RegisterForMouseClick()
+        void RegisterForMouseClick()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyMouseClickObservers += OnMouseClick; // registering
