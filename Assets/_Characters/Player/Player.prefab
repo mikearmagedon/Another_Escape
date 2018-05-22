@@ -2541,11 +2541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLayerNumber: 9
-  attackRadius: 2
   damagePerHit: 10
-  minTimeBetweenHits: 0.5
   maxHealthPoints: 100
-  currentWeaponConfig: {fileID: 0}
+  currentWeaponConfig: {fileID: 11400000, guid: 606e8567a5f58df4c86a72fcad6e47c3,
+    type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
     type: 2}
 --- !u!136 &136388435160995834

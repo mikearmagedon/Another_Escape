@@ -4,7 +4,6 @@ using UnityEngine.Assertions;
 // TODO consider re-wire
 using RPG.CameraUI;
 using RPG.Core;
-using System;
 
 namespace RPG.Characters
 {
@@ -12,9 +11,7 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] int enemyLayerNumber = 9;
-        [SerializeField] float attackRadius = 2f;
         [SerializeField] float damagePerHit = 10f;
-        [SerializeField] float minTimeBetweenHits = 0.5f;
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] Weapon currentWeaponConfig = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
@@ -37,6 +34,7 @@ namespace RPG.Characters
 
         // Cached components references
         CameraRaycaster cameraRaycaster;
+        Animator animator;
 
         // Messages and methods
         void IDamageable.TakeDamage(float damage)
@@ -55,12 +53,22 @@ namespace RPG.Characters
             SetCurrentMaxHealth();
             SetInitialWinConditionVariables();
             EquipWeapon(currentWeaponConfig);
-            OverrideAnimatorController();
+            SetupRuntimeAnimator();
         }
 
-        void OverrideAnimatorController()
+        public void DisableControl()
         {
-            var animator = GetComponent<Animator>();
+            GetComponent<PlayerMovement>().enabled = false;
+        }
+
+        public void EnableControl()
+        {
+            GetComponent<PlayerMovement>().enabled = true;
+        }
+
+        void SetupRuntimeAnimator()
+        {
+            animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController["DEFAULT ATTACK"] = currentWeaponConfig.GetAttackAnimClip(); // remove const
         }
@@ -85,7 +93,7 @@ namespace RPG.Characters
             weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
             weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
-            OverrideAnimatorController();
+            SetupRuntimeAnimator();
         }
 
         GameObject RequestDominantHand()
@@ -106,16 +114,6 @@ namespace RPG.Characters
         void Update()
         {
             ScriptableObject.CreateInstance<Weapon>();
-        }
-
-        public void DisableControl()
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-        }
-
-        public void EnableControl()
-        {
-            GetComponent<PlayerMovement>().enabled = true;
         }
 
         void OnTriggerEnter(Collider other)
@@ -139,33 +137,40 @@ namespace RPG.Characters
             if (layerHit == enemyLayerNumber)
             {
                 GameObject enemy = raycastHit.collider.gameObject;
-
-                // Check if enemy is in range
-                if ((enemy.transform.position - transform.position).magnitude > attackRadius)
+                
+                if (IsTargetInRange(enemy))
                 {
-                    return;
-                }
-
-                currentTarget = enemy;
-
-                if ((Time.time - lastHitTime) > minTimeBetweenHits)
-                {
-                    // Damage the enemy
-                    IDamageable damageable = currentTarget.GetComponent<IDamageable>();
-                    if (damageable != null)
-                    {
-                        damageable.TakeDamage(damagePerHit);
-                    }
-                    lastHitTime = Time.time;
+                    AttackTarget(enemy);
                 }
             }
+        }
+
+        void AttackTarget(GameObject target)
+        {
+            if ((Time.time - lastHitTime) > currentWeaponConfig.GetMinTimeBetweenHits())
+            {
+                // Damage the enemy
+                IDamageable damageable = target.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    animator.SetTrigger("Attack"); // TODO make const
+                    damageable.TakeDamage(damagePerHit);
+                }
+                lastHitTime = Time.time;
+            }
+        }
+
+        bool IsTargetInRange(GameObject target)
+        {
+            float distanceToTarget = (target.transform.position - transform.position).magnitude;
+            return (distanceToTarget <= currentWeaponConfig.GetMaxAttackRange());
         }
 
         void OnDrawGizmos()
         {
             // Draw attack radius sphere
             Gizmos.color = new Color(255f, 0f, 0f, 0.5f);
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
+            Gizmos.DrawWireSphere(transform.position, currentWeaponConfig.GetMaxAttackRange());
         }
     }
 }
