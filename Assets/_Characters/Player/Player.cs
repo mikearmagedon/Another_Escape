@@ -4,7 +4,6 @@ using UnityEngine.Assertions;
 // TODO consider re-wire
 using RPG.CameraUI;
 using RPG.Core;
-using RPG.Weapons;
 
 namespace RPG.Characters
 {
@@ -16,7 +15,7 @@ namespace RPG.Characters
         [SerializeField] float damagePerHit = 10f;
         [SerializeField] float minTimeBetweenHits = 0.5f;
         [SerializeField] float maxHealthPoints = 100f;
-        [SerializeField] Weapon weaponInUse = null;
+        [SerializeField] Weapon currentWeaponConfig = null;
 
         // State
         public bool wonGame { get; private set; }
@@ -32,6 +31,7 @@ namespace RPG.Characters
         GameObject currentTarget;
         float currentHealtPoints;
         float lastHitTime = 0;
+        GameObject weaponObject;
 
         // Cached components references
         CameraRaycaster cameraRaycaster;
@@ -55,16 +55,18 @@ namespace RPG.Characters
             wonGame = false;
             counter = 0;
 
-            EquipWeapon();
+            EquipWeapon(currentWeaponConfig);
         }
 
-        private void EquipWeapon()
+        public void EquipWeapon(Weapon weaponConfig)
         {
-            var weaponPrefab = weaponInUse.GetWeaponPrefab();
-            var dominantHand = RequestDominantHand();
-            var weapon = Instantiate(weaponPrefab, dominantHand.transform);
-            weapon.transform.localPosition = weaponInUse.weaponGrip.transform.position;
-            weapon.transform.localRotation = weaponInUse.weaponGrip.transform.rotation;
+            currentWeaponConfig = weaponConfig;
+            var weaponPrefab = weaponConfig.GetWeaponPrefab();
+            GameObject dominantHand = RequestDominantHand();
+            Destroy(weaponObject); // empty hands
+            weaponObject = Instantiate(weaponPrefab, dominantHand.transform);
+            weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
+            weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
         }
 
         private GameObject RequestDominantHand()
@@ -113,7 +115,7 @@ namespace RPG.Characters
             }
         }
 
-        private void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        void OnMouseClick(RaycastHit raycastHit, int layerHit)
         {
             if (layerHit == enemyLayerNumber)
             {

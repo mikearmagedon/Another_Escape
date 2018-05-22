@@ -2,9 +2,7 @@
 using UnityEngine.Assertions;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-// TODO consider re-wire
-using RPG.Core;
-using RPG.Weapons;
+using RPG.Core; // TODO consider re-wire
 
 namespace RPG.Characters
 {
