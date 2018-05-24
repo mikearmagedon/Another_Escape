@@ -27,19 +27,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture1:
-        m_Texture: {fileID: 2800000, guid: cc7345aa189037b4eadd014712552d5e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 216e2729631e003468211108545a08f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture1Bump:
-        m_Texture: {fileID: 2800000, guid: a0b6d0da45847764d87b8b45a90126ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 219386670151bc542a3b2fd69819e13e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 70f5d14640999d546be4041b33937fa9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2Bump:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: df8c8d371eec74d49821a51c927fc2c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture3:

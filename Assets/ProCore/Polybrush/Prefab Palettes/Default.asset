@@ -20,3 +20,11 @@ MonoBehaviour:
     settings:
       rotationRange: {x: 0, y: 0}
       scaleRange: {x: 0, y: 0}
+  - gameObject: {fileID: 100000, guid: 6424d87afda7c084f8ca90bf51fd6e04, type: 2}
+    settings:
+      rotationRange: {x: 0, y: 0}
+      scaleRange: {x: 0, y: 0}
+  - gameObject: {fileID: 100000, guid: 16763a3b82d494a4eb4cb2a684f4832e, type: 2}
+    settings:
+      rotationRange: {x: 0, y: 0}
+      scaleRange: {x: 0, y: 0}
