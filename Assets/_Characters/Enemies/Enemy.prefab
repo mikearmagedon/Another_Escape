@@ -1986,11 +1986,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  attackRadius: 2
   chaseRadius: 3.8
   damagePerHit: 2
   minTimeBetweenHits: 0.5
-  weaponInUse: {fileID: 11400000, guid: a01a8292115eafd4094bc5b12ef7daa2, type: 2}
+  currentWeaponConfig: {fileID: 11400000, guid: 606e8567a5f58df4c86a72fcad6e47c3,
+    type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
+    type: 2}
 --- !u!114 &114363479738359812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2026,7 +2028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
+  m_MovingTurnSpeed: 1800
   m_StationaryTurnSpeed: 180
   m_JumpPower: 6
   m_GravityMultiplier: 2

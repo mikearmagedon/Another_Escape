@@ -10,11 +10,11 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] float maxHealthPoints = 100f;
-        [SerializeField] float attackRadius = 5f;
         [SerializeField] float chaseRadius = 10f;
         [SerializeField] float damagePerHit = 5f;
         [SerializeField] float minTimeBetweenHits = 0.5f;
-        [SerializeField] Weapon weaponInUse = null;
+        [SerializeField] Weapon currentWeaponConfig = null;
+        [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         // State
         public float healthAsPercentage
@@ -31,6 +31,7 @@ namespace RPG.Characters
         // Cached components references
         AICharacterControl aiCharacterControl = null;
         GameObject player = null;
+        Animator animator;
 
         // Messages and methods
         void IDamageable.TakeDamage(float damage)
@@ -48,15 +49,23 @@ namespace RPG.Characters
             currentHealtPoints = maxHealthPoints;
 
             EquipWeapon();
+            SetupRuntimeAnimator();
+        }
+
+        void SetupRuntimeAnimator()
+        {
+            animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController["DEFAULT ATTACK"] = currentWeaponConfig.GetAttackAnimClip(); // remove const
         }
 
         private void EquipWeapon()
         {
-            var weaponPrefab = weaponInUse.GetWeaponPrefab();
+            var weaponPrefab = currentWeaponConfig.GetWeaponPrefab();
             var dominantHand = RequestDominantHand();
             var weapon = Instantiate(weaponPrefab, dominantHand.transform);
-            weapon.transform.localPosition = weaponInUse.weaponGrip.transform.position;
-            weapon.transform.localRotation = weaponInUse.weaponGrip.transform.rotation;
+            weapon.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
+            weapon.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
         }
 
         private GameObject RequestDominantHand()
@@ -70,23 +79,12 @@ namespace RPG.Characters
         // Update is called once per frame
         void Update()
         {
-            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-            if (distanceToPlayer <= attackRadius)
+            if (IsTargetInRange(player))
             {
-                // TODO Range attack: spawn projectile
-
-                if ((Time.time - lastHitTime) > minTimeBetweenHits)
-                {
-                    // Damage the player
-                    IDamageable damageable = player.GetComponent<IDamageable>();
-                    if (damageable != null)
-                    {
-                        damageable.TakeDamage(damagePerHit);
-                    }
-                    lastHitTime = Time.time;
-                }
+                AttackTarget(player);
             }
 
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             if (distanceToPlayer <= chaseRadius)
             {
                 aiCharacterControl.SetTarget(player.transform);
@@ -97,11 +95,32 @@ namespace RPG.Characters
             }
         }
 
+        bool IsTargetInRange(GameObject target)
+        {
+            float distanceToTarget = (target.transform.position - transform.position).magnitude;
+            return (distanceToTarget <= currentWeaponConfig.GetMaxAttackRange());
+        }
+
+        void AttackTarget(GameObject target)
+        {
+            if ((Time.time - lastHitTime) > currentWeaponConfig.GetMinTimeBetweenHits())
+            {
+                // Damage the enemy
+                IDamageable damageable = target.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    animator.SetTrigger("Attack"); // TODO make const
+                    damageable.TakeDamage(damagePerHit);
+                }
+                lastHitTime = Time.time;
+            }
+        }
+
         void OnDrawGizmos()
         {
             // Draw attack radius sphere
             Gizmos.color = new Color(255f, 0f, 0f, 0.5f);
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
+            Gizmos.DrawWireSphere(transform.position, currentWeaponConfig.GetMaxAttackRange());
 
             // Draw chase radius sphere
             Gizmos.color = new Color(0f, 0f, 255f, 0.5f);
