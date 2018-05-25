@@ -12,7 +12,6 @@ namespace RPG.Characters
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float chaseRadius = 10f;
         [SerializeField] float damagePerHit = 5f;
-        [SerializeField] float minTimeBetweenHits = 0.5f;
         [SerializeField] Weapon currentWeaponConfig = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
 
