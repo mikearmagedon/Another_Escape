@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BinaryTreeAlgorithm : MazeAlgorithm
 {
-    public BinaryTreeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells)
+    public BinaryTreeAlgorithm(MazeCell[,] cells) : base(cells)
     {
-
     }
 
     public override void CreateMaze()

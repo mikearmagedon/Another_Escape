@@ -23,7 +23,8 @@ public class MazeGenerator : MonoBehaviour
         InitializeMaze();
         ConfigureCells();
 
-        ma = new BinaryTreeAlgorithm(cells);
+        //ma = new BinaryTreeAlgorithm(cells);
+        ma = new SidewinderAlgorithm(cells);
         StartCoroutine(ContinuousMazeGeneration());
     }
     
