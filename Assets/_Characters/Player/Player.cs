@@ -8,28 +8,19 @@ using System;
 
 namespace RPG.Characters
 {
-    public class Player : MonoBehaviour, IDamageable
+    public class Player : MonoBehaviour
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
         [SerializeField] float damagePerHit = 10f;
-        [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] Weapon currentWeaponConfig;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         // State
-        public bool wonGame { get; private set; }
-        public float healthAsPercentage
-        {
-            get
-            {
-                return currentHealtPoints / maxHealthPoints;
-            }
-        }
+        public bool wonGame { get; set; }
 
         int counter;
         GameObject currentTarget;
-        float currentHealtPoints;
         float lastHitTime = 0;
         GameObject weaponObject;
 
@@ -38,19 +29,9 @@ namespace RPG.Characters
         Animator animator;
 
         // Messages and methods
-        void IDamageable.TakeDamage(float damage)
-        {
-            currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-            if (currentHealtPoints == 0)
-            {
-                wonGame = true;
-            }
-        }
-
         // Use this for initialization
         void Start()
         {
-            SetCurrentMaxHealth();
             SetInitialWinConditionVariables();
             EquipWeapon(currentWeaponConfig);
             SetupRuntimeAnimator();
@@ -77,11 +58,6 @@ namespace RPG.Characters
         {
             wonGame = false;
             counter = 0;
-        }
-
-        void SetCurrentMaxHealth()
-        {
-            currentHealtPoints = maxHealthPoints;
         }
 
         public void EquipWeapon(Weapon weaponConfig)

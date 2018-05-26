@@ -645,10 +645,10 @@ GameObject:
   - component: {fileID: 95364045645934380}
   - component: {fileID: 54828183160326246}
   - component: {fileID: 136851485863080132}
-  - component: {fileID: 114461896512183208}
   - component: {fileID: 195831379309933826}
-  - component: {fileID: 114782496663295976}
+  - component: {fileID: 114304957847318460}
   - component: {fileID: 114117330197189764}
+  - component: {fileID: 114993737623337384}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1985,14 +1985,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e34e7e8e4d368f479a08ddf9b0664ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
   chaseRadius: 3.8
   damagePerHit: 2
-  minTimeBetweenHits: 0.5
   currentWeaponConfig: {fileID: 11400000, guid: 606e8567a5f58df4c86a72fcad6e47c3,
     type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
     type: 2}
+--- !u!114 &114304957847318460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778286532917368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4599123dd82c34ea9cb04c346325b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  jumpPower: 12
+  gravityMultiplier: 2
+  runCycleLegOffset: 0.2
+  moveSpeedMultiplier: 1
+  animSpeedMultiplier: 1
+  groundCheckDistance: 0.1
 --- !u!114 &114363479738359812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2017,7 +2034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99fe0fc20c8b504696f119882ab8c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114461896512183208
+--- !u!114 &114993737623337384
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2025,29 +2042,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778286532917368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
+  m_Script: {fileID: 11500000, guid: b8302c830d66b724382b3ac9c799c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 1800
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 0.7
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
---- !u!114 &114782496663295976
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1778286532917368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  maxHealthPoints: 100
+  healthBar: {fileID: 0}
+  damageSounds: []
+  deathSounds: []
+  deathVanishSeconds: 2
 --- !u!136 &136851485863080132
 CapsuleCollider:
   m_ObjectHideFlags: 1

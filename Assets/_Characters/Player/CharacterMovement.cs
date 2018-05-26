@@ -52,6 +52,11 @@ namespace RPG.Characters
                 Move(Vector3.zero, false);
         }
 
+        public void Kill()
+        {
+            // to allow death signaling
+        }
+
         void Move(Vector3 movement, bool jump)
         {
             Vector3 localMovement = SetForwardAndTurn(movement);

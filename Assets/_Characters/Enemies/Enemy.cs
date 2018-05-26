@@ -6,25 +6,15 @@ using RPG.Core; // TODO consider re-wire
 
 namespace RPG.Characters
 {
-    public class Enemy : MonoBehaviour, IDamageable
+    public class Enemy : MonoBehaviour
     {
         // Config
-        [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float chaseRadius = 10f;
         [SerializeField] float damagePerHit = 5f;
         [SerializeField] Weapon currentWeaponConfig = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         // State
-        public float healthAsPercentage
-        {
-            get
-            {
-                return currentHealtPoints / maxHealthPoints;
-            }
-        }
-
-        float currentHealtPoints;
         float lastHitTime = 0;
 
         // Cached components references
@@ -32,18 +22,10 @@ namespace RPG.Characters
         Animator animator;
 
         // Messages and methods
-        void IDamageable.TakeDamage(float damage)
-        {
-            currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-            if (currentHealtPoints <= 0) { Destroy(gameObject); }
-        }
-
         // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
-
-            currentHealtPoints = maxHealthPoints;
 
             EquipWeapon();
             SetupRuntimeAnimator();
