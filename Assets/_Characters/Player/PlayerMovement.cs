@@ -28,7 +28,7 @@ namespace RPG.Characters
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
             Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
 
-            character.Move(movement, false, false);
+            character.Move(movement, false);
         }
     }
 }
