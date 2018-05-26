@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
     // Cached components references
     Animator animator;
     AudioSource audioSource;
-    CharacterMovement characterMovement;
+    Character characterMovement;
 
     // Messages and methods
     // Use this for initialization
@@ -36,7 +36,7 @@ public class HealthSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        characterMovement = GetComponent<CharacterMovement>();
+        characterMovement = GetComponent<Character>();
 
         currentHealtPoints = maxHealthPoints;
 	}
@@ -60,8 +60,8 @@ public class HealthSystem : MonoBehaviour
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-        AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);
+        //AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        //audioSource.PlayOneShot(clip);
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
@@ -82,8 +82,8 @@ public class HealthSystem : MonoBehaviour
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {
-            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-            audioSource.Play();
+            //audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+            //audioSource.Play();
             yield return new WaitForSeconds(audioSource.clip.length);
             playerComponent.wonGame = true;
         }

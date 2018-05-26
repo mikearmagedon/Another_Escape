@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 namespace RPG.Characters
 {
+    [SelectionBase]
+    [RequireComponent(typeof(Character))]
     public class Enemy : MonoBehaviour
     {
         // Config
@@ -17,12 +21,19 @@ namespace RPG.Characters
         // Cached components references
         GameObject player = null;
         Animator animator;
+        Character character;
 
         // Messages and methods
+        private void AddRequiredComponents()
+        {
+        }
+
         // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+
+            character = GetComponent<Character>();
 
             EquipWeapon();
             SetupRuntimeAnimator();

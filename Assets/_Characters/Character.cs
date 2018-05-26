@@ -3,12 +3,22 @@ using UnityEngine.AI;
 
 namespace RPG.Characters
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(CapsuleCollider))]
-    [RequireComponent(typeof(Animator))]
-    public class CharacterMovement : MonoBehaviour
+    public class Character : MonoBehaviour
     {
+        [Header("Animator")]
+        [SerializeField] RuntimeAnimatorController animatorController;
+        [SerializeField] AnimatorOverrideController animatorOverrideController;
+        [SerializeField] Avatar characterAvatar;
+
+        [Header("Audio")]
+        [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+
+        [Header("Capsule Collider")]
+        [SerializeField] Vector3 colliderCenter = new Vector3(0, 0.9f, 0);
+        [SerializeField] float colliderRadius = 0.3f;
+        [SerializeField] float colliderHeight = 1.8f;
+
+        [Header("Movement")]
         [SerializeField] float movingTurnSpeed = 360;
         [SerializeField] float stationaryTurnSpeed = 180;
         [SerializeField] float jumpPower = 12f;
@@ -18,9 +28,15 @@ namespace RPG.Characters
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
 
-        NavMeshAgent agent;
+        [Header("Nav Mesh Agent")]
+        [Tooltip("If false, the parameters below are ignored")]
+        [SerializeField] bool createNavMeshAgent = true;
+        [SerializeField] float navMeshAgentSteeringSpeed = 3.5f;
+        [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
+
         Rigidbody rigidBody;
         Animator animator;
+        NavMeshAgent navMeshAgent;
         bool isGrounded;
         float origGroundCheckDistance;
         const float half = 0.5f;
@@ -28,27 +44,60 @@ namespace RPG.Characters
         float forwardAmount;
         Vector3 groundNormal;
         float moveThreshold = 1f;
+        bool isAlive = true;
+
+        void Awake()
+        {
+            AddRequiredComponents();
+        }
+
+        private void AddRequiredComponents()
+        {
+            // Animator
+            animator = gameObject.AddComponent<Animator>();
+            animator.runtimeAnimatorController = animatorController;
+            animator.avatar = characterAvatar;
+            animator.applyRootMotion = true;
+
+            // AudioSource
+            var audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = audioSourceSpatialBlend;
+            
+            // Capsule Collider
+            var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
+            capsuleCollider.center = colliderCenter;
+            capsuleCollider.radius = colliderRadius;
+            capsuleCollider.height = colliderHeight;
+
+            // Rigidbody
+            rigidBody = gameObject.AddComponent<Rigidbody>();
+            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            // Nav Mesh Agent
+            if (createNavMeshAgent)
+            {
+                navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+                navMeshAgent.speed = navMeshAgentSteeringSpeed;
+                navMeshAgent.stoppingDistance = navMeshAgentStoppingDistance;
+                navMeshAgent.updateRotation = false;
+                navMeshAgent.updatePosition = true;
+                navMeshAgent.autoBraking = false;
+            }
+        }
 
         void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
-            agent.updateRotation = false;
-            agent.updatePosition = true;
-            animator = GetComponent<Animator>();
-            rigidBody = GetComponent<Rigidbody>();
-
-            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
             origGroundCheckDistance = groundCheckDistance;
         }
 
         void Update()
         {
-            //if (target != null)
-            //    agent.SetDestination(target.position);
+            // For player movement which doesn't have navMeshAgent
+            if (!createNavMeshAgent) { return; }
 
-            if (agent.remainingDistance > agent.stoppingDistance)
+            if ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) && isAlive)
             {
-                Move(agent.desiredVelocity, false);
+                Move(navMeshAgent.desiredVelocity, false);
             }
             else
             {
@@ -58,10 +107,15 @@ namespace RPG.Characters
 
         public void Kill()
         {
-            // to allow death signaling
+            isAlive = false;
         }
 
-        void Move(Vector3 movement, bool jump)
+        public void SetDestination(Vector3 worldPosition)
+        {
+            navMeshAgent.destination = (worldPosition); // TODO consider using SetDestination() instead
+        }
+
+        public void Move(Vector3 movement, bool jump)
         {
             Vector3 localMovement = SetForwardAndTurn(movement);
 

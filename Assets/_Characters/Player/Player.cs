@@ -6,6 +6,7 @@ using RPG.CameraUI;
 
 namespace RPG.Characters
 {
+    [SelectionBase]
     public class Player : MonoBehaviour
     {
         // Config
@@ -37,12 +38,12 @@ namespace RPG.Characters
 
         public void DisableControl()
         {
-            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<PlayerController>().enabled = false;
         }
 
         public void EnableControl()
         {
-            GetComponent<PlayerMovement>().enabled = true;
+            GetComponent<PlayerController>().enabled = true;
         }
 
         void SetupRuntimeAnimator()
