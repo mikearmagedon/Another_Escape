@@ -47,9 +47,13 @@ namespace RPG.Characters
             //    agent.SetDestination(target.position);
 
             if (agent.remainingDistance > agent.stoppingDistance)
+            {
                 Move(agent.desiredVelocity, false);
+            }
             else
+            {
                 Move(Vector3.zero, false);
+            }
         }
 
         public void Kill()
