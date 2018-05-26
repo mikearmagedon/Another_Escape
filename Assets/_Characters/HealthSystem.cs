@@ -56,7 +56,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);

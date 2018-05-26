@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-using RPG.Core; // TODO consider re-wire
-
-
 namespace RPG.Characters
 {
     public class Enemy : MonoBehaviour
@@ -85,7 +82,7 @@ namespace RPG.Characters
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetMinTimeBetweenHits())
             {
                 // Damage the enemy
-                IDamageable damageable = target.GetComponent<IDamageable>();
+                var damageable = target.GetComponent<HealthSystem>();
                 if (damageable != null)
                 {
                     animator.SetTrigger("Attack"); // TODO make const

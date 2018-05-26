@@ -3,8 +3,6 @@ using UnityEngine.Assertions;
 
 // TODO consider re-wire
 using RPG.CameraUI;
-using RPG.Core;
-using System;
 
 namespace RPG.Characters
 {
@@ -127,7 +125,7 @@ namespace RPG.Characters
                 foreach (var target in targets)
                 {
                     // Damage the enemy
-                    IDamageable damageable = target.GetComponent<IDamageable>();
+                    var damageable = target.GetComponent<HealthSystem>();
                     if (damageable != null)
                     {
                         damageable.TakeDamage(damagePerHit);
