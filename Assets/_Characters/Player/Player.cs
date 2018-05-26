@@ -4,16 +4,17 @@ using UnityEngine.Assertions;
 // TODO consider re-wire
 using RPG.CameraUI;
 using RPG.Core;
+using System;
 
 namespace RPG.Characters
 {
     public class Player : MonoBehaviour, IDamageable
     {
         // Config
-        [SerializeField] int enemyLayerNumber = 9;
+        [SerializeField] LayerMask enemyLayerMask;
         [SerializeField] float damagePerHit = 10f;
         [SerializeField] float maxHealthPoints = 100f;
-        [SerializeField] Weapon currentWeaponConfig = null;
+        [SerializeField] Weapon currentWeaponConfig;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         // State
@@ -49,7 +50,6 @@ namespace RPG.Characters
         // Use this for initialization
         void Start()
         {
-            RegisterForMouseClick();
             SetCurrentMaxHealth();
             SetInitialWinConditionVariables();
             EquipWeapon(currentWeaponConfig);
@@ -86,6 +86,7 @@ namespace RPG.Characters
 
         public void EquipWeapon(Weapon weaponConfig)
         {
+            Assert.IsNotNull(weaponConfig, "Please assign a weapon to the player");
             currentWeaponConfig = weaponConfig;
             var weaponPrefab = weaponConfig.GetWeaponPrefab();
             GameObject dominantHand = RequestDominantHand();
@@ -104,16 +105,14 @@ namespace RPG.Characters
             return dominantHands[0].gameObject;
         }
 
-        void RegisterForMouseClick()
-        {
-            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.notifyMouseClickObservers += OnMouseClick; // registering
-        }
-
         // Update is called once per frame
         void Update()
         {
             ScriptableObject.CreateInstance<Weapon>();
+            if (Input.GetMouseButton(0))
+            {
+                OnMouseClick();
+            }
         }
 
         void OnTriggerEnter(Collider other)
@@ -132,38 +131,34 @@ namespace RPG.Characters
             }
         }
 
-        void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        void OnMouseClick()
         {
-            if (layerHit == enemyLayerNumber)
-            {
-                GameObject enemy = raycastHit.collider.gameObject;
-                
-                if (IsTargetInRange(enemy))
-                {
-                    AttackTarget(enemy);
-                }
-            }
+            Collider[] targets = FindTargetsInRange();
+            AttackTargets(targets);
         }
 
-        void AttackTarget(GameObject target)
+        private Collider[] FindTargetsInRange()
+        {
+            Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
+            return Physics.OverlapSphere(transform.position, currentWeaponConfig.GetMaxAttackRange(), enemyLayerMask);
+        }
+
+        void AttackTargets(Collider[] targets)
         {
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetMinTimeBetweenHits())
             {
-                // Damage the enemy
-                IDamageable damageable = target.GetComponent<IDamageable>();
-                if (damageable != null)
+                animator.SetTrigger("Attack"); // TODO make const
+                foreach (var target in targets)
                 {
-                    animator.SetTrigger("Attack"); // TODO make const
-                    damageable.TakeDamage(damagePerHit);
+                    // Damage the enemy
+                    IDamageable damageable = target.GetComponent<IDamageable>();
+                    if (damageable != null)
+                    {
+                        damageable.TakeDamage(damagePerHit);
+                    }
                 }
                 lastHitTime = Time.time;
             }
-        }
-
-        bool IsTargetInRange(GameObject target)
-        {
-            float distanceToTarget = (target.transform.position - transform.position).magnitude;
-            return (distanceToTarget <= currentWeaponConfig.GetMaxAttackRange());
         }
 
         void OnDrawGizmos()

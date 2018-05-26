@@ -1984,7 +1984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ada899ccce0d364d91635d4e218e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLayerNumber: 9
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
   damagePerHit: 10
   maxHealthPoints: 100
   currentWeaponConfig: {fileID: 11400000, guid: feddb208bbade1e439b948a629e5f9af,
