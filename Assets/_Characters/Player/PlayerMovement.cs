@@ -6,11 +6,11 @@ namespace RPG.Characters
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class PlayerMovement : MonoBehaviour
     {
-        ThirdPersonCharacter thirdPersonCharachter;
+        ThirdPersonCharacter character;
 
         private void Start()
         {
-            thirdPersonCharachter = GetComponent<ThirdPersonCharacter>();
+            character = GetComponent<ThirdPersonCharacter>();
         }
 
         // Fixed update is called in sync with physics
@@ -28,7 +28,7 @@ namespace RPG.Characters
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
             Vector3 movement = v * cameraForward + h * Camera.main.transform.right;
 
-            thirdPersonCharachter.Move(movement, false, false);
+            character.Move(movement, false, false);
         }
     }
 }

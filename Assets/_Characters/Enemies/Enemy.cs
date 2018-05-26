@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 using RPG.Core; // TODO consider re-wire
+
 
 namespace RPG.Characters
 {
@@ -28,7 +28,6 @@ namespace RPG.Characters
         float lastHitTime = 0;
 
         // Cached components references
-        AICharacterControl aiCharacterControl = null;
         GameObject player = null;
         Animator animator;
 
@@ -42,7 +41,6 @@ namespace RPG.Characters
         // Use this for initialization
         void Start()
         {
-            aiCharacterControl = GetComponent<AICharacterControl>();
             player = GameObject.FindGameObjectWithTag("Player");
 
             currentHealtPoints = maxHealthPoints;
@@ -86,11 +84,11 @@ namespace RPG.Characters
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             if (distanceToPlayer <= chaseRadius)
             {
-                aiCharacterControl.SetTarget(player.transform);
+                //aiCharacterControl.SetTarget(player.transform);
             }
             else
             {
-                aiCharacterControl.SetTarget(transform);
+                //aiCharacterControl.SetTarget(transform);
             }
         }
 
