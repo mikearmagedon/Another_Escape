@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 114781527331099054}
   - component: {fileID: 114595310213113710}
   - component: {fileID: 114466269640955416}
+  - component: {fileID: 114772875348900558}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1916,9 +1917,9 @@ MonoBehaviour:
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioSourceSpatialBlend: 0.5
-  colliderCenter: {x: 0, y: 0.9, z: 0}
+  colliderCenter: {x: 0, y: 0.93, z: 0}
   colliderRadius: 0.3
-  colliderHeight: 1.86
+  colliderHeight: 1.8
   movingTurnSpeed: 3600
   stationaryTurnSpeed: 1800
   jumpPower: 12
@@ -1946,6 +1947,20 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deathVanishSeconds: 2
+--- !u!114 &114772875348900558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595984801854506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcc934c744ebb4488dbe301dad2b097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: feddb208bbade1e439b948a629e5f9af,
+    type: 2}
 --- !u!114 &114781527331099054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1960,11 +1975,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  damagePerHit: 10
-  currentWeaponConfig: {fileID: 11400000, guid: feddb208bbade1e439b948a629e5f9af,
-    type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
-    type: 2}
 --- !u!114 &114808504626867334
 MonoBehaviour:
   m_ObjectHideFlags: 1

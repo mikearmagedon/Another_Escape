@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 114304957847318460}
   - component: {fileID: 114117330197189764}
   - component: {fileID: 114993737623337384}
+  - component: {fileID: 114221597479009040}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1930,10 +1931,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRadius: 3.8
-  damagePerHit: 2
-  currentWeaponConfig: {fileID: 11400000, guid: 606e8567a5f58df4c86a72fcad6e47c3,
-    type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
+--- !u!114 &114221597479009040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778286532917368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcc934c744ebb4488dbe301dad2b097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: a01a8292115eafd4094bc5b12ef7daa2,
     type: 2}
 --- !u!114 &114304957847318460
 MonoBehaviour:
