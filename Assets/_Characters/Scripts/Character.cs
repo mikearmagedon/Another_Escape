@@ -51,7 +51,7 @@ namespace RPG.Characters
             AddRequiredComponents();
         }
 
-        private void AddRequiredComponents()
+        void AddRequiredComponents()
         {
             // Animator
             animator = gameObject.AddComponent<Animator>();
@@ -113,6 +113,11 @@ namespace RPG.Characters
         public void SetDestination(Vector3 worldPosition)
         {
             navMeshAgent.destination = (worldPosition); // TODO consider using SetDestination() instead
+        }
+
+        public AnimatorOverrideController GetOverrideController()
+        {
+            return animatorOverrideController;
         }
 
         public void Move(Vector3 movement, bool jump)

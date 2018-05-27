@@ -6,7 +6,7 @@ namespace RPG.Characters
     [ExecuteInEditMode]
     public class WeaponPickupPoint : MonoBehaviour
     {
-        [SerializeField] Weapon weaponConfig;
+        [SerializeField] WeaponConfig weaponConfig;
         [SerializeField] AudioClip pickUpSFX;
 
         AudioSource audioSource;
@@ -44,7 +44,7 @@ namespace RPG.Characters
 
         void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<Player>().EquipWeapon(weaponConfig);
+            FindObjectOfType<WeaponSystem>().EquipWeapon(weaponConfig);
             audioSource.PlayOneShot(pickUpSFX);
         }
     }
