@@ -652,22 +652,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1789706715930140
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4305818157730146}
-  - component: {fileID: 114363479738359812}
-  m_Layer: 9
-  m_Name: UI Socket
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1801855620603266
 GameObject:
   m_ObjectHideFlags: 1
@@ -925,7 +909,7 @@ Transform:
   - {fileID: 4804977111118014}
   - {fileID: 4077200093689080}
   m_Father: {fileID: 4544464622683468}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4077200093689080
 Transform:
@@ -1148,19 +1132,6 @@ Transform:
   m_Father: {fileID: 4479319115046762}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4305818157730146
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789706715930140}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4544464622683468}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4317175245089824
 Transform:
   m_ObjectHideFlags: 1
@@ -1308,10 +1279,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778286532917368}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -4.3398285, y: -0.018310547, z: -39.417816}
+  m_LocalPosition: {x: 27.077, y: -0.736787, z: 64.57658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4305818157730146}
   - {fileID: 4030407893425382}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1930,7 +1900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e34e7e8e4d368f479a08ddf9b0664ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRadius: 3.8
+  chaseRadius: 7
 --- !u!114 &114221597479009040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1975,19 +1945,6 @@ MonoBehaviour:
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3
---- !u!114 &114363479738359812
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789706715930140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1946e1c1bae1c34ba2666ebb3463952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCanvasPrefab: {fileID: 1311539807392560, guid: 9a9d70d10b9331d469e57254147e0430,
-    type: 2}
 --- !u!114 &114457516999108974
 MonoBehaviour:
   m_ObjectHideFlags: 1

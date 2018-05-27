@@ -1,9 +1,1 @@
-Camera: done
- - fixed
- - rotating with right mouse click
-
-Player movement:
- - wasd - done
- - mouse point and click - done
- - pathfinding
- - runtime navMesh baking
+Fix weapon pickup

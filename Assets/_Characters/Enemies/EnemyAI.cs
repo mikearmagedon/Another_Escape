@@ -58,6 +58,7 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 state = State.attacking;
+                weaponSystem.AttackTarget(player);
             }
         }        
 

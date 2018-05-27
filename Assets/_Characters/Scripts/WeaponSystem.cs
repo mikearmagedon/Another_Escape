@@ -72,6 +72,11 @@ namespace RPG.Characters
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
         }
 
+        public void StopAttacking()
+        {
+            StopAllCoroutines();
+        }
+
         public void AttackTarget(GameObject targetToAttack)
         {
             // TODO use coroutine to setup repeating attack
