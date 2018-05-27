@@ -12,6 +12,7 @@ namespace RPG.Characters
     [SelectionBase]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
+    [RequireComponent(typeof(HealthSystem))]
     public class EnemyAI : MonoBehaviour
     {
         // Config

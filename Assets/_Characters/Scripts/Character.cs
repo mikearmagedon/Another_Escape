@@ -120,6 +120,11 @@ namespace RPG.Characters
             return animatorOverrideController;
         }
 
+        public float GetAnimSpeedMultiplier()
+        {
+            return animator.speed;
+        }
+
         public void Move(Vector3 movement, bool jump)
         {
             Vector3 localMovement = SetForwardAndTurn(movement);
