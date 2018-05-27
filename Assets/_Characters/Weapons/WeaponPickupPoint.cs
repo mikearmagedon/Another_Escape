@@ -22,12 +22,12 @@ namespace RPG.Characters
         {
             if (!Application.isPlaying)
             {
-                DestroyChildern();
+                DestroyChildren();
                 InstantiateWeapon();
             }
         }
 
-        void DestroyChildern()
+        void DestroyChildren()
         {
             foreach (Transform child in transform)
             {
@@ -44,7 +44,7 @@ namespace RPG.Characters
 
         void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<WeaponSystem>().EquipWeapon(weaponConfig);
+            FindObjectOfType<PlayerController>().GetComponent<WeaponSystem>().EquipWeapon(weaponConfig);
             audioSource.PlayOneShot(pickUpSFX);
         }
     }

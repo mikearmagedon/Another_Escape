@@ -73,10 +73,7 @@ namespace RPG.Characters
         void OnMouseClick()
         {
             Collider[] targets = FindTargetsInRange();
-            foreach (var target in targets)
-            {
-                weaponSystem.AttackTarget(target.gameObject);
-            }
+            weaponSystem.AttackTargets(targets);
         }
 
         private Collider[] FindTargetsInRange()

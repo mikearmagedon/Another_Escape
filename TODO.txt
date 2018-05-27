@@ -1,1 +1,7 @@
-Fix weapon pickup
+Fix character collisions by exposing material in capsule collider in Character.cs
+
+Merge player and playercontroller classes
+
+refactor AttackTargets to used the private methods of WeaponSystem
+
+move damage to weapon

@@ -77,6 +77,24 @@ namespace RPG.Characters
             StopAllCoroutines();
         }
 
+        public void AttackTargets(Collider[] targets)
+        {
+            if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
+            {
+                animator.SetTrigger(ATTACK_TRIGGER);
+                foreach (var target in targets)
+                {
+                    // Damage the enemy
+                    var damageable = target.GetComponent<HealthSystem>();
+                    if (damageable != null)
+                    {
+                        damageable.TakeDamage(baseDamage);
+                    }
+                }
+                lastHitTime = Time.time;
+            }
+        }
+
         public void AttackTarget(GameObject targetToAttack)
         {
             // TODO use coroutine to setup repeating attack
@@ -91,8 +109,9 @@ namespace RPG.Characters
 
             while (attackerStillAlive && targetStillAlive)
             {
-                float weaponHitPeriod = currentWeaponConfig.GetMinTimeBetweenHits();
-                float timeToWait = weaponHitPeriod * character.GetAnimSpeedMultiplier();
+                var animationClip = currentWeaponConfig.GetAttackAnimClip();
+                float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
+                float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
 
                 bool isTimeToHitAgain = (Time.time - lastHitTime) > timeToWait;
 
@@ -110,7 +129,7 @@ namespace RPG.Characters
         {
             transform.LookAt(target.transform);
             animator.SetTrigger(ATTACK_TRIGGER);
-            float damageDelay = 1.0f; // TODO get from currentWeaponConfig
+            float damageDelay = currentWeaponConfig.GetDamageDelay();
             SetAttackAnimation();
             StartCoroutine(DamageAfterDelay(damageDelay));
         }
@@ -124,8 +143,8 @@ namespace RPG.Characters
         GameObject RequestDominantHand()
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
-            Assert.IsFalse(dominantHands.Length <= 0, "No DominantHand script found on player, please add one.");
-            Assert.IsFalse(dominantHands.Length > 1, "Multiple DominantHand scripts found on player, please have just one.");
+            Assert.IsFalse(dominantHands.Length <= 0, "No DominantHand script found on " + gameObject.name + ", please add one.");
+            Assert.IsFalse(dominantHands.Length > 1, "Multiple DominantHand scripts found on " + gameObject.name + ", please have just one.");
             return dominantHands[0].gameObject;
         }
 
@@ -135,24 +154,6 @@ namespace RPG.Characters
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
-        }
-
-        void AttackTargets(Collider[] targets)
-        {
-            if ((Time.time - lastHitTime) > currentWeaponConfig.GetMinTimeBetweenHits())
-            {
-                animator.SetTrigger(ATTACK_TRIGGER);
-                foreach (var target in targets)
-                {
-                    // Damage the enemy
-                    var damageable = target.GetComponent<HealthSystem>();
-                    if (damageable != null)
-                    {
-                        damageable.TakeDamage(baseDamage);
-                    }
-                }
-                lastHitTime = Time.time;
-            }
         }
     }
 }

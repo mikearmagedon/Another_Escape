@@ -12,13 +12,22 @@ namespace RPG.Characters
 
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
-        [SerializeField] float minTimeBetweenHits = 0.5f;
+        [SerializeField] float timeBetweenAnimationCycles = 2f;
         [SerializeField] float maxAttackRange = 2f;
+        [SerializeField] float damageDelay = 0.5f;
 
-        public float GetMinTimeBetweenHits()
+        public float GetTimeBetweenAnimationCycles()
         {
-            // TODO consider taking animation time into account
-            return minTimeBetweenHits;
+            return timeBetweenAnimationCycles;
+        }
+
+        public float GetDamageDelay()
+        {
+            if (damageDelay > attackAnimation.length)
+            {
+                Debug.LogAssertion("Damage delay is longer then attack animation length.");
+            }
+            return damageDelay;
         }
 
         public float GetMaxAttackRange()
