@@ -229,6 +229,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95746a6397bbc2f42a4412f5112fba01, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &113964402 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114336840948686480, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 113964401}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &163090394
 Prefab:
   m_ObjectHideFlags: 0
@@ -275,12 +281,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229fd9a791e64c4ab7f4379f7269f8e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &411708099 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114654292622789552, guid: 95746a6397bbc2f42a4412f5112fba01,
-    type: 2}
-  m_PrefabInternal: {fileID: 113964401}
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &459979171
 Prefab:
   m_ObjectHideFlags: 0
@@ -441,12 +441,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 113964401}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &921823962 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114781527331099054, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1303653666}
-  m_Script: {fileID: 11500000, guid: 8ada899ccce0d364d91635d4e218e637, type: 3}
 --- !u!1001 &959217618
 Prefab:
   m_ObjectHideFlags: 0
@@ -532,7 +526,7 @@ Prefab:
         type: 2}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 411708099}
+      objectReference: {fileID: 113964402}
     - target: {fileID: 114466269640955416, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
         type: 2}
       propertyPath: colliderHeight
@@ -546,6 +540,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1303653667 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114248327754333664, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1303653666}
+  m_Script: {fileID: 11500000, guid: 0666bca80599a454f8d961f4dd79da70, type: 3}
 --- !u!1001 &1742176173
 Prefab:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 921823962}
+      objectReference: {fileID: 1303653667}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].size.x
