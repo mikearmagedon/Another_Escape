@@ -75,7 +75,7 @@ public class HealthSystem : MonoBehaviour
         characterMovement.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
 
-        var playerComponent = GetComponent<Player>();
+        var playerComponent = GetComponent<PlayerController>();
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {

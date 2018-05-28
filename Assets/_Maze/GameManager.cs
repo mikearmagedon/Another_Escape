@@ -9,7 +9,7 @@ using RPG.Characters;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Text messageText;
-    [SerializeField] Player player;
+    [SerializeField] PlayerController player;
     [SerializeField] GameObject mazeGeneratorPrefab;
     [SerializeField] MazeGeneratorManager[] mazeGenerators;
 
