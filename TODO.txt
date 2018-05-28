@@ -1,3 +1,9 @@
-Fix character collisions by exposing material in capsule collider in Character.cs
+Fix character collisions by 
+ -exposing material in capsule collider in Character.cs
+ -using autobraking in navmesh agent
+ 
+refactor AttackTargets to use the private methods of WeaponSystem
 
-refactor AttackTargets to used the private methods of WeaponSystem
+fix weapon animation on weapon pickup
+
+runtime navmesh baking
