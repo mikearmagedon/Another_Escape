@@ -88,7 +88,7 @@ namespace RPG.Characters
                     var damageable = target.GetComponent<HealthSystem>();
                     if (damageable != null)
                     {
-                        damageable.TakeDamage(baseDamage);
+                        damageable.TakeDamage(CalculateDamage());
                     }
                 }
                 lastHitTime = Time.time;
@@ -97,7 +97,6 @@ namespace RPG.Characters
 
         public void AttackTarget(GameObject targetToAttack)
         {
-            // TODO use coroutine to setup repeating attack
             target = targetToAttack;
             StartCoroutine(AttackTargetRepeatedly());
         }
@@ -137,7 +136,7 @@ namespace RPG.Characters
         IEnumerator DamageAfterDelay(float delay)
         {
             yield return new WaitForSecondsRealtime(delay);
-            target.GetComponent<HealthSystem>().TakeDamage(baseDamage); // TODO calculate damage with base damage and weapon damage
+            target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
 
         GameObject RequestDominantHand()
@@ -154,6 +153,12 @@ namespace RPG.Characters
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
             animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+        }
+
+        float CalculateDamage()
+        {
+            print(baseDamage + currentWeaponConfig.GetWeaponDamage());
+            return baseDamage + currentWeaponConfig.GetWeaponDamage();
         }
     }
 }
