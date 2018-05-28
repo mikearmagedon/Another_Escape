@@ -51,9 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccabf9404cd99a46b816181ee5ab848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialCoordinates: {x: 0, y: 0}
   size: {x: 10, y: 10}
-  player: {fileID: 0}
-  messageText: {fileID: 0}
+  secondsBetweenGenerations: 50
+  mazeEntrance: {x: 0, y: 0}
+  mazeEntranceDirection: 0
+  mazeExit: {x: 0, y: 0}
+  mazeExitDirection: 0
   cellPrefab: {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3,
     type: 2}
-  secondsBetweenGenerations: 30
