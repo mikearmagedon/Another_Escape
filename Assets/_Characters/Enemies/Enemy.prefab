@@ -1901,6 +1901,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRadius: 7
+  patrolPath: {fileID: 0}
+  waypointDwellTime: 2
+  waypointTolerance: 2
 --- !u!114 &114221597479009040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1934,14 +1937,14 @@ MonoBehaviour:
   colliderCenter: {x: 0, y: 0.9325456, z: 0}
   colliderRadius: 0.3
   colliderHeight: 1.86
-  movingTurnSpeed: 360
-  stationaryTurnSpeed: 180
+  movingTurnSpeed: 1800
+  stationaryTurnSpeed: 900
   jumpPower: 12
   gravityMultiplier: 2
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 1
   animSpeedMultiplier: 1
-  groundCheckDistance: 0.1
+  groundCheckDistance: 1
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3

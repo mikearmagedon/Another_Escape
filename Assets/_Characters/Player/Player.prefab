@@ -1922,14 +1922,14 @@ MonoBehaviour:
   colliderCenter: {x: 0, y: 0.93, z: 0}
   colliderRadius: 0.3
   colliderHeight: 1.8
-  movingTurnSpeed: 3600
-  stationaryTurnSpeed: 1800
+  movingTurnSpeed: 1800
+  stationaryTurnSpeed: 900
   jumpPower: 12
   gravityMultiplier: 2
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 1.5
   animSpeedMultiplier: 1
-  groundCheckDistance: 0.1
+  groundCheckDistance: 1
   createNavMeshAgent: 0
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3
