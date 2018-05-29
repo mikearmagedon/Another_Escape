@@ -1,11 +1,23 @@
+Movement
+
 Fix character collisions by 
  -exposing material in capsule collider in Character.cs
  -using autobraking in navmesh agent
+ 
+runtime navmesh baking
+
+stop player movement when game is over by hitting the finish
+
+
+Attack
  
 refactor AttackTargets to use the private methods of WeaponSystem
 
 fix weapon animation on weapon pickup
 
-runtime navmesh baking
 
-stop player movement when game is over by hitting the finish
+Post production
+
+post processing
+
+Video Settings - disable v-sync
