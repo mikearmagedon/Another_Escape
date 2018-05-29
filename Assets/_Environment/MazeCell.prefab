@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 33121990039791760}
   - component: {fileID: 65305155086179812}
   - component: {fileID: 23947764926068574}
+  - component: {fileID: 114625908396725768}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -269,7 +270,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355273098007852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 31.723242, y: 0.010211796, z: 28.0986}
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_Children:
   - {fileID: 4971571118312632}
@@ -370,7 +371,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 96d8bab52884db54699132e671b83fa5, type: 2}
+  - {fileID: 2100000, guid: 100d84a39d64a32438346c92b1831c09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -405,7 +406,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 96d8bab52884db54699132e671b83fa5, type: 2}
+  - {fileID: 2100000, guid: 100d84a39d64a32438346c92b1831c09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,7 +441,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 96d8bab52884db54699132e671b83fa5, type: 2}
+  - {fileID: 2100000, guid: 100d84a39d64a32438346c92b1831c09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -545,7 +546,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 96d8bab52884db54699132e671b83fa5, type: 2}
+  - {fileID: 2100000, guid: 100d84a39d64a32438346c92b1831c09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -557,7 +558,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -748,3 +749,15 @@ MonoBehaviour:
   - {fileID: 1666338773602350}
   - {fileID: 1873831648615620}
   - {fileID: 1844904732673948}
+--- !u!114 &114625908396725768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970549023344906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fa698560b688845bf08bafe6dc1b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AdditionalVertexStreamMesh: {fileID: 0}

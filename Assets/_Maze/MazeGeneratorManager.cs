@@ -9,7 +9,7 @@ public class MazeGeneratorManager
     [HideInInspector] public GameObject mazeGeneratorInstance;
     [SerializeField] Vector2Int initialCoordinates = new Vector2Int(0, 0);
     [SerializeField] Vector2Int size = new Vector2Int(10, 10);
-    [SerializeField] float secondsBetweenGenerations = 20f;
+    [SerializeField] float secondsBetweenGenerations = 50f;
     [SerializeField] Vector2Int mazeEntrance = new Vector2Int(0, 0);
     [SerializeField] MazeDirection mazeEntranceDirection = MazeDirection.None;
     [SerializeField] Vector2Int mazeExit = new Vector2Int(0, 0);
