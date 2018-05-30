@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -13,20 +14,18 @@ namespace RPG.Characters
 
         // State
         public bool wonGame { get; set; }
-        public bool isInCombat = false;
+        public bool isInCombat = false; // TODO consider using State enum
 
         int counter;
         Collider[] targets; 
 
         // Cached components references
         WeaponSystem weaponSystem;
-        HealthSystem healthSystem;
         Character character;
 
         void Start()
         {
             character = GetComponent<Character>();
-            healthSystem = GetComponent<HealthSystem>();
             weaponSystem = GetComponent<WeaponSystem>();
             SetInitialWinConditionVariables();
         }
@@ -103,11 +102,18 @@ namespace RPG.Characters
             if (targets.Length != 0)
             {
                 isInCombat = true;
+                StopAllCoroutines();
             }
             else
             {
-                isInCombat = false;
+                StartCoroutine(LeavingCombat());
             }
+        }
+
+        IEnumerator LeavingCombat()
+        {
+            yield return new WaitForSeconds(2f);
+            isInCombat = false;
         }
     }
 }

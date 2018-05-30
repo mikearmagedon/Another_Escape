@@ -25,7 +25,7 @@ public class HealthSystem : MonoBehaviour
     }
     const string DEATH_TRIGGER = "Death";
     float currentHealtPoints;
-    bool isHealing = false;
+    bool isHealing = false; // TODO consider using State enum
 
     // Cached components references
     Animator animator;
@@ -46,26 +46,31 @@ public class HealthSystem : MonoBehaviour
     {
         if (GetComponent<PlayerController>())
         {
-            if (!(GetComponent<PlayerController>().isInCombat))
-            {
-                if (!isHealing && currentHealtPoints < maxHealthPoints)
-                {
-                    StartCoroutine(RegenerateHealth());
-                }
-            }
-            else
-            {
-                if (isHealing)
-                {
-                    isHealing = false;
-                    print("Stopping HealthRegen");
-                    StopAllCoroutines();
-                }
-            }
+            HandleHealthRegen();
         }
-       
+
         UpdateHealthBar();
 	}
+
+    void HandleHealthRegen()
+    {
+        if (!(GetComponent<PlayerController>().isInCombat))
+        {
+            if (!isHealing && currentHealtPoints < maxHealthPoints)
+            {
+                StartCoroutine(RegenerateHealth());
+            }
+        }
+        else
+        {
+            if (isHealing)
+            {
+                isHealing = false;
+                print("Stopping HealthRegen");
+                StopAllCoroutines();
+            }
+        }
+    }
 
     IEnumerator RegenerateHealth()
     {
