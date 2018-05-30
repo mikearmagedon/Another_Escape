@@ -5,6 +5,7 @@ namespace RPG.Characters
 {
     [SelectionBase]
     [RequireComponent(typeof(Character))]
+    [RequireComponent(typeof(WeaponSystem))]
     public class PlayerController : MonoBehaviour
     {
         // Config
@@ -12,26 +13,29 @@ namespace RPG.Characters
 
         // State
         public bool wonGame { get; set; }
+        public bool isInCombat = false;
+
         int counter;
+        Collider[] targets; 
 
         // Cached components references
         WeaponSystem weaponSystem;
+        HealthSystem healthSystem;
         Character character;
 
         void Start()
         {
             character = GetComponent<Character>();
+            healthSystem = GetComponent<HealthSystem>();
             weaponSystem = GetComponent<WeaponSystem>();
             SetInitialWinConditionVariables();
         }
 
         void Update()
         {
-            ScriptableObject.CreateInstance<WeaponConfig>();
-            if (Input.GetMouseButton(0))
-            {
-                OnMouseClick();
-            }
+            ScriptableObject.CreateInstance<WeaponConfig>(); // TODO remove this instruction
+            FindTargetsInRange();
+            ProcessMouseClick();
         }
 
         // Fixed update is called in sync with physics
@@ -84,16 +88,26 @@ namespace RPG.Characters
             }
         }
 
-        void OnMouseClick()
+        void ProcessMouseClick()
         {
-            Collider[] targets = FindTargetsInRange();
-            weaponSystem.AttackTargets(targets);
+            if (Input.GetMouseButton(0))
+            {
+                weaponSystem.AttackTargets(targets);
+            }
         }
 
-        private Collider[] FindTargetsInRange()
+        private void FindTargetsInRange()
         {
             Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
-            return Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
+            targets = Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
+            if (targets.Length != 0)
+            {
+                isInCombat = true;
+            }
+            else
+            {
+                isInCombat = false;
+            }
         }
     }
 }

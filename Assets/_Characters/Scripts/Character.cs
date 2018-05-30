@@ -101,6 +101,7 @@ namespace RPG.Characters
             }
             else
             {
+                navMeshAgent.velocity = Vector3.zero;
                 Move(Vector3.zero, false);
             }
         }

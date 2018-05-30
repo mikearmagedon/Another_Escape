@@ -9,6 +9,8 @@ public class HealthSystem : MonoBehaviour
     // Config
     [SerializeField] float maxHealthPoints = 100f;
     [SerializeField] RawImage healthBar;
+    [SerializeField] float healtRegenStartDelay = 5f;
+    [SerializeField] float regenHealthPointsPerSecond = 5f;
     [SerializeField] AudioClip[] damageSounds;
     [SerializeField] AudioClip[] deathSounds;
     [SerializeField] float deathVanishSeconds = 2.0f;
@@ -23,6 +25,7 @@ public class HealthSystem : MonoBehaviour
     }
     const string DEATH_TRIGGER = "Death";
     float currentHealtPoints;
+    bool isHealing = false;
 
     // Cached components references
     Animator animator;
@@ -41,8 +44,42 @@ public class HealthSystem : MonoBehaviour
 
 	void Update()
     {
+        if (GetComponent<PlayerController>())
+        {
+            if (!(GetComponent<PlayerController>().isInCombat))
+            {
+                if (!isHealing && currentHealtPoints < maxHealthPoints)
+                {
+                    StartCoroutine(RegenerateHealth());
+                }
+            }
+            else
+            {
+                if (isHealing)
+                {
+                    isHealing = false;
+                    print("Stopping HealthRegen");
+                    StopAllCoroutines();
+                }
+            }
+        }
+       
         UpdateHealthBar();
 	}
+
+    IEnumerator RegenerateHealth()
+    {
+        isHealing = true;
+        yield return new WaitForSeconds(healtRegenStartDelay);
+        print("Starting HealthRegen");
+        while (currentHealtPoints < maxHealthPoints)
+        {
+            float healthPointsToRegen = regenHealthPointsPerSecond * Time.deltaTime;
+            Heal(healthPointsToRegen);
+            yield return null;
+        }
+        isHealing = false;
+    }
 
     void UpdateHealthBar()
     {
