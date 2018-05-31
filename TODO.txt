@@ -1,7 +1,11 @@
+Maze
+
+dont render oposite wall
+
 Movement
 
 Fix character collisions by 
- -exposing material in capsule collider in Character.cs
+ -exposing material in capsule collider in Character.cs use zero friction to fix sticky walls
  -using autobraking in navmesh agent
  
 runtime navmesh baking
@@ -15,6 +19,8 @@ refactor AttackTargets to use the private methods of WeaponSystem
 
 fix weapon animation on weapon pickup
 
+
+convert .blend to .fbx
 
 Post production
 
