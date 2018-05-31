@@ -34,6 +34,7 @@ public class MazeGenerator : MonoBehaviour
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
         ma.CreateMaze();
+        // start maze clean up
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
         StartCoroutine(ContinuousMazeGeneration());

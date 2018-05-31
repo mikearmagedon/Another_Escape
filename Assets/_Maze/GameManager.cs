@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     
     IEnumerator EndGame()
     {
-        player.DisableControl();
+        //player.DisableControl();
 
         messageText.enabled = true;
         messageText.text = "GAME OVER";
