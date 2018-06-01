@@ -66,7 +66,6 @@ public class HealthSystem : MonoBehaviour
             if (isHealing)
             {
                 isHealing = false;
-                print("Stopping HealthRegen");
                 StopAllCoroutines();
             }
         }
@@ -76,7 +75,6 @@ public class HealthSystem : MonoBehaviour
     {
         isHealing = true;
         yield return new WaitForSeconds(healtRegenStartDelay);
-        print("Starting HealthRegen");
         while (currentHealtPoints < maxHealthPoints)
         {
             float healthPointsToRegen = regenHealthPointsPerSecond * Time.deltaTime;

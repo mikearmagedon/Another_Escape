@@ -106,7 +106,10 @@ namespace RPG.Characters
             }
             else
             {
-                StartCoroutine(LeavingCombat());
+                if (isInCombat)
+                {
+                    StartCoroutine(LeavingCombat());
+                }
             }
         }
 
