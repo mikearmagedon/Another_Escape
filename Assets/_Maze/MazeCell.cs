@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +9,8 @@ public class MazeCell : MonoBehaviour
     internal MazeDirection entrance = MazeDirection.None;
     internal MazeDirection exit = MazeDirection.None;
     internal MazeCell North { get; set; }
-    internal MazeCell South { get; set; }
     internal MazeCell East { get; set; }
+    internal MazeCell South { get; set; }
     internal MazeCell West { get; set; }
     internal List<MazeCell> Neighbors
     {
@@ -27,7 +26,7 @@ public class MazeCell : MonoBehaviour
     }
 
     [SerializeField] GameObject[] walls;
-    [SerializeField] Dictionary<MazeCell, bool> links;
+    [SerializeField] Dictionary<MazeCell, bool> links; // TODO remove [SerializeField]; TODO consider using a List instead of a Dictionary
 
     void Awake()
     {
@@ -38,7 +37,7 @@ public class MazeCell : MonoBehaviour
     void Update()
     {
         // Draw passages with neighbours
-        if (links.Count == 0) { return; }
+        if (links.Count == 0) { return; } // TODO remove this instruction
 
         if (North && links.ContainsKey(North))
         {
@@ -94,6 +93,16 @@ public class MazeCell : MonoBehaviour
     internal void Reset()
     {
         links.Clear();
+    }
+
+    internal bool IsLinked(MazeCell cell)
+    {
+        if (cell == null)
+        {
+            return false;
+        }
+
+        return links.ContainsKey(cell);
     }
 
     internal void CreatePassage(MazeCell neighbour, bool bidirectional = true)

@@ -14,6 +14,7 @@ namespace RPG.Characters
         [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
 
         [Header("Capsule Collider")]
+        [SerializeField] PhysicMaterial physicMaterial;
         [SerializeField] Vector3 colliderCenter = new Vector3(0, 0.9f, 0);
         [SerializeField] float colliderRadius = 0.3f;
         [SerializeField] float colliderHeight = 1.8f;
@@ -65,6 +66,7 @@ namespace RPG.Characters
             
             // Capsule Collider
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
+            capsuleCollider.material = physicMaterial;
             capsuleCollider.center = colliderCenter;
             capsuleCollider.radius = colliderRadius;
             capsuleCollider.height = colliderHeight;
@@ -101,6 +103,7 @@ namespace RPG.Characters
             }
             else
             {
+                navMeshAgent.velocity = Vector3.zero;
                 Move(Vector3.zero, false);
             }
         }
