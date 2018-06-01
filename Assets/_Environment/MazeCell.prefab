@@ -22,11 +22,7 @@ GameObject:
   - component: {fileID: 33892181714339744}
   - component: {fileID: 65251890583044440}
   - component: {fileID: 23282877229559260}
-<<<<<<< HEAD
   - component: {fileID: 114559988143757732}
-=======
-  - component: {fileID: 208501843142239910}
->>>>>>> devTPP
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -79,11 +75,7 @@ GameObject:
   - component: {fileID: 33680827656287428}
   - component: {fileID: 65794020638542756}
   - component: {fileID: 23213015365035042}
-<<<<<<< HEAD
   - component: {fileID: 114895200011961594}
-=======
-  - component: {fileID: 208860220948313320}
->>>>>>> devTPP
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -102,11 +94,7 @@ GameObject:
   - component: {fileID: 33486691085575602}
   - component: {fileID: 65064935748896866}
   - component: {fileID: 23525522251439004}
-<<<<<<< HEAD
   - component: {fileID: 114828195768206016}
-=======
-  - component: {fileID: 208618717269275868}
->>>>>>> devTPP
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -189,11 +177,7 @@ GameObject:
   - component: {fileID: 33121990039791760}
   - component: {fileID: 65305155086179812}
   - component: {fileID: 23947764926068574}
-<<<<<<< HEAD
   - component: {fileID: 114625908396725768}
-=======
-  - component: {fileID: 208411508302418518}
->>>>>>> devTPP
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -289,11 +273,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355273098007852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 22.626337, y: 0.010212272, z: 26.85206}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 0}
->>>>>>> devTPP
   m_LocalScale: {x: 4.21, y: 2, z: 4.21}
   m_Children:
   - {fileID: 4971571118312632}
@@ -772,7 +752,6 @@ MonoBehaviour:
   - {fileID: 1666338773602350}
   - {fileID: 1873831648615620}
   - {fileID: 1844904732673948}
-<<<<<<< HEAD
 --- !u!114 &114559988143757732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -799,46 +778,11 @@ MonoBehaviour:
   m_AdditionalVertexStreamMesh: {fileID: 0}
 --- !u!114 &114828195768206016
 MonoBehaviour:
-=======
---- !u!208 &208411508302418518
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1970549023344906}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
---- !u!208 &208501843142239910
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1034641400046238}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
---- !u!208 &208618717269275868
-NavMeshObstacle:
->>>>>>> devTPP
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593237968260978}
   m_Enabled: 1
-<<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fa698560b688845bf08bafe6dc1b28, type: 3}
   m_Name: 
@@ -846,36 +790,13 @@ NavMeshObstacle:
   m_AdditionalVertexStreamMesh: {fileID: 0}
 --- !u!114 &114895200011961594
 MonoBehaviour:
-=======
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
---- !u!208 &208860220948313320
-NavMeshObstacle:
->>>>>>> devTPP
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436277783164330}
   m_Enabled: 1
-<<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fa698560b688845bf08bafe6dc1b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AdditionalVertexStreamMesh: {fileID: 0}
-=======
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
->>>>>>> devTPP

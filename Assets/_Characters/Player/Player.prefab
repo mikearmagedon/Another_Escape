@@ -1903,7 +1903,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  isInCombat: 0
 --- !u!114 &114466269640955416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1920,9 +1919,8 @@ MonoBehaviour:
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioSourceSpatialBlend: 0.5
-  physicMaterial: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   colliderCenter: {x: 0, y: 0.93, z: 0}
-  colliderRadius: 0.45
+  colliderRadius: 0.3
   colliderHeight: 1.8
   movingTurnSpeed: 1800
   stationaryTurnSpeed: 900
@@ -1948,8 +1946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
   healthBar: {fileID: 0}
-  healtRegenStartDelay: 5
-  regenHealthPointsPerSecond: 5
   damageSounds: []
   deathSounds: []
   deathVanishSeconds: 2

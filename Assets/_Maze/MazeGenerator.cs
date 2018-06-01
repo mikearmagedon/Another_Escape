@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
@@ -33,25 +34,9 @@ public class MazeGenerator : MonoBehaviour
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
         ma.CreateMaze();
-        // start maze clean up
-        CleanOverlappingMazeWalls();
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
         StartCoroutine(ContinuousMazeGeneration());
-    }
-
-    private void CleanOverlappingMazeWalls()
-    {
-        foreach (var cell in cells)
-        {
-            foreach (var neighbour in cell.Neighbors)
-            {
-                if (!cell.IsLinked(neighbour))
-                {
-                    neighbour.CreatePassage(cell, false);
-                }
-            }
-        }
     }
 
     private void InitializeMaze()
