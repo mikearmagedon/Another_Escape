@@ -1934,8 +1934,9 @@ MonoBehaviour:
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   audioSourceSpatialBlend: 0.5
-  colliderCenter: {x: 0, y: 0.9325456, z: 0}
-  colliderRadius: 0.3
+  physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
+  colliderCenter: {x: 0, y: 0.93, z: 0}
+  colliderRadius: 0.45
   colliderHeight: 1.86
   movingTurnSpeed: 1800
   stationaryTurnSpeed: 900
@@ -1972,6 +1973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
   healthBar: {fileID: 0}
+  healtRegenStartDelay: 5
+  regenHealthPointsPerSecond: 5
   damageSounds: []
   deathSounds: []
   deathVanishSeconds: 2
