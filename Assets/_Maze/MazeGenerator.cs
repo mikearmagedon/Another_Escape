@@ -46,8 +46,7 @@ public class MazeGenerator : MonoBehaviour
         {
             foreach (var neighbour in cell.Neighbors)
             {
-                var links = cell.GetLinks();
-                if (!links.Contains(neighbour))
+                if (!cell.IsLinked(neighbour))
                 {
                     neighbour.CreatePassage(cell, false);
                 }

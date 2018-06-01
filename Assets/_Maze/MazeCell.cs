@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class MazeCell : MonoBehaviour
@@ -96,9 +95,14 @@ public class MazeCell : MonoBehaviour
         links.Clear();
     }
 
-    internal List<MazeCell> GetLinks()
+    internal bool IsLinked(MazeCell cell)
     {
-        return links.Keys.ToList();
+        if (cell == null)
+        {
+            return false;
+        }
+
+        return links.ContainsKey(cell);
     }
 
     internal void CreatePassage(MazeCell neighbour, bool bidirectional = true)
