@@ -1,6 +1,5 @@
 Maze
 
-dont render oposite wall
 
 Movement
 
