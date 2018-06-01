@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -5,6 +6,7 @@ namespace RPG.Characters
 {
     [SelectionBase]
     [RequireComponent(typeof(Character))]
+    [RequireComponent(typeof(WeaponSystem))]
     public class PlayerController : MonoBehaviour
     {
         // Config
@@ -12,7 +14,10 @@ namespace RPG.Characters
 
         // State
         public bool wonGame { get; set; }
+        public bool isInCombat = false; // TODO consider using State enum
+
         int counter;
+        Collider[] targets; 
 
         // Cached components references
         WeaponSystem weaponSystem;
@@ -27,11 +32,9 @@ namespace RPG.Characters
 
         void Update()
         {
-            ScriptableObject.CreateInstance<WeaponConfig>();
-            if (Input.GetMouseButton(0))
-            {
-                OnMouseClick();
-            }
+            ScriptableObject.CreateInstance<WeaponConfig>(); // TODO remove this instruction
+            FindTargetsInRange();
+            ProcessMouseClick();
         }
 
         // Fixed update is called in sync with physics
@@ -84,16 +87,36 @@ namespace RPG.Characters
             }
         }
 
-        void OnMouseClick()
+        void ProcessMouseClick()
         {
-            Collider[] targets = FindTargetsInRange();
-            weaponSystem.AttackTargets(targets);
+            if (Input.GetMouseButton(0))
+            {
+                weaponSystem.AttackTargets(targets);
+            }
         }
 
-        private Collider[] FindTargetsInRange()
+        private void FindTargetsInRange()
         {
             Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
-            return Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
+            targets = Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
+            if (targets.Length != 0)
+            {
+                isInCombat = true;
+                StopAllCoroutines();
+            }
+            else
+            {
+                if (isInCombat)
+                {
+                    StartCoroutine(LeavingCombat());
+                }
+            }
+        }
+
+        IEnumerator LeavingCombat()
+        {
+            yield return new WaitForSeconds(2f);
+            isInCombat = false;
         }
     }
 }
