@@ -2,10 +2,13 @@
 using System.Collections;
 using UnityEngine;
 
+public enum Algorithm {BinaryTree, Sidewinder};
+
 public class MazeGenerator : MonoBehaviour
 {
     public Vector2Int initialCoordinates;
     public Vector2Int size;
+    public Algorithm mazeAlgorithm;
     public float secondsBetweenGenerations;
     public Vector2Int mazeEntrance;
     public MazeDirection mazeEntranceDirection;
@@ -21,12 +24,26 @@ public class MazeGenerator : MonoBehaviour
     {
         InitializeMaze();
         ConfigureCells();
-
-        //ma = new BinaryTreeAlgorithm(cells);
-        ma = new SidewinderAlgorithm(cells);
+        StartAlgorithm();
         StartCoroutine(ContinuousMazeGeneration());
     }
-    
+
+    private void StartAlgorithm()
+    {
+        switch (mazeAlgorithm)
+        {
+            case Algorithm.BinaryTree:
+                ma = new BinaryTreeAlgorithm(cells);
+                break;
+            case Algorithm.Sidewinder:
+                ma = new SidewinderAlgorithm(cells);
+                break;
+            default:
+                Debug.Log("Unknown algorithm.");
+                break;
+        }
+    }
+
     // TODO consider using a bool argument to set the continuous generation
     public IEnumerator ContinuousMazeGeneration()
     {

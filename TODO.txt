@@ -12,7 +12,6 @@ refactor AttackTargets to use the private methods of WeaponSystem
 
 fix weapon animation on weapon pickup
 
-
 Post production
 
 post processing
