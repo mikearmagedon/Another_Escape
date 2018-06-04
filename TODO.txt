@@ -12,6 +12,8 @@ refactor AttackTargets to use the private methods of WeaponSystem
 
 fix weapon animation on weapon pickup
 
+custom editor script for triggertext add rich text editor
+
 Post production
 
 post processing
