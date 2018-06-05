@@ -15,9 +15,6 @@ player attacks only the closest target
 
 fix weapon animation on weapon pickup
 
-weapon pickup sfx play after destroyed https://docs.unity3d.com/ScriptReference/AudioSource.PlayClipAtPoint.html
-add bool
-
 Audio
 pickup sfx
 trim tracks
@@ -25,7 +22,6 @@ footsteps see implementation on FirstPersonController
 
 Other
 
-expose volume for audio source on Character.cs
 
 Post production
 
