@@ -9,13 +9,8 @@ namespace RPG.Characters
         [SerializeField] WeaponConfig weaponConfig;
         [SerializeField] AudioClip pickUpSFX;
 
-        AudioSource audioSource;
-        GameObject weapon;
-
-        // Use this for initialization
-        void Start()
+        void Update()
         {
-            audioSource = GetComponent<AudioSource>();
             DestroyChildren();
             InstantiateWeapon();
         }
@@ -32,15 +27,14 @@ namespace RPG.Characters
         {
             var weaponPrefab = weaponConfig.GetWeaponPrefab();
             weaponPrefab.transform.position = Vector3.zero;
-            weapon = Instantiate(weaponPrefab, gameObject.transform);
+            Instantiate(weaponPrefab, gameObject.transform);
         }
 
         void OnTriggerEnter(Collider other)
         {
             FindObjectOfType<PlayerController>().GetComponent<WeaponSystem>().EquipWeapon(weaponConfig);
-            audioSource.PlayOneShot(pickUpSFX);
-            weapon.SetActive(false);
-            Destroy(gameObject, pickUpSFX.length);
+            AudioSource.PlayClipAtPoint(pickUpSFX, transform.position);
+            Destroy(gameObject);
         }
     }
 }
