@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TriggerText : MonoBehaviour
 {
     [SerializeField] Text textBox;
-    [SerializeField] string text;
-    
+    [SerializeField][TextArea] string displayText;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -17,7 +15,7 @@ public class TriggerText : MonoBehaviour
                 textBox.enabled = true;
             }
 
-            textBox.text = text;
+            textBox.text = displayText;
         }
     }
 
