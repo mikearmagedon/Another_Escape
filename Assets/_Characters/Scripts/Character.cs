@@ -12,6 +12,7 @@ namespace RPG.Characters
 
         [Header("Audio")]
         [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+        [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
 
         [Header("Capsule Collider")]
         [SerializeField] PhysicMaterial physicMaterial;
@@ -63,6 +64,7 @@ namespace RPG.Characters
             // AudioSource
             var audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = audioSourceSpatialBlend;
+            audioSource.volume = audioSourceVolume;
             
             // Capsule Collider
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
