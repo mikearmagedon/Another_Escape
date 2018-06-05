@@ -7,6 +7,8 @@ Fix character collisions by
  -using autobraking in navmesh agent
 
 Attack
+
+weapon attack sfx
  
 refactor AttackTargets to use the private methods of WeaponSystem
 
