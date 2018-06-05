@@ -97,8 +97,8 @@ public class HealthSystem : MonoBehaviour
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-        //AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        //audioSource.PlayOneShot(clip);
+        AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        audioSource.PlayOneShot(clip);
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
@@ -119,10 +119,10 @@ public class HealthSystem : MonoBehaviour
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {
-            //audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-            //audioSource.Play();
-            //yield return new WaitForSeconds(audioSource.clip.length);
-            yield return new WaitForSeconds(1.0f);
+            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+            yield return new WaitForSeconds(audioSource.clip.length);
+            //yield return new WaitForSeconds(1.0f);
             playerComponent.wonGame = true;
         }
         else // assuming is enemy for now, reconsider for other NPCs

@@ -16,6 +16,7 @@ namespace RPG.Characters
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float weaponDamage = 1f;
         [SerializeField] float damageDelay = 0.5f;
+		[SerializeField] AudioClip attackSFX;
 
         public float GetWeaponDamage()
         {
@@ -50,6 +51,11 @@ namespace RPG.Characters
         {
             RemoveAnimationEvents();
             return attackAnimation;
+        }
+		
+		public AudioClip GetAttackAudioClip()
+        {
+            return attackSFX;
         }
 
         // So that the RPG Character Animation Pack cannot cause crashes

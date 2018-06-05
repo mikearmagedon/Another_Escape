@@ -9,6 +9,7 @@ namespace RPG.Characters
         [SerializeField] float baseDamage = 10f;
         [SerializeField] WeaponConfig currentWeaponConfig;
 
+        AudioSource audioSource; 
         GameObject weaponObject;
         GameObject target;
         Animator animator;
@@ -22,6 +23,7 @@ namespace RPG.Characters
         {
             character = GetComponent<Character>();
             animator = GetComponent<Animator>();
+			audioSource = GetComponent<AudioSource>();
             EquipWeapon(currentWeaponConfig);
             SetAttackAnimation();
         }
@@ -83,6 +85,7 @@ namespace RPG.Characters
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
                 animator.SetTrigger(ATTACK_TRIGGER);
+				audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
                 foreach (var target in targets)
                 {
                     // Damage the enemy
@@ -131,6 +134,7 @@ namespace RPG.Characters
             animator.SetTrigger(ATTACK_TRIGGER);
             float damageDelay = currentWeaponConfig.GetDamageDelay();
             SetAttackAnimation();
+			audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
             StartCoroutine(DamageAfterDelay(damageDelay));
         }
 
