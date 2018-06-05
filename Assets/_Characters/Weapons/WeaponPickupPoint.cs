@@ -16,6 +16,7 @@ namespace RPG.Characters
         void Start()
         {
             audioSource = GetComponent<AudioSource>();
+            DestroyChildren();
             InstantiateWeapon();
         }
 
