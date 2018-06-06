@@ -119,10 +119,9 @@ public class HealthSystem : MonoBehaviour
 
         if (playerComponent && playerComponent.isActiveAndEnabled)
         {
-            //audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-            //audioSource.Play();
-            //yield return new WaitForSeconds(audioSource.clip.length);
-            yield return new WaitForSeconds(1.0f);
+            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+            yield return new WaitForSeconds(audioSource.clip.length);
             playerComponent.wonGame = true;
         }
         else // assuming is enemy for now, reconsider for other NPCs
