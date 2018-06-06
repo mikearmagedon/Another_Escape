@@ -17,7 +17,6 @@ namespace RPG.Characters
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float weaponDamage = 1f;
         [SerializeField] float damageDelay = 0.5f;
-		[SerializeField] AudioClip attackSFX;
 
         public float GetWeaponDamage()
         {
