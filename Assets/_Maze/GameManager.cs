@@ -41,9 +41,9 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGame()
     {
         player.DisableControl();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         messageText.text = "Find all the coins and return to the start!";
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         messageText.text = string.Empty;
         messageText.enabled = false;
     }
