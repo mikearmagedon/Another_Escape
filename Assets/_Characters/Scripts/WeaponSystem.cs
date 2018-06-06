@@ -23,6 +23,7 @@ namespace RPG.Characters
         {
             character = GetComponent<Character>();
             animator = GetComponent<Animator>();
+			audioSource = GetComponent<AudioSource>();
             EquipWeapon(currentWeaponConfig);
             SetAttackAnimation();
         }
@@ -84,6 +85,7 @@ namespace RPG.Characters
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
                 animator.SetTrigger(ATTACK_TRIGGER);
+				audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
                 foreach (var target in targets)
                 {
                     // Damage the enemy

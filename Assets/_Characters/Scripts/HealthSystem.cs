@@ -97,8 +97,8 @@ public class HealthSystem : MonoBehaviour
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-        //AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        //audioSource.PlayOneShot(clip);
+        AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        audioSource.PlayOneShot(clip);
         if (characterDies)
         {
             StartCoroutine(KillCharacter());
