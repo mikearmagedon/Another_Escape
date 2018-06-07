@@ -974,7 +974,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595984801854506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: -6.4256077, y: 26.250393, z: -2.7094169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4357460126067136}
@@ -2284,7 +2284,8 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
-  audioSourceSpatialBlend: 0.5
+  audioSourceSpatialBlend: 1
+  audioSourceVolume: 0.5
   physicMaterial: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   colliderCenter: {x: 0, y: 0.93, z: 0}
   colliderRadius: 0.45
@@ -2297,6 +2298,11 @@ MonoBehaviour:
   moveSpeedMultiplier: 1.5
   animSpeedMultiplier: 1
   groundCheckDistance: 1
+  footstepSounds:
+  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
+  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
+  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
+  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
   createNavMeshAgent: 0
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3
@@ -2311,12 +2317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8302c830d66b724382b3ac9c799c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
+  maxHealthPoints: 500
   healthBar: {fileID: 0}
   healtRegenStartDelay: 5
   regenHealthPointsPerSecond: 5
-  damageSounds: []
-  deathSounds: []
+  damageSounds:
+  - {fileID: 8300000, guid: e5afb3612f411224887c2576b4f8a2db, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: f03ca00748cc75c438092911536058b5, type: 3}
   deathVanishSeconds: 2
 --- !u!114 &114772875348900558
 MonoBehaviour:
