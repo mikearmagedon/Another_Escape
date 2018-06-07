@@ -155,17 +155,17 @@ namespace RPG.Characters
         // Left footstep SFX
         void FootL()
         {
-            print("Left Foot");
-            //AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            //audioSource.PlayOneShot(clip);
+            //print("Left Foot");
+            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+            audioSource.PlayOneShot(clip);
         }
 
         // Right footstep SFX
         void FootR()
         {
-            print("Right Foot");
-            //AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            //audioSource.PlayOneShot(clip);
+            //print("Right Foot");
+            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+            audioSource.PlayOneShot(clip);
         }
 
         Vector3 SetForwardAndTurn(Vector3 movement)
