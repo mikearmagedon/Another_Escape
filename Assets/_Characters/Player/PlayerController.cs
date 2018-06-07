@@ -80,7 +80,7 @@ namespace RPG.Characters
             }
             else if (other.gameObject.CompareTag("Finish"))
             {
-                if (counter == 1)
+                if (counter <= 3)
                 {
                     wonGame = true;
                 }
