@@ -20,6 +20,7 @@ Audio
 pickup sfx
 trim tracks
 footsteps see implementation on FirstPersonController
+footsteps randomize pitch
 
 Other
 
