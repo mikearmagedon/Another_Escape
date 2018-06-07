@@ -1,3 +1,6 @@
+UI
+add coin counter
+
 Maze
 
 
@@ -16,13 +19,11 @@ player attacks only the closest target
 fix weapon animation on weapon pickup
 
 Audio
-
+fix pickup sfx
 character volume levels
 footsteps randomize pitch
 
 Other
-
-On character death, disable weapon system
 
 Post production
 

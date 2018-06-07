@@ -112,6 +112,12 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
+        var playerComponent = GetComponent<PlayerController>();
+        if (playerComponent && playerComponent.isActiveAndEnabled)
+        {
+            playerComponent.enabled = false;
+        }
+
         characterMovement.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
 
@@ -119,8 +125,7 @@ public class HealthSystem : MonoBehaviour
         audioSource.Play(); // override any playing sounds
         yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
-        var playerComponent = GetComponent<PlayerController>();
-        if (playerComponent && playerComponent.isActiveAndEnabled)
+        if (playerComponent)
         {
             playerComponent.wonGame = true;
         }

@@ -32,7 +32,6 @@ namespace RPG.Characters
 
         void Update()
         {
-            ScriptableObject.CreateInstance<WeaponConfig>(); // TODO remove this instruction
             FindTargetsInRange();
             ProcessMouseClick();
         }
