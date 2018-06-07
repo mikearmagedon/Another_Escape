@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
-using RPG.Characters;
 
 namespace RPG.Characters
 {
     [ExecuteInEditMode]
-    public class WeaponPickupPoint : MonoBehaviour
+    public class WeaponPickup : MonoBehaviour
     {
         [SerializeField] WeaponConfig weaponConfig;
         [SerializeField] AudioClip pickUpSFX;
+        [SerializeField] bool destroyAfterPickedUp = true;
+
+        AudioSource audioSource;
+
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         void Update()
         {
-            DestroyChildren();
-            InstantiateWeapon();
+            if (!Application.isPlaying)
+            {
+                DestroyChildren();
+                InstantiateWeapon();
+            }
         }
 
         void DestroyChildren()
@@ -33,8 +43,15 @@ namespace RPG.Characters
         void OnTriggerEnter(Collider other)
         {
             FindObjectOfType<PlayerController>().GetComponent<WeaponSystem>().EquipWeapon(weaponConfig);
-            AudioSource.PlayClipAtPoint(pickUpSFX, transform.position);
-            Destroy(gameObject);
+            if (destroyAfterPickedUp)
+            {
+                AudioSource.PlayClipAtPoint(pickUpSFX, transform.position);
+                Destroy(gameObject);
+            }
+            else
+            {
+                audioSource.PlayOneShot(pickUpSFX);
+            }
         }
     }
 }

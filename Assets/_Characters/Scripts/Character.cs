@@ -12,6 +12,7 @@ namespace RPG.Characters
 
         [Header("Audio")]
         [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+        [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
 
         [Header("Capsule Collider")]
         [SerializeField] PhysicMaterial physicMaterial;
@@ -28,6 +29,7 @@ namespace RPG.Characters
         [SerializeField] float moveSpeedMultiplier = 1f;
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
+        [SerializeField] AudioClip[] footstepSounds; 
 
         [Header("Nav Mesh Agent")]
         [Tooltip("If false, the parameters below are ignored")]
@@ -37,6 +39,7 @@ namespace RPG.Characters
 
         Rigidbody rigidBody;
         Animator animator;
+        AudioSource audioSource;
         NavMeshAgent navMeshAgent;
         bool isGrounded;
         float origGroundCheckDistance;
@@ -61,8 +64,9 @@ namespace RPG.Characters
             animator.applyRootMotion = true;
 
             // AudioSource
-            var audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = audioSourceSpatialBlend;
+            audioSource.volume = audioSourceVolume;
             
             // Capsule Collider
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
@@ -146,6 +150,22 @@ namespace RPG.Characters
 
             // send input and other state parameters to the animator
             UpdateAnimator(localMovement);
+        }
+
+        // Left footstep SFX
+        void FootL()
+        {
+            print("Left Foot");
+            //AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+            //audioSource.PlayOneShot(clip);
+        }
+
+        // Right footstep SFX
+        void FootR()
+        {
+            print("Right Foot");
+            //AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
+            //audioSource.PlayOneShot(clip);
         }
 
         Vector3 SetForwardAndTurn(Vector3 movement)

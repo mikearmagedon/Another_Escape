@@ -9,10 +9,10 @@ namespace RPG.Characters
         [SerializeField] float baseDamage = 10f;
         [SerializeField] WeaponConfig currentWeaponConfig;
 
-        AudioSource audioSource; 
         GameObject weaponObject;
         GameObject target;
         Animator animator;
+        AudioSource audioSource;
         Character character;
         float lastHitTime;
 
@@ -130,10 +130,10 @@ namespace RPG.Characters
 
         void AttackTargetOnce()
         {
+            SetAttackAnimation();
             transform.LookAt(target.transform);
             animator.SetTrigger(ATTACK_TRIGGER);
             float damageDelay = currentWeaponConfig.GetDamageDelay();
-            SetAttackAnimation();
 			audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
             StartCoroutine(DamageAfterDelay(damageDelay));
         }

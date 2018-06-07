@@ -12,11 +12,11 @@ namespace RPG.Characters
 
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
+        [SerializeField] AudioClip attackSFX;
         [SerializeField] float timeBetweenAnimationCycles = 2f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float weaponDamage = 1f;
         [SerializeField] float damageDelay = 0.5f;
-		[SerializeField] AudioClip attackSFX;
 
         public float GetWeaponDamage()
         {
