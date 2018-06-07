@@ -16,7 +16,6 @@ namespace RPG.Characters
         [SerializeField] float timeBetweenAnimationCycles = 2f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float weaponDamage = 1f;
-        [SerializeField] float damageDelay = 0.5f;
 
         public float GetWeaponDamage()
         {
@@ -26,15 +25,6 @@ namespace RPG.Characters
         public float GetTimeBetweenAnimationCycles()
         {
             return timeBetweenAnimationCycles;
-        }
-
-        public float GetDamageDelay()
-        {
-            if (damageDelay > attackAnimation.length)
-            {
-                Debug.LogAssertion("Damage delay is longer then attack animation length.");
-            }
-            return damageDelay;
         }
 
         public float GetMaxAttackRange()

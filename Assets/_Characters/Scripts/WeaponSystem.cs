@@ -82,6 +82,7 @@ namespace RPG.Characters
 
         public void AttackTargets(Collider[] targets)
         {
+			
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
                 animator.SetTrigger(ATTACK_TRIGGER);
@@ -93,7 +94,9 @@ namespace RPG.Characters
                     if (damageable != null)
                     {
                         damageable.TakeDamage(CalculateDamage());
-                    }
+                    
+					}	
+					
                 }
                 lastHitTime = Time.time;
             }
@@ -133,15 +136,8 @@ namespace RPG.Characters
             SetAttackAnimation();
             transform.LookAt(target.transform);
             animator.SetTrigger(ATTACK_TRIGGER);
-            float damageDelay = currentWeaponConfig.GetDamageDelay();
 			audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
-            StartCoroutine(DamageAfterDelay(damageDelay));
-        }
-
-        IEnumerator DamageAfterDelay(float delay)
-        {
-            yield return new WaitForSecondsRealtime(delay);
-            target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+			target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
 
         GameObject RequestDominantHand()
