@@ -2460,7 +2460,7 @@ MonoBehaviour:
   damageSounds:
   - {fileID: 8300000, guid: e5afb3612f411224887c2576b4f8a2db, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: f03ca00748cc75c438092911536058b5, type: 3}
+  - {fileID: 8300000, guid: 123d66d4c88b7c142a24e7b55b449e5a, type: 3}
   deathVanishSeconds: 2
 --- !u!137 &137329376914180670
 SkinnedMeshRenderer:

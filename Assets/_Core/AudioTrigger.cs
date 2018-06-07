@@ -7,7 +7,7 @@ public class AudioTrigger : MonoBehaviour
     [SerializeField] float triggerRadius = 5f;
     [SerializeField] bool isOneTimeOnly = true;
 
-    [SerializeField] bool hasPlayed = false;
+    bool hasPlayed = false;
     AudioSource audioSource;
 
     void Start()
