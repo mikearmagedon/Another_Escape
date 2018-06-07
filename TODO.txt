@@ -17,9 +17,7 @@ fix weapon animation on weapon pickup
 
 Audio
 
-pickup sfx
-trim tracks
-footsteps see implementation on FirstPersonController
+character volume levels
 footsteps randomize pitch
 
 Other
