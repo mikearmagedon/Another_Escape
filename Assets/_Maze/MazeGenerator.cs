@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill};
+public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill, GrowingTree};
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -39,6 +39,9 @@ public class MazeGenerator : MonoBehaviour
                 break;
             case Algorithm.HuntAndKill:
                 ma = new HuntAndKillAlgorithm(cells);
+                break;
+            case Algorithm.GrowingTree:
+                ma = new GrowingTreeAlgorithm(cells);
                 break;
             default:
                 Debug.Log("Unknown algorithm.");
@@ -87,7 +90,6 @@ public class MazeGenerator : MonoBehaviour
 
     private void CreateCell(Vector2Int coordinates)
     {
-        print("Cell:" + coordinates);
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
         newCell.coordinates = coordinates + initialCoordinates;

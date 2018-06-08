@@ -10,31 +10,31 @@ public class HuntAndKillAlgorithm : MazeAlgorithm
 
     public override void CreateMaze()
     {
-        MazeCell current = GetRandomCell();
+        MazeCell currentCell = GetRandomCell();
 
-        while (current)
+        while (currentCell)
         {
-            List<MazeCell> unvisitedNeighbours = current.Neighbors.Where(c => c.GetLinks().Count == 0).ToList();
+            List<MazeCell> unvisitedNeighbours = currentCell.Neighbors.Where(c => c.GetLinks().Count == 0).ToList();
 
-            if (unvisitedNeighbours.Count != 0)
+            if (unvisitedNeighbours.Count > 0)
             {
                 MazeCell neighbour = unvisitedNeighbours[Random.Range(0, unvisitedNeighbours.Count)];
-                current.CreatePassage(neighbour);
-                current = neighbour;
+                currentCell.CreatePassage(neighbour);
+                currentCell = neighbour;
             }
             else // Hunt
             {
-                current = null;
+                currentCell = null;
 
                 foreach (var cell in cells)
                 {
-                    List<MazeCell> visitedNeighbours = cell.Neighbors.Where(c => c.GetLinks().Count != 0).ToList();
-                    if (cell.GetLinks().Count == 0 && visitedNeighbours.Count != 0)
+                    List<MazeCell> visitedNeighbours = cell.Neighbors.Where(c => c.GetLinks().Count > 0).ToList();
+                    if (cell.GetLinks().Count == 0 && visitedNeighbours.Count > 0)
                     {
-                        current = cell;
+                        currentCell = cell;
 
                         MazeCell neighbour = visitedNeighbours[Random.Range(0, visitedNeighbours.Count)];
-                        current.CreatePassage(neighbour);
+                        currentCell.CreatePassage(neighbour);
 
                         break;
                     }

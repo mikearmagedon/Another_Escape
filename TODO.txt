@@ -18,12 +18,16 @@ player attacks only the closest target
 
 fix weapon animation on weapon pickup
 
+use attack animation event to deal damage
+
 Audio
 fix pickup sfx
 character volume levels
 footsteps randomize pitch
 
 Other
+
+Barrier model and behaviour
 
 Post production
 
