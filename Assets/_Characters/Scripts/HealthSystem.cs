@@ -112,16 +112,21 @@ public class HealthSystem : MonoBehaviour
 
     IEnumerator KillCharacter()
     {
+        var playerComponent = GetComponent<PlayerController>();
+        if (playerComponent && playerComponent.isActiveAndEnabled)
+        {
+            playerComponent.enabled = false;
+        }
+
         characterMovement.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
 
-        var playerComponent = GetComponent<PlayerController>();
+        audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+        audioSource.Play(); // override any playing sounds
+        yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
-        if (playerComponent && playerComponent.isActiveAndEnabled)
+        if (playerComponent)
         {
-            audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-            audioSource.Play();
-            yield return new WaitForSeconds(audioSource.clip.length);
             playerComponent.wonGame = true;
         }
         else // assuming is enemy for now, reconsider for other NPCs

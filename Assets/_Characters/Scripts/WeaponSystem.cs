@@ -93,10 +93,8 @@ namespace RPG.Characters
                     var damageable = target.GetComponent<HealthSystem>();
                     if (damageable != null)
                     {
-                        damageable.TakeDamage(CalculateDamage());
-                    
-					}	
-					
+                        damageable.TakeDamage(CalculateDamage());                    
+					}
                 }
                 lastHitTime = Time.time;
             }

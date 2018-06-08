@@ -263,7 +263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4839543752468270, guid: ebd6574e2ac3e094a921120bf6f275c1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4839543752468270, guid: ebd6574e2ac3e094a921120bf6f275c1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -574,7 +574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4012309719416576, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4012309719416576, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -676,17 +676,17 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].size.x
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].size.y
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].secondsBetweenGenerations
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -721,17 +721,17 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].mazeExit.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
-        type: 2}
-      propertyPath: mazeGenerators.Array.data[0].mazeExitDirection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
+      propertyPath: mazeGenerators.Array.data[0].mazeExitDirection
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
       propertyPath: mazeGenerators.Array.data[0].mazeExit.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -742,12 +742,17 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].mazeEntrance.x
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].mazeEntrance.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[0].mazeAlgorithm
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
@@ -819,7 +824,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2058863773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.11, y: 0.98, z: 13.33}
+  m_LocalPosition: {x: 14.11, y: 0, z: 13.33}
   m_LocalScale: {x: 10.0115185, y: 0.07945062, z: 6.2111607}
   m_Children: []
   m_Father: {fileID: 0}
