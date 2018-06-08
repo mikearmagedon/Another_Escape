@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-public enum Algorithm {BinaryTree, Sidewinder};
+public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill};
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -38,6 +37,9 @@ public class MazeGenerator : MonoBehaviour
             case Algorithm.Sidewinder:
                 ma = new SidewinderAlgorithm(cells);
                 break;
+            case Algorithm.HuntAndKill:
+                ma = new HuntAndKillAlgorithm(cells);
+                break;
             default:
                 Debug.Log("Unknown algorithm.");
                 break;
@@ -50,7 +52,6 @@ public class MazeGenerator : MonoBehaviour
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
         ma.CreateMaze();
-        // start maze clean up
         CleanOverlappingMazeWalls();
         yield return new WaitForSeconds(secondsBetweenGenerations);
         ResetMaze();
@@ -75,9 +76,9 @@ public class MazeGenerator : MonoBehaviour
     {
         cells = new MazeCell[size.x, size.y];
 
-        for (int r = 0; r < size.x; r++)
+        for (int r = 0; r < size.y; r++)
         {
-            for (int c = 0; c < size.y; c++)
+            for (int c = 0; c < size.x; c++)
             {
                 CreateCell(new Vector2Int(c, r));
             }
@@ -86,6 +87,7 @@ public class MazeGenerator : MonoBehaviour
 
     private void CreateCell(Vector2Int coordinates)
     {
+        print("Cell:" + coordinates);
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
         newCell.coordinates = coordinates + initialCoordinates;

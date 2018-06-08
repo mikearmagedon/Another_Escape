@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MazeCell : MonoBehaviour
@@ -26,7 +27,8 @@ public class MazeCell : MonoBehaviour
     }
 
     [SerializeField] GameObject[] walls;
-    [SerializeField] Dictionary<MazeCell, bool> links; // TODO remove [SerializeField]; TODO consider using a List instead of a Dictionary
+
+    Dictionary<MazeCell, bool> links; // TODO consider using a List instead of a Dictionary
 
     void Awake()
     {
@@ -103,6 +105,11 @@ public class MazeCell : MonoBehaviour
         }
 
         return links.ContainsKey(cell);
+    }
+
+    internal List<MazeCell> GetLinks()
+    {
+        return links.Keys.ToList();
     }
 
     internal void CreatePassage(MazeCell neighbour, bool bidirectional = true)
