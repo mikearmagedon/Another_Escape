@@ -25,7 +25,6 @@ namespace RPG.Characters
             animator = GetComponent<Animator>();
 			audioSource = GetComponent<AudioSource>();
             EquipWeapon(currentWeaponConfig);
-            SetAttackAnimation();
         }
 
         void Update()
@@ -73,6 +72,8 @@ namespace RPG.Characters
             weaponObject.transform.SetParent(dominantHand.transform, true);
             weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
+
+            SetAttackAnimation();
         }
 
         public void StopAttacking()
@@ -82,7 +83,6 @@ namespace RPG.Characters
 
         public void AttackTargets(Collider[] targets)
         {
-			
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
                 animator.SetTrigger(ATTACK_TRIGGER);
