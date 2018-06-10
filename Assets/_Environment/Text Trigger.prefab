@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23069458958591844}
   - component: {fileID: 114340358989313192}
   m_Layer: 0
-  m_Name: TriggerText
+  m_Name: Text Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,4 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 0}
-  text: Testing text
+  displayText: 
