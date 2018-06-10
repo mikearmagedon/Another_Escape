@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TriggerText : MonoBehaviour
+public class TextTrigger : MonoBehaviour
 {
     [SerializeField] Text textBox;
     [SerializeField][TextArea] string displayText;
