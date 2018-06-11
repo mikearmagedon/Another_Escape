@@ -1,8 +1,7 @@
 UI
-add coin counter
+add required coins UI to the barrier
 
 Maze
-
 
 Movement
 
@@ -11,7 +10,7 @@ Fix character collisions by
 
 Attack
 
-weapon attack sfx
+weapon attack sfx replace with slash sfx
  
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
