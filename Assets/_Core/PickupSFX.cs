@@ -8,6 +8,6 @@ public class PickupSFX : MonoBehaviour
 
     void OnDestroy()
     {
-        AudioSource.PlayClipAtPoint(pickupSFX, transform.position);
+        AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.5f);
     }
 }

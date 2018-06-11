@@ -30,7 +30,7 @@ public class BarrierTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (isLocked && ScoreManager.score == requiredAmountToUnlock)
+            if (isLocked && (ScoreManager.score >= requiredAmountToUnlock))
             {
                 isLocked = false;
                 isLerping = true;
