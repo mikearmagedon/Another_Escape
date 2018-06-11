@@ -15,9 +15,7 @@ namespace RPG.Characters
         // State
         public bool wonGame { get; set; }
         public bool isInCombat = false; // TODO consider using State enum
-
-        int counter;
-        Collider[] targets; 
+        Collider[] targets;
 
         // Cached components references
         WeaponSystem weaponSystem;
@@ -55,7 +53,6 @@ namespace RPG.Characters
         void SetInitialWinConditionVariables()
         {
             wonGame = false;
-            counter = 0;
         }
 
         void ProcessKeyboardMovement()
@@ -75,11 +72,11 @@ namespace RPG.Characters
             if (other.gameObject.CompareTag("Pickup"))
             {
                 Destroy(other.gameObject);
-                counter++;
+                ScoreManager.score++;
             }
             else if (other.gameObject.CompareTag("Finish"))
             {
-                if (counter <= 3)
+                if (ScoreManager.score <= 3)
                 {
                     wonGame = true;
                 }
