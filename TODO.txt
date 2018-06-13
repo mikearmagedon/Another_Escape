@@ -1,5 +1,5 @@
 UI
-add required coins UI to the barrier
+
 
 Maze
 
@@ -18,7 +18,6 @@ player attacks only the closest target
 use attack animation event to deal damage
 
 Audio
-fix pickup sfx
 character volume levels
 footsteps randomize pitch
 
