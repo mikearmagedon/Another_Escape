@@ -6,8 +6,13 @@ public class PickupSFX : MonoBehaviour
 {
     [SerializeField] AudioClip pickupSFX;
 
-    void OnDestroy()
+    private void OnTriggerEnter(Collider other)
     {
-        AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.5f);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.5f);
+            ScoreManager.score++;
+            Destroy(gameObject);
+        }
     }
 }

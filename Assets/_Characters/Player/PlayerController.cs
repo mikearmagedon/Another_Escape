@@ -69,12 +69,7 @@ namespace RPG.Characters
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Pickup"))
-            {
-                Destroy(other.gameObject);
-                ScoreManager.score++;
-            }
-            else if (other.gameObject.CompareTag("Finish"))
+            if (other.gameObject.CompareTag("Finish"))
             {
                 if (ScoreManager.score <= 3)
                 {
