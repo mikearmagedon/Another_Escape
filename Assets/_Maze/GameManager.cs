@@ -31,11 +31,19 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameLoop()
     {
-        yield return StartCoroutine(StartGame());
+        //yield return StartCoroutine(StartGame());
         yield return StartCoroutine(PlayGame());
         yield return StartCoroutine(EndGame());
 
-        SceneManager.LoadScene(0);
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if ((currentSceneIndex + 1) < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     IEnumerator StartGame()
