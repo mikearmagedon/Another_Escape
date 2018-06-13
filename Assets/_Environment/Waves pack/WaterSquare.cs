@@ -34,31 +34,31 @@ public class WaterSquare
 
 
         //Calculate the data we need to generate the water mesh   
-        width = (int)(size / spacing);
+        //width = (int)(size / spacing);
         //Because each square is 2 vertices, so we need one more
-        width += 1;
+        //width += 1;
+		width = (int)size;
 
         //Center the sea
-        float offset = -((width - 1) * spacing) / 2;
+        //float offset = -((width - 1) * spacing) / 2;
 
-        Vector3 newPos = new Vector3(offset, squareTransform.position.y, offset);
-
-        squareTransform.position += newPos;
-
+        //Vector3 newPos = new Vector3(offset, squareTransform.position.y, offset);
+		
+        //squareTransform.position += newPos;
+		
         //Save the center position of the square
-        this.centerPos = waterSquareObj.transform.localPosition;
-
+        //this.centerPos = waterSquareObj.transform.localPosition;
 
         //Generate the sea
         //To calculate the time it took to generate the terrain
         float startTime = System.Environment.TickCount;
 
-        GenerateMesh();
+        //GenerateMesh();
         
         //Calculate the time it took to generate the terrain in seconds
-        float timeToGenerateSea = (System.Environment.TickCount - startTime) / 1000f;
+        //float timeToGenerateSea = (System.Environment.TickCount - startTime) / 1000f;
 
-        Debug.Log("Sea was generated in " + timeToGenerateSea.ToString() + " seconds");
+        //Debug.Log("Sea was generated in " + timeToGenerateSea.ToString() + " seconds");
 
 
         //Save the vertices so we can update them in a thread
@@ -75,9 +75,9 @@ public class WaterSquare
 			Vector3 vertex = vertices[i];
 
             //From local to global
-            //Vector3 vertexGlobal = squareTransform.TransformPoint(vertex);
+            Vector3 vertexGlobal = squareTransform.TransformPoint(vertex);
 
-            Vector3 vertexGlobal = vertex + centerPos + oceanPos;
+            //Vector3 vertexGlobal = vertex + centerPos + oceanPos;
 
             //Unnecessary because no rotation nor scale
             //Vector3 vertexGlobalTest2 = squareTransform.rotation * Vector3.Scale(vertex, squareTransform.localScale) + squareTransform.position;
@@ -181,6 +181,6 @@ public class WaterSquare
 		terrainMeshFilter.mesh = newMesh;
 		terrainMeshFilter.mesh.name = "Water Mesh";
 
-        Debug.Log(terrainMeshFilter.mesh.vertices.Length);
+        //Debug.Log(terrainMeshFilter.mesh.vertices.Length);
 	}
 }

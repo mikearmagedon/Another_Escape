@@ -12,9 +12,9 @@ public class EndlessWaterSquare : MonoBehaviour
     public GameObject waterSqrObj;
 
     //Water square data
-    private float squareWidth = 800f;
+    private float squareWidth = 15;
     private float innerSquareResolution = 5f;
-    private float outerSquareResolution = 25f;
+    //private float outerSquareResolution = 25f;
 
     //The list with all water mesh squares == the entire ocean we can see
     List<WaterSquare> waterSquares = new List<WaterSquare>();
@@ -167,48 +167,51 @@ public class EndlessWaterSquare : MonoBehaviour
     //Init the endless sea by creating all squares
     void CreateEndlessSea()
     {
+		
+		AddWaterPlane(waterSqrObj, squareWidth, innerSquareResolution);
+		
         //The center piece
-        AddWaterPlane(0f, 0f, 0f, squareWidth, innerSquareResolution);
+        //AddWaterPlane(0f, 0f, -0.3f, squareWidth, innerSquareResolution);
 
         //The 8 squares around the center square
-        for (int x = -1; x <= 1; x += 1)
-        {
-            for (int z = -1; z <= 1; z += 1)
-            {
+        //for (int x = -1; x <= 1; x += 1)
+        //{
+           // for (int z = -1; z <= 1; z += 1)
+            //{
                 //Ignore the center pos
-                if (x == 0 && z == 0)
-                {
-                    continue;
-                }
+                //if (x == 0 && z == 0)
+                //{
+                    //continue;
+                //}
 
                 //The y-Pos should be lower than the square with high resolution to avoid an ugly seam
-                float yPos = -0.5f;
-                AddWaterPlane(x * squareWidth, z * squareWidth, yPos, squareWidth, outerSquareResolution);
-            }
-        }
+                //float yPos = -0.8f;
+                //AddWaterPlane(x * squareWidth, z * squareWidth, yPos, squareWidth, outerSquareResolution);
+            //}
+        //}
     }
 
     //Add one water plane
-    void AddWaterPlane(float xCoord, float zCoord, float yPos, float squareWidth, float spacing)
+    void AddWaterPlane(GameObject waterSqrObj, float squareWidth, float spacing)
     {
-        GameObject waterPlane = Instantiate(waterSqrObj, transform.position, transform.rotation) as GameObject;
+        //GameObject waterPlane = Instantiate(waterSqrObj, transform.position, transform.rotation) as GameObject;
 
-        waterPlane.SetActive(true);
+        //waterPlane.SetActive(true);
 
         //Change its position
-        Vector3 centerPos = transform.position;
+        //Vector3 centerPos = transform.position;
 
-        centerPos.x += xCoord;
-        centerPos.y = yPos;
-        centerPos.z += zCoord;
+        //centerPos.x += xCoord;
+        //centerPos.y = yPos;
+        //centerPos.z += zCoord;
 
-        waterPlane.transform.position = centerPos;
+        //waterPlane.transform.position = centerPos;
 
         //Parent it
-        waterPlane.transform.parent = transform;
+        //waterPlane.transform.parent = transform;
 
         //Give it moving water properties and set its width and resolution to generate the water mesh
-        WaterSquare newWaterSquare = new WaterSquare(waterPlane, squareWidth, spacing);
+        WaterSquare newWaterSquare = new WaterSquare(waterSqrObj, squareWidth, spacing);
 
         waterSquares.Add(newWaterSquare);
     }
