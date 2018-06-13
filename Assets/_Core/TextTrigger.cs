@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Collider))]
 public class TextTrigger : MonoBehaviour
 {
     [SerializeField] Text textBox;
