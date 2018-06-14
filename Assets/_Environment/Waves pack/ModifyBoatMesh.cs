@@ -173,7 +173,7 @@ namespace BoatTutorial
                 h_L = vertexData[1].distance;
             }
 
-			
+
             //Now we can calculate where we should cut the triangle to form 2 new triangles
             //because the resulting area will always form a square
 
