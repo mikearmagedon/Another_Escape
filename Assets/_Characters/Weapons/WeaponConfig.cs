@@ -13,6 +13,7 @@ namespace RPG.Characters
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
         [SerializeField] AudioClip attackSFX;
+        [SerializeField] AudioClip swingSFX;
         [SerializeField] float timeBetweenAnimationCycles = 2f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float weaponDamage = 1f;
@@ -39,7 +40,6 @@ namespace RPG.Characters
 
         public AnimationClip GetAttackAnimClip()
         {
-            RemoveAnimationEvents();
             return attackAnimation;
         }
 		
@@ -48,10 +48,9 @@ namespace RPG.Characters
             return attackSFX;
         }
 
-        // So that the RPG Character Animation Pack cannot cause crashes
-        private void RemoveAnimationEvents()
+        public AudioClip GetSwingAudioClip()
         {
-            attackAnimation.events = new AnimationEvent[0];
+            return swingSFX;
         }
     }
 }

@@ -86,15 +86,15 @@ namespace RPG.Characters
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
                 animator.SetTrigger(ATTACK_TRIGGER);
-				audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
                 foreach (var target in targets)
                 {
+                    this.target = target.gameObject;
                     // Damage the enemy
-                    var damageable = target.GetComponent<HealthSystem>();
-                    if (damageable != null)
-                    {
-                        damageable.TakeDamage(CalculateDamage());                    
-					}
+                    //var damageable = target.GetComponent<HealthSystem>();
+                    //if (damageable != null)
+                    //{
+                    //    damageable.TakeDamage(CalculateDamage());
+                    //}
                 }
                 lastHitTime = Time.time;
             }
@@ -134,8 +134,20 @@ namespace RPG.Characters
             SetAttackAnimation();
             transform.LookAt(target.transform);
             animator.SetTrigger(ATTACK_TRIGGER);
-			audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
-			target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+        }
+
+        // Attack animation callback
+        void Hit()
+        {            
+            if (target != null)
+            {
+                audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
+                target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+            }
+            else
+            {
+                audioSource.PlayOneShot(currentWeaponConfig.GetSwingAudioClip());
+            }
         }
 
         GameObject RequestDominantHand()

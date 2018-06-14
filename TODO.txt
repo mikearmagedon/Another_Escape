@@ -1,7 +1,9 @@
 UI
-escape menu
+
+pause menu
 
 Maze
+
 
 Movement
 
@@ -9,19 +11,19 @@ Fix character collisions by
  -using autobraking in navmesh agent
 
 Attack
-
-weapon attack sfx replace with slash sfx
- 
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
 
-use attack animation event to deal damage
+random attack animations
 
 Audio
+
 character volume levels
 footsteps randomize pitch
 
 Other
+
+reload current level on player death
 
 Post production
 
