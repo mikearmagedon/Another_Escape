@@ -2,7 +2,7 @@
 using System.Collections;
 
 //Controlls the water
-public class WaterController : MonoBehaviour 
+public class WaterController : MonoBehaviour
 {
     public static WaterController current;
 
@@ -27,14 +27,14 @@ public class WaterController : MonoBehaviour
     {
         if (isMoving)
         {
-            return WaveTypes.SinXWave(position, speed, scale, waveDistance, noiseStrength, noiseWalk, timeSinceStart);
+        return WaveTypes.SinXWave(position, speed, scale, waveDistance, noiseStrength, noiseWalk, timeSinceStart);
         }
         else
         {
-            return 0f;
+        return 0f;
         }
-		
-		//return 0f;
+
+        //return 0f;
     }
 
     //Find the distance from a vertice to water

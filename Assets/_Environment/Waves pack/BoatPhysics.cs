@@ -8,9 +8,6 @@ namespace BoatTutorial
     {
         //Drags
         public GameObject underWaterObj;
-		
-		//Change the center of mass
-		public Vector3 centerOfMass;
 
         //Script that's doing everything needed with the boat mesh, such as finding out which part is above the water
         private ModifyBoatMesh modifyBoatMesh;
@@ -47,9 +44,6 @@ namespace BoatTutorial
 
         void FixedUpdate()
         {
-			//Change the center of mass - experimental - move to Start() later
-			boatRB.centerOfMass = centerOfMass;
-			
             //Add forces to the part of the boat that's below the water
             if (modifyBoatMesh.underWaterTriangleData.Count > 0)
             {
