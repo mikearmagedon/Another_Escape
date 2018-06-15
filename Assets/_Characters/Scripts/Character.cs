@@ -152,18 +152,16 @@ namespace RPG.Characters
             UpdateAnimator(localMovement);
         }
 
-        // Left footstep SFX
+        // Left footstep SFX animation callback
         void FootL()
         {
-            //print("Left Foot");
             AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
             audioSource.PlayOneShot(clip);
         }
 
-        // Right footstep SFX
+        // Right footstep SFX animation callback
         void FootR()
         {
-            //print("Right Foot");
             AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
             audioSource.PlayOneShot(clip);
         }

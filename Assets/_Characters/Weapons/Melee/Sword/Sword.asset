@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 131468, guid: f61def225eac3e247985f6679965a655, type: 2}
   attackAnimation: {fileID: 7400000, guid: d82669b37833c5f4db716b82428a5ad6, type: 3}
   attackSFX: {fileID: 8300000, guid: b130ee49dcdf2224fae649258e8ec3d9, type: 3}
+  swingSFX: {fileID: 8300000, guid: 9c22eea25e7875348832fdeeff708cd1, type: 3}
   timeBetweenAnimationCycles: 1
   maxAttackRange: 3
   weaponDamage: 50

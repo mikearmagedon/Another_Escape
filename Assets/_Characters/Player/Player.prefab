@@ -2322,9 +2322,13 @@ MonoBehaviour:
   healtRegenStartDelay: 5
   regenHealthPointsPerSecond: 5
   damageSounds:
-  - {fileID: 8300000, guid: e5afb3612f411224887c2576b4f8a2db, type: 3}
+  - {fileID: 8300000, guid: c329840fc51f97748adb2b3f35cdc35d, type: 3}
+  - {fileID: 8300000, guid: 63cdb800cec6ae04cb4fd1c6da860694, type: 3}
+  - {fileID: 8300000, guid: 7a2aaade0bd98e94f92d340c77ae594d, type: 3}
+  - {fileID: 8300000, guid: f05bea9caf295df49974ef0a7924e708, type: 3}
+  - {fileID: 8300000, guid: fec1d222069bcfb40a0f6cf22542e34c, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: f03ca00748cc75c438092911536058b5, type: 3}
+  - {fileID: 8300000, guid: 123d66d4c88b7c142a24e7b55b449e5a, type: 3}
   deathVanishSeconds: 2
 --- !u!114 &114772875348900558
 MonoBehaviour:
