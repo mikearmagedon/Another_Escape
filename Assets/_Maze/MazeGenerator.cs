@@ -94,7 +94,7 @@ public class MazeGenerator : MonoBehaviour
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
         newCell.coordinates = coordinates + initialCoordinates;
         newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.y);
-        newCell.transform.position = new Vector3((coordinates.x + initialCoordinates.x) * MazeCell.cellSize, 0f, (coordinates.y + initialCoordinates.y) * MazeCell.cellSize);
+        newCell.transform.position = new Vector3(initialCoordinates.x + (coordinates.x * MazeCell.cellSize), 0f, initialCoordinates.y + (coordinates.y * MazeCell.cellSize));
 
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
