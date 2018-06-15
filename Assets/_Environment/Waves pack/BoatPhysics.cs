@@ -18,6 +18,9 @@ namespace BoatTutorial
         //The boats rigidbody
         private Rigidbody boatRB;
 
+        //Change the center of mass
+        public Vector3 centerOfMass;
+
         //The density of the water the boat is traveling in
         private float rhoWater = 1027f;
 
@@ -44,6 +47,9 @@ namespace BoatTutorial
 
         void FixedUpdate()
         {
+            //Change the center of mass - experimental - move to Start() later
+            boatRB.centerOfMass = centerOfMass;
+
             //Add forces to the part of the boat that's below the water
             if (modifyBoatMesh.underWaterTriangleData.Count > 0)
             {
@@ -93,12 +99,13 @@ namespace BoatTutorial
             // z - distance to surface
             // S - surface area
             // n - normal to the surface
-            Vector3 buoyancyForce = rho * Physics.gravity.y * triangleData.distanceToSurface * triangleData.area * triangleData.normal;
+            Vector3 buoyancyForce = rho * Physics.gravity.y * triangleData.area * triangleData.distanceToSurface * triangleData.normal;
 
             //The vertical component of the hydrostatic forces don't cancel out but the horizontal do
             buoyancyForce.x = 0f;
             buoyancyForce.z = 0f;
 
+            //Debug.Log(buoyancyForce);
             return buoyancyForce;
         }
     }
