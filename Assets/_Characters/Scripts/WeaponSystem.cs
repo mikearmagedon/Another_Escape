@@ -72,8 +72,6 @@ namespace RPG.Characters
             weaponObject.transform.SetParent(dominantHand.transform, true);
             weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
-
-            SetAttackAnimation();
         }
 
         public void StopAttacking()
@@ -83,20 +81,20 @@ namespace RPG.Characters
 
         public void AttackTargets(Collider[] targets)
         {
-            if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
+            var animationClip = currentWeaponConfig.GetRandomAttackAnimClip();
+            float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
+            float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
+
+            bool isTimeToHitAgain = (Time.time - lastHitTime) > timeToWait;
+            if (isTimeToHitAgain)
             {
                 SetAttackAnimation();
-                animator.SetTrigger(ATTACK_TRIGGER);
                 foreach (var target in targets)
                 {
                     this.target = target.gameObject;
-                    // Damage the enemy
-                    //var damageable = target.GetComponent<HealthSystem>();
-                    //if (damageable != null)
-                    //{
-                    //    damageable.TakeDamage(CalculateDamage());
-                    //}
                 }
+                animator.SetTrigger(ATTACK_TRIGGER);
+
                 lastHitTime = Time.time;
             }
         }
@@ -114,7 +112,7 @@ namespace RPG.Characters
 
             while (attackerStillAlive && targetStillAlive)
             {
-                var animationClip = currentWeaponConfig.GetAttackAnimClip();
+                var animationClip = currentWeaponConfig.GetRandomAttackAnimClip();
                 float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
                 float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
 
@@ -164,7 +162,7 @@ namespace RPG.Characters
             Assert.IsNotNull(character.GetOverrideController(), "Please provide " + gameObject + " with an animator override controller.");
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetRandomAttackAnimClip();
         }
 
         float CalculateDamage()

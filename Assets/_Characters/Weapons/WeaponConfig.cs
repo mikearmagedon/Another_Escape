@@ -35,7 +35,7 @@ namespace RPG.Characters
             return weaponPrefab;
         }
 
-        public AnimationClip GetAttackAnimClip()
+        public AnimationClip GetRandomAttackAnimClip()
         {
             return attackAnimation[Random.Range(0, attackAnimation.Length)];
         }
