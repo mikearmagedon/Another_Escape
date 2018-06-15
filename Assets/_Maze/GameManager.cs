@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject mazeGeneratorPrefab;
     [SerializeField] MazeGeneratorManager[] mazeGenerators;
 
+
+
     // Use this for initialization
     void Start()
     {
@@ -34,16 +36,6 @@ public class GameManager : MonoBehaviour
         //yield return StartCoroutine(StartGame());
         yield return StartCoroutine(PlayGame());
         yield return StartCoroutine(EndGame());
-
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if ((currentSceneIndex + 1) < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(currentSceneIndex + 1);
-        }
-        else
-        {
-            SceneManager.LoadScene(0);
-        }
     }
 
     IEnumerator StartGame()
@@ -74,5 +66,26 @@ public class GameManager : MonoBehaviour
         messageText.text = "GAME OVER";
 
         yield return new WaitForSeconds(3f);
+
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // player died
+        if (!player.enabled)
+        {
+            SceneManager.LoadScene(currentSceneIndex);
+        }
+        else // player finished level
+        {
+            if ((currentSceneIndex + 1) < SceneManager.sceneCountInBuildSettings)
+            {
+                // load next level
+                SceneManager.LoadScene(currentSceneIndex + 1);
+            }
+            else
+            {
+                // load main menu
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 }

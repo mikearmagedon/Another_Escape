@@ -21,7 +21,6 @@ footsteps randomize pitch
 
 Other
 
-reload current level on player death
 
 Post production
 
