@@ -5,7 +5,7 @@ public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill, GrowingTree};
 
 public class MazeGenerator : MonoBehaviour
 {
-    public Vector2Int initialCoordinates;
+    public Vector3Int initialCoordinates;
     public Vector2Int size;
     public Algorithm mazeAlgorithm;
     public float secondsBetweenGenerations;
@@ -92,9 +92,9 @@ public class MazeGenerator : MonoBehaviour
     {
         // Instantiate Cell
         MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
-        newCell.coordinates = coordinates + initialCoordinates;
-        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.y);
-        newCell.transform.position = new Vector3(initialCoordinates.x + (coordinates.x * MazeCell.cellSize), 0f, initialCoordinates.y + (coordinates.y * MazeCell.cellSize));
+        newCell.coordinates = new Vector2Int(coordinates.x + initialCoordinates.x, coordinates.y + initialCoordinates.z);
+        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.z);
+        newCell.transform.position = new Vector3(initialCoordinates.x + (coordinates.x * MazeCell.cellSize), initialCoordinates.y, initialCoordinates.z + (coordinates.y * MazeCell.cellSize));
 
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
@@ -109,7 +109,7 @@ public class MazeGenerator : MonoBehaviour
         foreach (var cell in cells)
         {
             int c = cell.coordinates.x - initialCoordinates.x;
-            int r = cell.coordinates.y - initialCoordinates.y;
+            int r = cell.coordinates.y - initialCoordinates.z;
 
             if (r + 1 < size.y)
             {

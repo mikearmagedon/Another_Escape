@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class MazeGeneratorManager
 {
     [HideInInspector] public GameObject mazeGeneratorInstance;
-    [SerializeField] Vector2Int initialCoordinates = new Vector2Int(0, 0);
+    [SerializeField] Vector3Int initialCoordinates = new Vector3Int(0, 0, 0);
     [SerializeField] Vector2Int size = new Vector2Int(10, 10);
     [SerializeField] Algorithm mazeAlgorithm = Algorithm.BinaryTree;
     [SerializeField] float secondsBetweenGenerations = 20f;

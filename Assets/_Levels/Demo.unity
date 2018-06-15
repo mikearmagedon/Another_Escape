@@ -12341,7 +12341,7 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].initialCoordinates.y
-      value: -32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -12351,7 +12351,7 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[1].initialCoordinates.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -12391,7 +12391,7 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[2].initialCoordinates.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -12436,7 +12436,7 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[3].initialCoordinates.y
-      value: -32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -12502,6 +12502,26 @@ Prefab:
         type: 2}
       propertyPath: mazeGenerators.Array.data[3].mazeAlgorithm
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[0].initialCoordinates.z
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[1].initialCoordinates.z
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[2].initialCoordinates.z
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[3].initialCoordinates.z
+      value: -32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
