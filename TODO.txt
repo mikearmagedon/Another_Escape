@@ -14,8 +14,6 @@ Attack
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
 
-random attack animations
-
 Audio
 
 character volume levels

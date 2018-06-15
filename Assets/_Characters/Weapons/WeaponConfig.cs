@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RPG.Characters
 {
@@ -11,7 +8,7 @@ namespace RPG.Characters
         public Transform weaponGrip;
 
         [SerializeField] GameObject weaponPrefab;
-        [SerializeField] AnimationClip attackAnimation;
+        [SerializeField] AnimationClip[] attackAnimation;
         [SerializeField] AudioClip attackSFX;
         [SerializeField] AudioClip swingSFX;
         [SerializeField] float timeBetweenAnimationCycles = 2f;
@@ -40,7 +37,7 @@ namespace RPG.Characters
 
         public AnimationClip GetAttackAnimClip()
         {
-            return attackAnimation;
+            return attackAnimation[Random.Range(0, attackAnimation.Length)];
         }
 		
 		public AudioClip GetAttackAudioClip()

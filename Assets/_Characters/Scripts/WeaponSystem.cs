@@ -85,6 +85,7 @@ namespace RPG.Characters
         {
             if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
             {
+                SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);
                 foreach (var target in targets)
                 {
