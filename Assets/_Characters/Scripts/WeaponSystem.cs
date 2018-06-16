@@ -23,7 +23,7 @@ namespace RPG.Characters
         {
             character = GetComponent<Character>();
             animator = GetComponent<Animator>();
-			audioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
             EquipWeapon(currentWeaponConfig);
         }
 
@@ -81,6 +81,11 @@ namespace RPG.Characters
 
         public void AttackTargets(Collider[] targets)
         {
+            foreach (var target in targets)
+            {
+                this.target = target.gameObject;
+            }
+
             var animationClip = currentWeaponConfig.GetRandomAttackAnimClip();
             float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
             float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
@@ -89,12 +94,7 @@ namespace RPG.Characters
             if (isTimeToHitAgain)
             {
                 SetAttackAnimation();
-                foreach (var target in targets)
-                {
-                    this.target = target.gameObject;
-                }
                 animator.SetTrigger(ATTACK_TRIGGER);
-
                 lastHitTime = Time.time;
             }
         }
@@ -137,8 +137,9 @@ namespace RPG.Characters
 
         // Attack animation callback
         void Hit()
-        {            
-            if (target != null)
+        {
+            bool targetStillAlive = target && target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+            if (targetStillAlive)
             {
                 audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
                 target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
