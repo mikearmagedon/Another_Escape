@@ -23,7 +23,7 @@ namespace RPG.Characters
         {
             character = GetComponent<Character>();
             animator = GetComponent<Animator>();
-			audioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
             EquipWeapon(currentWeaponConfig);
         }
 
@@ -72,8 +72,6 @@ namespace RPG.Characters
             weaponObject.transform.SetParent(dominantHand.transform, true);
             weaponObject.transform.localPosition = currentWeaponConfig.weaponGrip.transform.position;
             weaponObject.transform.localRotation = currentWeaponConfig.weaponGrip.transform.rotation;
-
-            SetAttackAnimation();
         }
 
         public void StopAttacking()
@@ -83,19 +81,20 @@ namespace RPG.Characters
 
         public void AttackTargets(Collider[] targets)
         {
-            if ((Time.time - lastHitTime) > currentWeaponConfig.GetTimeBetweenAnimationCycles())
+            foreach (var target in targets)
             {
+                this.target = target.gameObject;
+            }
+
+            var animationClip = currentWeaponConfig.GetRandomAttackAnimClip();
+            float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
+            float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
+
+            bool isTimeToHitAgain = (Time.time - lastHitTime) > timeToWait;
+            if (isTimeToHitAgain)
+            {
+                SetAttackAnimation();
                 animator.SetTrigger(ATTACK_TRIGGER);
-                foreach (var target in targets)
-                {
-                    this.target = target.gameObject;
-                    // Damage the enemy
-                    //var damageable = target.GetComponent<HealthSystem>();
-                    //if (damageable != null)
-                    //{
-                    //    damageable.TakeDamage(CalculateDamage());
-                    //}
-                }
                 lastHitTime = Time.time;
             }
         }
@@ -113,7 +112,7 @@ namespace RPG.Characters
 
             while (attackerStillAlive && targetStillAlive)
             {
-                var animationClip = currentWeaponConfig.GetAttackAnimClip();
+                var animationClip = currentWeaponConfig.GetRandomAttackAnimClip();
                 float animationClipTime = animationClip.length / character.GetAnimSpeedMultiplier();
                 float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
 
@@ -138,8 +137,9 @@ namespace RPG.Characters
 
         // Attack animation callback
         void Hit()
-        {            
-            if (target != null)
+        {
+            bool targetStillAlive = target && target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+            if (targetStillAlive)
             {
                 audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());
                 target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
@@ -163,7 +163,7 @@ namespace RPG.Characters
             Assert.IsNotNull(character.GetOverrideController(), "Please provide " + gameObject + " with an animator override controller.");
             var animatorOverrideController = character.GetOverrideController();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAttackAnimClip();
+            animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetRandomAttackAnimClip();
         }
 
         float CalculateDamage()

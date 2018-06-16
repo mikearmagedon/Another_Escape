@@ -1,6 +1,10 @@
 UI
 
+make main menu playable
+
 pause menu
+
+disable camera movement during level transition
 
 Maze
 
@@ -14,8 +18,6 @@ Attack
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
 
-random attack animations
-
 Audio
 
 character volume levels
@@ -23,7 +25,9 @@ footsteps randomize pitch
 
 Other
 
-reload current level on player death
+make gamemanager a singleton
+
+reset coin count on level transition
 
 Post production
 

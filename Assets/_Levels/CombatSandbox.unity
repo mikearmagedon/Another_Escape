@@ -637,16 +637,16 @@ Transform:
   m_PrefabParentObject: {fileID: 4380135017703336, guid: c750634d37ece2746af505d2f69a6f90,
     type: 2}
   m_PrefabInternal: {fileID: 1307300345}
---- !u!1 &1420959350
+--- !u!1 &1318997394
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1420959351}
-  - component: {fileID: 1420959353}
-  - component: {fileID: 1420959352}
+  - component: {fileID: 1318997395}
+  - component: {fileID: 1318997397}
+  - component: {fileID: 1318997396}
   m_Layer: 0
   m_Name: SM_Wep_Broadsword_01(Clone)
   m_TagString: Untagged
@@ -654,12 +654,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1420959351
+--- !u!4 &1318997395
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1420959350}
+  m_GameObject: {fileID: 1318997394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -667,12 +667,12 @@ Transform:
   m_Father: {fileID: 1307300346}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1420959352
+--- !u!23 &1318997396
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1420959350}
+  m_GameObject: {fileID: 1318997394}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -702,13 +702,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &1420959353
+--- !u!33 &1318997397
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1420959350}
+  m_GameObject: {fileID: 1318997394}
   m_Mesh: {fileID: 4300000, guid: 28ede36dccb55964482c9195b4eb2a91, type: 3}
+--- !u!114 &1447398326 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114683400949710444, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 2008388168}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1490524617 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4839543752468270, guid: ebd6574e2ac3e094a921120bf6f275c1,
@@ -762,6 +768,16 @@ Prefab:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 1730530620}
+    - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
+        type: 2}
+      propertyPath: maxHealthPoints
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114117330197189764, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
+        type: 2}
+      propertyPath: waypointTolerance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229fd9a791e64c4ab7f4379f7269f8e, type: 2}
   m_IsPrefabParent: 0
@@ -1155,7 +1171,7 @@ Prefab:
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
       propertyPath: mazeGenerators.Array.data[0].initialCoordinates.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}
@@ -1192,6 +1208,16 @@ Prefab:
       propertyPath: mazeGenerators.Array.data[0].mazeExitDirection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: mazeGenerators.Array.data[0].initialCoordinates.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
+        type: 2}
+      propertyPath: levelTransition
+      value: 
+      objectReference: {fileID: 1447398326}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
   m_IsPrefabParent: 0
@@ -1300,7 +1326,7 @@ Prefab:
     - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
         type: 2}
       propertyPath: maxHealthPoints
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229fd9a791e64c4ab7f4379f7269f8e, type: 2}
@@ -1532,7 +1558,7 @@ Prefab:
     - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
         type: 2}
       propertyPath: maxHealthPoints
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
         type: 2}
