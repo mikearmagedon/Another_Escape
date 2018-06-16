@@ -1,8 +1,10 @@
 UI
 
+make main menu playable
+
 pause menu
 
-level transition
+disable camera movement during level transition
 
 Maze
 
@@ -22,6 +24,8 @@ character volume levels
 footsteps randomize pitch
 
 Other
+
+make gamemanager a singleton
 
 reset coin count on level transition
 

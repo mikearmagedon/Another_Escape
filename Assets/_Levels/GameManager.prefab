@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 0}
+  levelTransition: {fileID: 0}
+  levelStartDelay: 3
   player: {fileID: 0}
   mazeGeneratorPrefab: {fileID: 1960230491223570, guid: 4a4a44008b998ed459fc4a158585745a,
     type: 2}

@@ -3,21 +3,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// TODO consider re-wire
-using RPG.Characters;
+using RPG.Characters; // to access PlayerController
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Text messageText;
+    [SerializeField] Image levelTransition;
+    [SerializeField] float levelStartDelay = 3f;
     [SerializeField] PlayerController player;
     [SerializeField] GameObject mazeGeneratorPrefab;
     [SerializeField] MazeGeneratorManager[] mazeGenerators;
 
-
+    int currentSceneIndex;
 
     // Use this for initialization
     void Start()
     {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         InitializeMazeGenerators();
         StartCoroutine(GameLoop());
 	}
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameLoop()
     {
-        //yield return StartCoroutine(StartGame());
+        yield return StartCoroutine(StartGame());
         yield return StartCoroutine(PlayGame());
         yield return StartCoroutine(EndGame());
     }
@@ -41,9 +43,10 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGame()
     {
         player.DisableControl();
-        yield return new WaitForSeconds(1f);
-        messageText.text = "Find all the coins and return to the start!";
-        yield return new WaitForSeconds(1f);
+        messageText.text = "Level " + currentSceneIndex;
+        levelTransition.gameObject.SetActive(true);
+        yield return new WaitForSeconds(levelStartDelay);
+        levelTransition.gameObject.SetActive(false);
         messageText.text = string.Empty;
         messageText.enabled = false;
     }
@@ -60,14 +63,10 @@ public class GameManager : MonoBehaviour
     
     IEnumerator EndGame()
     {
-        //player.DisableControl();
-
         messageText.enabled = true;
         messageText.text = "GAME OVER";
 
         yield return new WaitForSeconds(3f);
-
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         // player died
         if (!player.enabled)
