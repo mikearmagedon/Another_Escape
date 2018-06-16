@@ -23,6 +23,7 @@ footsteps randomize pitch
 
 Other
 
+reset coin count on level transition
 
 Post production
 
