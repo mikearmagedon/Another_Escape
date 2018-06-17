@@ -24,7 +24,7 @@ public class BarrierTrigger : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         textBox.text = requiredAmountToUnlock.ToString();
         startingPosition = gate.transform.position;
-        endingPosition = startingPosition + (3 * Vector3.up);
+        endingPosition = startingPosition + (2 * Vector3.up);
         period = openingGateSFX.length;
     }
 
