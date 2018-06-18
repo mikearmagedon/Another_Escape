@@ -844,6 +844,10 @@ Prefab:
       propertyPath: mazeGenerators.Array.data[0].mazeAlgorithm
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1102854221033714, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
   m_IsPrefabParent: 0

@@ -25,8 +25,6 @@ footsteps randomize pitch
 
 Other
 
-make gamemanager a singleton
-
 reset coin count on level transition
 
 Post production

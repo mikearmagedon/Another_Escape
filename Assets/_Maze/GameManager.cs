@@ -7,17 +7,45 @@ using RPG.Characters; // to access PlayerController
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Text messageText;
-    [SerializeField] Image levelTransition;
     [SerializeField] float levelStartDelay = 3f;
-    [SerializeField] PlayerController player;
+
+    private Text messageText;
+    private GameObject levelTransition;
+    private PlayerController player;
 
     int currentSceneIndex;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // Enforce singleton pattern
+        int numGameManager = FindObjectsOfType<GameManager>().Length;
+        if (numGameManager > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentSceneIndex = scene.buildIndex;
+        player = FindObjectOfType<PlayerController>();
+        levelTransition = GameObject.Find("Level Transition");
+        messageText = GameObject.Find("Text").GetComponent<Text>();
+
         StartCoroutine(GameLoop());
 	}
 
@@ -32,9 +60,9 @@ public class GameManager : MonoBehaviour
     {
         player.DisableControl();
         messageText.text = "Level " + currentSceneIndex;
-        levelTransition.gameObject.SetActive(true);
+        levelTransition.SetActive(true);
         yield return new WaitForSeconds(levelStartDelay);
-        levelTransition.gameObject.SetActive(false);
+        levelTransition.SetActive(false);
         messageText.text = string.Empty;
         messageText.enabled = false;
     }
