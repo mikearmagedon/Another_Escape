@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image levelTransition;
     [SerializeField] float levelStartDelay = 3f;
     [SerializeField] PlayerController player;
-    [SerializeField] GameObject mazeGeneratorPrefab;
-    [SerializeField] MazeGeneratorManager[] mazeGenerators;
 
     int currentSceneIndex;
 
@@ -20,18 +18,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        InitializeMazeGenerators();
         StartCoroutine(GameLoop());
 	}
-
-    void InitializeMazeGenerators()
-    {
-        for (int i = 0; i < mazeGenerators.Length; i++)
-        {
-            mazeGenerators[i].mazeGeneratorInstance = Instantiate(mazeGeneratorPrefab, transform);
-            mazeGenerators[i].Setup();
-        }
-    }
 
     IEnumerator GameLoop()
     {
