@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     Text messageText;
     GameObject levelTransition;
     PlayerController player;
+    GameObject pauseMenuCanvas;
 
     void Awake()
     {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         levelTransition = GameObject.Find("Level Transition");
         messageText = GameObject.Find("Text").GetComponent<Text>();
+        pauseMenuCanvas = GameObject.Find("Pause Menu Canvas");
 
         StartCoroutine(GameLoop());
 	}
@@ -133,12 +135,14 @@ public class GameManager : MonoBehaviour
         if (isPaused)
         {
             // TODO enable pause menu
+            pauseMenuCanvas.SetActive(true);
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
         }
         else
         {
             // TODO disable pause menu
+            pauseMenuCanvas.SetActive(false);
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
         }
