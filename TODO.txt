@@ -28,6 +28,8 @@ footsteps randomize pitch
 
 Other
 
+disable/destroy barrier trigger when barrier is unlocked
+
 merge ScoreManager and GameManager
 
 reset coin count on level transition
