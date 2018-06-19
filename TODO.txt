@@ -20,7 +20,10 @@ player attacks only the closest target
 
 Audio
 
+add array of audio clips to the MusicPlayer.cs
+
 character volume levels
+
 footsteps randomize pitch
 
 Other

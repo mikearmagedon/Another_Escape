@@ -7,13 +7,19 @@ using RPG.Characters; // to access PlayerController
 
 public class GameManager : MonoBehaviour
 {
+    // Config
     [SerializeField] float levelStartDelay = 3f;
 
-    private Text messageText;
-    private GameObject levelTransition;
-    private PlayerController player;
-
+    // State
+    bool isPaused = false;
     int currentSceneIndex;
+    float initialFixedDelta;
+
+    // Cached components references
+    Text messageText;
+    GameObject levelTransition;
+    PlayerController player;
+    GameObject pauseMenuCanvas;
 
     void Awake()
     {
@@ -27,6 +33,25 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    void Start()
+    {
+        initialFixedDelta = Time.fixedDeltaTime;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+    }
+
+    void OnApplicationPause(bool pause)
+    {
+        isPaused = pause;
+        PauseGame();
     }
 
     void OnEnable()
@@ -45,6 +70,7 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         levelTransition = GameObject.Find("Level Transition");
         messageText = GameObject.Find("Text").GetComponent<Text>();
+        pauseMenuCanvas = GameObject.Find("Pause Menu Canvas");
 
         StartCoroutine(GameLoop());
 	}
@@ -102,5 +128,24 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
+    }
+
+    void PauseGame()
+    {
+        if (isPaused)
+        {
+            // TODO enable pause menu
+            pauseMenuCanvas.SetActive(true);
+            Time.timeScale = 0f;
+            Time.fixedDeltaTime = 0;
+        }
+        else
+        {
+            // TODO disable pause menu
+            pauseMenuCanvas.SetActive(false);
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = initialFixedDelta;
+        }
+        isPaused = !isPaused;
     }
 }
