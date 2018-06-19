@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.P))
+        if (CrossPlatformInputManager.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.P))
 #else
         if (CrossPlatformInputManager.GetButtonDown("Pause"))
 #endif

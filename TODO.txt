@@ -4,7 +4,7 @@ make main menu playable
 
 disable camera movement during level transition
 
-fix pause menu button label resolution
+add cursor affordance for UI
 
 Maze
 
@@ -28,7 +28,7 @@ footsteps randomize pitch
 
 Other
 
-change all Input to CrossPlatformInputManager
+merge ScoreManager and GameManager
 
 reset coin count on level transition
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityStandardAssets.CrossPlatformInput;
 
 namespace RPG.Characters
 {
@@ -57,8 +58,8 @@ namespace RPG.Characters
 
         void ProcessKeyboardMovement()
         {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
+            float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            float v = CrossPlatformInputManager.GetAxis("Vertical");
 
             // calculate camera relative direction to move:
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
@@ -80,7 +81,7 @@ namespace RPG.Characters
 
         void ProcessMouseClick()
         {
-            if (Input.GetMouseButton(0))
+            if (CrossPlatformInputManager.GetButtonDown("Attack"))
             {
                 weaponSystem.AttackTargets(targets);
             }
