@@ -2,9 +2,9 @@ UI
 
 make main menu playable
 
-pause menu
-
 disable camera movement during level transition
+
+fix pause menu button label resolution
 
 Maze
 
@@ -27,6 +27,8 @@ character volume levels
 footsteps randomize pitch
 
 Other
+
+change all Input to CrossPlatformInputManager
 
 reset coin count on level transition
 

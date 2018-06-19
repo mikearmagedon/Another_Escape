@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 using RPG.Characters; // to access PlayerController
 
@@ -42,16 +43,41 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.P))
+#else
+        if (CrossPlatformInputManager.GetButtonDown("Pause"))
+#endif
         {
-            PauseGame();
+            isPaused = !isPaused;
+            PauseGame(isPaused);
+        }
+    }
+
+    public void PauseGame(bool pause)
+    {
+        Cursor.lockState = !pause ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = pause;
+        pauseMenuCanvas.SetActive(pause);
+
+        if (pause)
+        {
+            Time.timeScale = 0f;
+            Time.fixedDeltaTime = 0;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = initialFixedDelta;
         }
     }
 
     void OnApplicationPause(bool pause)
     {
-        isPaused = pause;
-        PauseGame();
+        if (pauseMenuCanvas != null)
+        {
+            PauseGame(true);
+        }
     }
 
     void OnEnable()
@@ -69,8 +95,9 @@ public class GameManager : MonoBehaviour
         currentSceneIndex = scene.buildIndex;
         player = FindObjectOfType<PlayerController>();
         levelTransition = GameObject.Find("Level Transition");
-        messageText = GameObject.Find("Text").GetComponent<Text>();
+        messageText = GameObject.Find("Message Text").GetComponent<Text>();
         pauseMenuCanvas = GameObject.Find("Pause Menu Canvas");
+        pauseMenuCanvas.SetActive(false);
 
         StartCoroutine(GameLoop());
 	}
@@ -128,24 +155,5 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
-    }
-
-    void PauseGame()
-    {
-        if (isPaused)
-        {
-            // TODO enable pause menu
-            pauseMenuCanvas.SetActive(true);
-            Time.timeScale = 0f;
-            Time.fixedDeltaTime = 0;
-        }
-        else
-        {
-            // TODO disable pause menu
-            pauseMenuCanvas.SetActive(false);
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = initialFixedDelta;
-        }
-        isPaused = !isPaused;
     }
 }

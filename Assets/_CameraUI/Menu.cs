@@ -10,6 +10,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void ContinueGame()
+    {
+        FindObjectOfType<GameManager>().PauseGame(false);
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
