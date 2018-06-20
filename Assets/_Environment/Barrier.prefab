@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredAmountToUnlock: 0
+  raiseAmount: 2
   gate: {fileID: 1010040394716540}
   openingGateSFX: {fileID: 8300000, guid: f7e0e47edde216f4cab0d48f3fe45d29, type: 3}
   textBox: {fileID: 114624241270027674}

@@ -12,11 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] float levelStartDelay = 3f;
 
     // State
+    public int score;
+
     bool isPaused = false;
     int currentSceneIndex;
     float initialFixedDelta;
 
     // Cached components references
+    Text scoreText;
     Text messageText;
     GameObject levelTransition;
     PlayerController player;
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        if (CrossPlatformInputManager.GetButtonDown("Pause") || Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
 #else
         if (CrossPlatformInputManager.GetButtonDown("Pause"))
 #endif
@@ -64,12 +67,20 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
+            player.DisableControl();
         }
         else
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
+            player.EnableControl();
         }
+    }
+
+    public void AddToScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = score.ToString();
     }
 
     void OnApplicationPause(bool pause)
@@ -96,6 +107,7 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         levelTransition = GameObject.Find("Level Transition");
         messageText = GameObject.Find("Message Text").GetComponent<Text>();
+        scoreText = GameObject.Find("Score Text").GetComponent<Text>();
         pauseMenuCanvas = GameObject.Find("Pause Menu Canvas");
         pauseMenuCanvas.SetActive(false);
 
@@ -113,6 +125,7 @@ public class GameManager : MonoBehaviour
     {
         player.DisableControl();
         messageText.text = "Level " + currentSceneIndex;
+        scoreText.text = score.ToString();
         levelTransition.SetActive(true);
         yield return new WaitForSeconds(levelStartDelay);
         levelTransition.SetActive(false);
@@ -133,17 +146,19 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGame()
     {
         messageText.enabled = true;
-        messageText.text = "GAME OVER";
-
-        yield return new WaitForSeconds(3f);
 
         // player died
         if (!player.enabled)
         {
+            messageText.text = "GAME OVER";
+            yield return new WaitForSeconds(3f);
             SceneManager.LoadScene(currentSceneIndex);
         }
         else // player finished level
         {
+            score = 0;
+            messageText.text = "LEVEL FINISHED";
+            yield return new WaitForSeconds(3f);
             if ((currentSceneIndex + 1) < SceneManager.sceneCountInBuildSettings)
             {
                 // load next level
