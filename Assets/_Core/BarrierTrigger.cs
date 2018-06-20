@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BarrierTrigger : MonoBehaviour
 {
     [SerializeField] int requiredAmountToUnlock;
+    [SerializeField] int raiseAmount = 2;
     [SerializeField] GameObject gate;
     [SerializeField] AudioClip openingGateSFX;
     [SerializeField] Text textBox;
@@ -24,7 +25,7 @@ public class BarrierTrigger : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         textBox.text = requiredAmountToUnlock.ToString();
         startingPosition = gate.transform.position;
-        endingPosition = startingPosition + (2 * Vector3.up);
+        endingPosition = startingPosition + (raiseAmount * Vector3.up);
         period = openingGateSFX.length;
     }
 
@@ -34,8 +35,9 @@ public class BarrierTrigger : MonoBehaviour
         {
             if (isLocked && (FindObjectOfType<GameManager>().score >= requiredAmountToUnlock))
             {
-                GetComponentInChildren<Canvas>().enabled = false;
                 isLocked = false;
+                GetComponentInChildren<Canvas>().enabled = false;
+                GetComponent<BoxCollider>().enabled = false;
                 timeStartedLerping = Time.time;
                 audioSource.PlayOneShot(openingGateSFX);
                 StartCoroutine(UnlockGate());

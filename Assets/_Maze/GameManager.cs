@@ -146,17 +146,19 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGame()
     {
         messageText.enabled = true;
-        messageText.text = "GAME OVER";
-
-        yield return new WaitForSeconds(3f);
 
         // player died
         if (!player.enabled)
         {
+            messageText.text = "GAME OVER";
+            yield return new WaitForSeconds(3f);
             SceneManager.LoadScene(currentSceneIndex);
         }
         else // player finished level
         {
+            score = 0;
+            messageText.text = "LEVEL FINISHED";
+            yield return new WaitForSeconds(3f);
             if ((currentSceneIndex + 1) < SceneManager.sceneCountInBuildSettings)
             {
                 // load next level

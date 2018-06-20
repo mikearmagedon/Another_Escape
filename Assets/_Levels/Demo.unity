@@ -830,6 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &163341632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,6 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &192560007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,7 +1375,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4923602683450104, guid: ac9d60bfc75d4084085823f6c3a2362c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac9d60bfc75d4084085823f6c3a2362c, type: 2}
@@ -1455,6 +1457,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33c71a8706524d54fbf4b260904262e4, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &252107441
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93354854e0478f0439d85f3b27b4e57e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &257892649
 GameObject:
@@ -1754,8 +1798,8 @@ Transform:
   m_Children:
   - {fileID: 1213345821}
   - {fileID: 492412057}
-  m_Father: {fileID: 340961719}
-  m_RootOrder: 27
+  m_Father: {fileID: 671862338}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &307483532
 Prefab:
@@ -1894,6 +1938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &307827821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,14 +2315,13 @@ Transform:
   - {fileID: 1389713074}
   - {fileID: 1543889510}
   - {fileID: 1888397828}
-  - {fileID: 1827277751}
+  - {fileID: 1131408123}
   - {fileID: 1079146713}
   - {fileID: 1173223638}
   - {fileID: 1047255282}
-  - {fileID: 1131408123}
-  - {fileID: 304664983}
+  - {fileID: 1600784962}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &353009587
 Prefab:
@@ -3120,6 +3164,11 @@ Prefab:
       propertyPath: requiredAmountToUnlock
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114929366060098574, guid: e40da157b8f06be45b6c6d32d818e95d,
+        type: 2}
+      propertyPath: raiseAmount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e40da157b8f06be45b6c6d32d818e95d, type: 2}
   m_IsPrefabParent: 0
@@ -3421,7 +3470,7 @@ Transform:
   - {fileID: 1918759129}
   - {fileID: 145171931}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &579553882
 Prefab:
@@ -4120,9 +4169,19 @@ Prefab:
       propertyPath: requiredAmountToUnlock
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114929366060098574, guid: e40da157b8f06be45b6c6d32d818e95d,
+        type: 2}
+      propertyPath: raiseAmount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e40da157b8f06be45b6c6d32d818e95d, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &671862338 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4957614953172264, guid: 93354854e0478f0439d85f3b27b4e57e,
+    type: 2}
+  m_PrefabInternal: {fileID: 252107441}
 --- !u!4 &705564441 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4533605769660002, guid: 8343f60796460854e99b87b08510bae8,
@@ -4574,6 +4633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &777133488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,6 +5172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &838566126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5495,6 +5556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &876257657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6164,6 +6226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &973315799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6534,6 +6597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &1002992122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7300,7 +7364,7 @@ Transform:
   - {fileID: 1110183604}
   - {fileID: 1266237750}
   m_Father: {fileID: 340961719}
-  m_RootOrder: 26
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1134421082
 Prefab:
@@ -9309,7 +9373,7 @@ Prefab:
     - target: {fileID: 224529640492812894, guid: 95746a6397bbc2f42a4412f5112fba01,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224529640492812894, guid: 95746a6397bbc2f42a4412f5112fba01,
         type: 2}
@@ -9495,6 +9559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &1432019936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9784,6 +9849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &1448694464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10673,8 +10739,8 @@ Transform:
   - {fileID: 1607280430}
   - {fileID: 568307885}
   - {fileID: 499131750}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 340961719}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1607280429
 Prefab:
@@ -11666,6 +11732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &1801135025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12024,8 +12091,8 @@ Transform:
   - {fileID: 777133486}
   - {fileID: 973315797}
   - {fileID: 876257655}
-  m_Father: {fileID: 340961719}
-  m_RootOrder: 22
+  m_Father: {fileID: 671862338}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1833102496
 Prefab:
@@ -12496,6 +12563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
+  pickupScoreValue: 1
 --- !u!114 &1938368073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12649,7 +12717,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4154438571997390, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114510784787657738, guid: ea035ba481f6baf4686370d5b42b2874,
         type: 2}

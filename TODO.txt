@@ -28,9 +28,6 @@ footsteps randomize pitch
 
 Other
 
-disable/destroy barrier trigger when barrier is unlocked
-
-reset coin count on level transition
 
 Post production
 
