@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace EckTechGames
@@ -9,18 +10,19 @@ namespace EckTechGames
 		// Static constructor that gets called when unity fires up.
 		static AutoSaveExtension()
 		{
-			EditorApplication.playmodeStateChanged += AutoSaveWhenPlaymodeStarts;
+			EditorApplication.playModeStateChanged += AutoSaveWhenPlaymodeStarts;
 		}
 
-		private static void AutoSaveWhenPlaymodeStarts()
+		private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange state)
 		{
-			// If we're about to run the scene...
-			if (EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isPlaying)
+            // If we exit edit mode...
+            if (state == PlayModeStateChange.ExitingEditMode)
 			{
-				// Save the scene and the assets.
-				EditorApplication.SaveScene();
+                // Save the scene and the assets.
+                Debug.Log("Autosaving...");
+                EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
 				AssetDatabase.SaveAssets();
 			}
-		}
+        }
 	}
 }
