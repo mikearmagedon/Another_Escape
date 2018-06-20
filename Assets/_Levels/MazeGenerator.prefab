@@ -54,6 +54,7 @@ MonoBehaviour:
   initialCoordinates: {x: 0, y: 0, z: 0}
   size: {x: 10, y: 10}
   mazeAlgorithm: 0
+  continuosGeneration: 1
   secondsBetweenGenerations: 50
   mazeEntrance: {x: 0, y: 0}
   mazeEntranceDirection: 0

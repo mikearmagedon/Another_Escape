@@ -5,15 +5,15 @@ public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill, GrowingTree};
 
 public class MazeGenerator : MonoBehaviour
 {
-    public Vector3Int initialCoordinates;
-    public Vector2Int size;
-    public Algorithm mazeAlgorithm;
-    public float secondsBetweenGenerations;
-    public Vector2Int mazeEntrance;
-    public MazeDirection mazeEntranceDirection;
-    public Vector2Int mazeExit;
-    public MazeDirection mazeExitDirection;
-
+    [SerializeField] Vector3Int initialCoordinates;
+    [SerializeField] Vector2Int size;
+    [SerializeField] Algorithm mazeAlgorithm;
+    [SerializeField] bool continuosGeneration;
+    [SerializeField] float secondsBetweenGenerations;
+    [SerializeField] Vector2Int mazeEntrance;
+    [SerializeField] MazeDirection mazeEntranceDirection;
+    [SerializeField] Vector2Int mazeExit;
+    [SerializeField] MazeDirection mazeExitDirection;
     [SerializeField] MazeCell cellPrefab;
 
     private MazeCell[,] cells;
@@ -24,7 +24,7 @@ public class MazeGenerator : MonoBehaviour
         InitializeMaze();
         ConfigureCells();
         StartAlgorithm();
-        StartCoroutine(ContinuousMazeGeneration());
+        StartCoroutine(ContinuousMazeGeneration(continuosGeneration));
     }
 
     private void StartAlgorithm()
@@ -49,16 +49,19 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    // TODO consider using a bool argument to set the continuous generation
-    public IEnumerator ContinuousMazeGeneration()
+    public IEnumerator ContinuousMazeGeneration(bool continuousGeneration)
     {
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
         ma.CreateMaze();
         CleanOverlappingMazeWalls();
-        yield return new WaitForSeconds(secondsBetweenGenerations);
-        ResetMaze();
-        StartCoroutine(ContinuousMazeGeneration());
+
+        if (continuousGeneration)
+        {
+            yield return new WaitForSeconds(secondsBetweenGenerations);
+            ResetMaze();
+            StartCoroutine(ContinuousMazeGeneration(true));
+        }
     }
 
     private void CleanOverlappingMazeWalls()
