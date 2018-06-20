@@ -32,7 +32,7 @@ public class BarrierTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (isLocked && (ScoreManager.score >= requiredAmountToUnlock))
+            if (isLocked && (FindObjectOfType<GameManager>().score >= requiredAmountToUnlock))
             {
                 GetComponentInChildren<Canvas>().enabled = false;
                 isLocked = false;
