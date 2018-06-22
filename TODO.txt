@@ -28,6 +28,7 @@ footsteps randomize pitch
 
 Other
 
+enemy types
 
 Post production
 

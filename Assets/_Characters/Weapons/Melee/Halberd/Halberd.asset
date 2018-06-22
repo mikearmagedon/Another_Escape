@@ -13,9 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponGrip: {fileID: 4408991361062898, guid: 6910c9f6fc616f145aba5a599a8ca58f, type: 2}
   weaponPrefab: {fileID: 191440, guid: 316022a1c585a7b45b3cc2f855960c93, type: 2}
-  attackAnimation: []
-  attackSFX: {fileID: 0}
+  attackAnimation:
+  - {fileID: 7400000, guid: f94c62a8b96f5a7469ce0da8ccac09b3, type: 3}
+  - {fileID: 7400000, guid: 5382c9f3a528413448fc27554dd73d74, type: 3}
+  - {fileID: 7400000, guid: 16b4a0031272510489ca40cdfd99c114, type: 3}
+  - {fileID: 7400000, guid: 5937d12bb68bf5f438c6caf3d4222063, type: 3}
+  - {fileID: 7400000, guid: 91784112ca001e74bbc86bbbe8199e56, type: 3}
+  - {fileID: 7400000, guid: f9a41b3feea198048b4d8a29a9268d72, type: 3}
+  attackSFX: {fileID: 8300000, guid: d41c8b618dcc94b47a10967b24615931, type: 3}
   swingSFX: {fileID: 0}
   timeBetweenAnimationCycles: 2
-  maxAttackRange: 2
-  weaponDamage: 1
+  maxAttackRange: 3
+  weaponDamage: 15

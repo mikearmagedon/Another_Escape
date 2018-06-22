@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83186ae96163f5d49b54b86dd2332c1d, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  weaponGrip: {fileID: 0}
-  weaponPrefab: {fileID: 0}
+  weaponGrip: {fileID: 4063890400480638, guid: f06aa3520a9f7d0468d2c7016547aebf, type: 2}
+  weaponPrefab: {fileID: 1563655986059756, guid: 7f105c0c272e6c146b4b41cdc53ea356,
+    type: 2}
   attackAnimation:
   - {fileID: 7400000, guid: 24d693751e9fd0b42ba8f9595d8b5f5e, type: 3}
   - {fileID: 7400000, guid: 522e6e5c331853c46a1b4bf644d62789, type: 3}
