@@ -17,13 +17,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Levels/SimpleCombatSandbox.unity
     guid: ba97bc810ff00ff4fa9ecb54d8222b9a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/MainMenu.unity
     guid: 76f003177c384df42a46afa992afc21c
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/Tutorial.unity
     guid: b91dc5e6139dd8045863f1fc95ee1fa8
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/Demo.unity
     guid: 6e32ebc3a5939044797bc7ec96cbd945
+  - enabled: 1
+    path: Assets/_Levels/World 1.unity
+    guid: a21b7d060e3218547981a655fcb51b93
   m_configObjects: {}
