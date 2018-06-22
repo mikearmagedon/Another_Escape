@@ -603,6 +603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75f9d8ce10416468a03b4e73b0757a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallType:
+  - {fileID: 1612439293248250, guid: 4d7a526a467852e4bac952dad9682294, type: 2}
+  - {fileID: 1356227841648988, guid: 464b4dbfd03602940b0051caeaf84542, type: 2}
   walls:
   - {fileID: 1595273264177648}
   - {fileID: 1666338773602350}
