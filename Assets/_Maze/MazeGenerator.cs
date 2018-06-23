@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill, GrowingTree};
@@ -14,7 +15,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] MazeDirection mazeEntranceDirection;
     [SerializeField] Vector2Int mazeExit;
     [SerializeField] MazeDirection mazeExitDirection;
-    [SerializeField] MazeCell cellPrefab;
+    [SerializeField] MazeCell[] cellPrefab;
 
     private MazeCell[,] cells;
     private MazeAlgorithm ma;
@@ -94,7 +95,8 @@ public class MazeGenerator : MonoBehaviour
     private void CreateCell(Vector2Int coordinates)
     {
         // Instantiate Cell
-        MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
+        MazeCell randomCellPrefab = cellPrefab[Random.Range(0, cellPrefab.Length)];
+        MazeCell newCell = Instantiate(randomCellPrefab, transform) as MazeCell;
         newCell.coordinates = new Vector2Int(coordinates.x + initialCoordinates.x, coordinates.y + initialCoordinates.z);
         newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.z);
         newCell.transform.position = new Vector3(initialCoordinates.x + (coordinates.x * MazeCell.cellSize), initialCoordinates.y, initialCoordinates.z + (coordinates.y * MazeCell.cellSize));
