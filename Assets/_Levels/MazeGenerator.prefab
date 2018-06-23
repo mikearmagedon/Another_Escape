@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960230491223570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.33860487, y: -3.8468246, z: -0.6981571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,12 +53,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialCoordinates: {x: 0, y: 0, z: 0}
   size: {x: 10, y: 10}
-  mazeAlgorithm: 0
+  mazeAlgorithm: 3
   continuosGeneration: 1
-  secondsBetweenGenerations: 50
+  secondsBetweenGenerations: 20
   mazeEntrance: {x: 0, y: 0}
-  mazeEntranceDirection: 0
+  mazeEntranceDirection: 2
   mazeExit: {x: 0, y: 0}
-  mazeExitDirection: 0
-  cellPrefab: {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3,
-    type: 2}
+  mazeExitDirection: -1
+  cellPrefab:
+  - {fileID: 114394051911425582, guid: 313a8138e0e768449a4be467d0236dfd, type: 2}
+  - {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3, type: 2}
+  - {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3, type: 2}
+  - {fileID: 114394051911425582, guid: b6dec05cffd3e0641b864b92e8f25cd3, type: 2}
