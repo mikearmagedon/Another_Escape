@@ -2,8 +2,6 @@ UI
 
 make main menu playable
 
-disable camera movement during level transition
-
 Maze
 
 
