@@ -2,8 +2,6 @@
 
 public class MusicPlayer : MonoBehaviour
 {
-
-	// Use this for initialization
 	void Awake()
 	{
         int numMusicPlayers = FindObjectsOfType<MusicPlayer>().Length;
