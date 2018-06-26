@@ -150,6 +150,13 @@ namespace RPG.Characters
             }
         }
 
+        // Attack animation callback
+        // TODO spawn projectile
+        void Shoot()
+        {
+            Hit();
+        }
+
         GameObject RequestDominantHand()
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();

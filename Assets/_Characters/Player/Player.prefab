@@ -682,6 +682,7 @@ GameObject:
   - component: {fileID: 114248327754333664}
   - component: {fileID: 114595310213113710}
   - component: {fileID: 114772875348900558}
+  - component: {fileID: 114708188482719008}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -2330,6 +2331,19 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: 123d66d4c88b7c142a24e7b55b449e5a, type: 3}
   deathVanishSeconds: 2
+--- !u!114 &114708188482719008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595984801854506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47eeee012fa453145a875b2cdef66f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergyPoints: 100
+  energyBar: {fileID: 0}
 --- !u!114 &114772875348900558
 MonoBehaviour:
   m_ObjectHideFlags: 1

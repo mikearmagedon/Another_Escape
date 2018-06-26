@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Cameras;
 using UnityStandardAssets.CrossPlatformInput;
 
 using RPG.Characters; // to access PlayerController
@@ -123,6 +124,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = false;
         player.DisableControl();
         messageText.text = "Level " + currentSceneIndex;
         scoreText.text = score.ToString();
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
         levelTransition.SetActive(false);
         messageText.text = string.Empty;
         messageText.enabled = false;
+        GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = true;
     }
 
     IEnumerator PlayGame()

@@ -2,10 +2,6 @@ UI
 
 make main menu playable
 
-disable camera movement during level transition
-
-add cursor affordance for UI
-
 Maze
 
 
@@ -15,6 +11,9 @@ Fix character collisions by
  -using autobraking in navmesh agent
 
 Attack
+
+fix bug when archer attacks set inCombat to true
+
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
 
