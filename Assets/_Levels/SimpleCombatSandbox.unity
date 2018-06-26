@@ -211,29 +211,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224963089420789324, guid: 95746a6397bbc2f42a4412f5112fba01,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963089420789324, guid: 95746a6397bbc2f42a4412f5112fba01,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963089420789324, guid: 95746a6397bbc2f42a4412f5112fba01,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -94
-      objectReference: {fileID: 0}
-    - target: {fileID: 1276323728909760, guid: 95746a6397bbc2f42a4412f5112fba01, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95746a6397bbc2f42a4412f5112fba01, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &113964402 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114760893234299200, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 113964401}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &113964403 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114336840948686480, guid: 95746a6397bbc2f42a4412f5112fba01,
     type: 2}
@@ -564,16 +551,16 @@ Transform:
   m_PrefabParentObject: {fileID: 4544464622683468, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
     type: 2}
   m_PrefabInternal: {fileID: 702801723}
---- !u!1 &765428564
+--- !u!1 &758520028
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 765428565}
-  - component: {fileID: 765428567}
-  - component: {fileID: 765428566}
+  - component: {fileID: 758520029}
+  - component: {fileID: 758520031}
+  - component: {fileID: 758520030}
   m_Layer: 0
   m_Name: SM_Wep_Broadsword_01(Clone)
   m_TagString: Untagged
@@ -581,12 +568,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &765428565
+--- !u!4 &758520029
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765428564}
+  m_GameObject: {fileID: 758520028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -594,12 +581,12 @@ Transform:
   m_Father: {fileID: 931283661}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &765428566
+--- !u!23 &758520030
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765428564}
+  m_GameObject: {fileID: 758520028}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -629,12 +616,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &765428567
+--- !u!33 &758520031
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765428564}
+  m_GameObject: {fileID: 758520028}
   m_Mesh: {fileID: 4300000, guid: 28ede36dccb55964482c9195b4eb2a91, type: 3}
 --- !u!114 &791387219 stripped
 MonoBehaviour:
@@ -820,6 +807,11 @@ Prefab:
       propertyPath: colliderCenter.y
       value: 0.93
       objectReference: {fileID: 0}
+    - target: {fileID: 114708188482719008, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+        type: 2}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 113964403}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
   m_IsPrefabParent: 0

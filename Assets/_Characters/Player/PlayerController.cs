@@ -8,6 +8,7 @@ namespace RPG.Characters
     [SelectionBase]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
+    [RequireComponent(typeof(Energy))]
     public class PlayerController : MonoBehaviour
     {
         // Config
@@ -19,11 +20,13 @@ namespace RPG.Characters
         Collider[] targets;
 
         // Cached components references
-        WeaponSystem weaponSystem;
+        Energy energy;
         Character character;
+        WeaponSystem weaponSystem;
 
         void Start()
         {
+            energy = GetComponent<Energy>();
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
             SetInitialWinConditionVariables();
@@ -84,6 +87,10 @@ namespace RPG.Characters
             if (CrossPlatformInputManager.GetButtonDown("Attack"))
             {
                 weaponSystem.AttackTargets(targets);
+            }
+            else if (CrossPlatformInputManager.GetButtonDown("Special Attack"))
+            {
+                energy.ConsumeEnergy();
             }
         }
 
