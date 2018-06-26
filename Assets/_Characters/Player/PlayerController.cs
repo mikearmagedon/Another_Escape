@@ -13,10 +13,11 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
+        [SerializeField] SpecialAbility[] abilities; // TODO move to its own class
 
         // State
         public bool wonGame { get; set; }
-        public bool isInCombat = false; // TODO consider using State enum
+        [HideInInspector] public bool isInCombat = false; // TODO consider using State enum
         Collider[] targets;
 
         // Cached components references
@@ -30,6 +31,8 @@ namespace RPG.Characters
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
             SetInitialWinConditionVariables();
+
+            abilities[0].AttachComponentTo(gameObject);
         }
 
         void Update()
@@ -88,9 +91,19 @@ namespace RPG.Characters
             {
                 weaponSystem.AttackTargets(targets);
             }
-            else if (CrossPlatformInputManager.GetButtonDown("Special Attack"))
+            else if (CrossPlatformInputManager.GetButtonDown("Special Ability"))
             {
-                energy.ConsumeEnergy();
+                AttemptSpecialAbility(0);
+            }
+        }
+
+        void AttemptSpecialAbility(int abilityIndex)
+        {
+            if (energy.IsEnergyAvailable(abilities[abilityIndex].GetEnergyCost()))
+            {
+                energy.ConsumeEnergy(abilities[abilityIndex].GetEnergyCost());
+                var abilityParams = new AbilityUseParams(targets[0].gameObject, 10f); // TODO remove magic number
+                abilities[abilityIndex].Use(abilityParams);
             }
         }
 

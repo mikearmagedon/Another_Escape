@@ -8,7 +8,6 @@ namespace RPG.Characters
         // Config
         [SerializeField] RawImage energyBar;
         [SerializeField] float maxEnergyPoints = 100f;
-        [SerializeField] float pointsPerUse = 10f;
 
         // State
         public float EnergyAsPercentage { get { return currentEnergyPoints / maxEnergyPoints; } }
@@ -28,9 +27,14 @@ namespace RPG.Characters
             
         }
 
-        public void ConsumeEnergy()
+        public bool IsEnergyAvailable(float amount)
         {
-            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints - pointsPerUse, 0f, maxEnergyPoints);
+            return amount <= currentEnergyPoints;
+        }
+
+        public void ConsumeEnergy(float amount)
+        {
+            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints - amount, 0f, maxEnergyPoints);
             UpdateEnergyBar();
         }
 
