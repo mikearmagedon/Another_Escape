@@ -8,12 +8,11 @@ namespace RPG.Characters
     [SelectionBase]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(WeaponSystem))]
-    [RequireComponent(typeof(Energy))]
+    [RequireComponent(typeof(AbilitySystem))]
     public class PlayerController : MonoBehaviour
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
-        [SerializeField] AbilityConfig[] abilities; // TODO move to its own class
 
         // State
         public bool wonGame { get; set; }
@@ -21,16 +20,16 @@ namespace RPG.Characters
         Collider[] targets;
 
         // Cached components references
-        Energy energy;
         Character character;
         WeaponSystem weaponSystem;
+        AbilitySystem abilitySystem;
 
         void Start()
         {
-            energy = GetComponent<Energy>();
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
-            AttachInitialAbilities();
+            abilitySystem = GetComponent<AbilitySystem>();
+            
             SetInitialWinConditionVariables();
         }
 
@@ -93,7 +92,7 @@ namespace RPG.Characters
             }
             else if (CrossPlatformInputManager.GetButtonDown("Special Ability 0"))
             {
-                AttemptSpecialAbility(0);
+                abilitySystem.AttemptSpecialAbility(0, targets[0].gameObject);
             }
         }
 
@@ -101,37 +100,11 @@ namespace RPG.Characters
         {
             if (CrossPlatformInputManager.GetButtonDown("Special Ability 1"))
             {
-                AttemptSpecialAbility(1);
+                abilitySystem.AttemptSpecialAbility(1);
             }
             else if (CrossPlatformInputManager.GetButtonDown("Special Ability 2"))
             {
-                AttemptSpecialAbility(2);
-            }
-        }
-
-        private void AttachInitialAbilities()
-        {
-            for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
-            {
-                abilities[abilityIndex].AttachAbilityTo(gameObject);
-            }
-        }
-
-        void AttemptSpecialAbility(int abilityIndex)
-        {
-            if (energy.IsEnergyAvailable(abilities[abilityIndex].GetEnergyCost()))
-            {
-                energy.ConsumeEnergy(abilities[abilityIndex].GetEnergyCost());
-                var abilityParams = new AbilityUseParams();
-                if (targets.Length != 0)
-                {
-                    abilityParams = new AbilityUseParams(targets[0].gameObject, 10f); // TODO remove magic number
-                }
-                else
-                {
-                    abilityParams = new AbilityUseParams(null, 10f); // TODO remove magic number
-                }
-                abilities[abilityIndex].Use(abilityParams);
+                abilitySystem.AttemptSpecialAbility(2);
             }
         }
 

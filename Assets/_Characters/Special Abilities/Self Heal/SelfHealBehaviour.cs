@@ -4,14 +4,14 @@ namespace RPG.Characters
 {
     public class SelfHealBehaviour : AbilityBehaviour
     {
-        public override void Use(AbilityUseParams abilityUseParams)
+        public override void Use(GameObject target)
         {
-            SelfHeal(abilityUseParams);
+            SelfHeal();
             PlayAudioClip();
             PlayParticleEffect();
         }
 
-        private void SelfHeal(AbilityUseParams abilityUseParams)
+        private void SelfHeal()
         {
             GetComponent<HealthSystem>().Heal((config as SelfHealConfig).GetExtraHealth());
         }

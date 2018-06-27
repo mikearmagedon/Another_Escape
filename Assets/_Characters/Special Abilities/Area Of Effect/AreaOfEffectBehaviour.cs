@@ -4,14 +4,14 @@ namespace RPG.Characters
 {
     public class AreaOfEffectBehaviour : AbilityBehaviour
     {
-        public override void Use(AbilityUseParams abilityUseParams)
+        public override void Use(GameObject target)
         {
-            DealRadialDamage(abilityUseParams);
+            DealRadialDamage();
             PlayAudioClip();
             PlayParticleEffect();
         }
 
-        private void DealRadialDamage(AbilityUseParams abilityUseParams)
+        private void DealRadialDamage()
         {
             Collider[] targets = Physics.OverlapSphere(
                 transform.position,
@@ -21,7 +21,7 @@ namespace RPG.Characters
 
             foreach (Collider target in targets)
             {
-                float damageToDeal = abilityUseParams.baseDamage + (config as AreaOfEffectConfig).GetDamageToEachTarget();
+                float damageToDeal = (config as AreaOfEffectConfig).GetDamageToEachTarget();
                 target.gameObject.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
             }
         }

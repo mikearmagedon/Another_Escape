@@ -2269,10 +2269,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  abilities:
-  - {fileID: 11400000, guid: 38ea617f1562244459e9a750384ce3ff, type: 2}
-  - {fileID: 11400000, guid: 9fd1dd8bbea866e49bded950f3b23220, type: 2}
-  - {fileID: 11400000, guid: 8c4197f234a0e904e9a399effc733aab, type: 2}
   isInCombat: 0
 --- !u!114 &114466269640955416
 MonoBehaviour:
@@ -2346,9 +2342,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47eeee012fa453145a875b2cdef66f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 11400000, guid: 38ea617f1562244459e9a750384ce3ff, type: 2}
+  - {fileID: 11400000, guid: 9fd1dd8bbea866e49bded950f3b23220, type: 2}
+  - {fileID: 11400000, guid: 8c4197f234a0e904e9a399effc733aab, type: 2}
   energyOrb: {fileID: 0}
   maxEnergyPoints: 100
   regenEnergyPointsPerSecond: 5
+  outOfEnergyClip: {fileID: 8300000, guid: 7248f7801684ef449a794c283f520e0a, type: 3}
 --- !u!114 &114772875348900558
 MonoBehaviour:
   m_ObjectHideFlags: 1
