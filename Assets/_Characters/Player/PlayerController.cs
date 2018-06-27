@@ -30,21 +30,32 @@ namespace RPG.Characters
             energy = GetComponent<Energy>();
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
+            AttachInitialAbilities();
             SetInitialWinConditionVariables();
-
-            abilities[0].AttachComponentTo(gameObject);
         }
 
         void Update()
         {
             FindTargetsInRange();
             ProcessMouseClick();
+            ProcessAbilityKey();
         }
 
         // Fixed update is called in sync with physics
         void FixedUpdate()
         {
             ProcessKeyboardMovement();
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Finish"))
+            {
+                if (FindObjectOfType<GameManager>().score <= 3)
+                {
+                    wonGame = true;
+                }
+            }
         }
 
         public void DisableControl()
@@ -74,26 +85,35 @@ namespace RPG.Characters
             character.Move(movement, false);
         }
 
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.CompareTag("Finish"))
-            {
-                if (FindObjectOfType<GameManager>().score <= 3)
-                {
-                    wonGame = true;
-                }
-            }
-        }
-
         void ProcessMouseClick()
         {
             if (CrossPlatformInputManager.GetButtonDown("Attack"))
             {
                 weaponSystem.AttackTargets(targets);
             }
-            else if (CrossPlatformInputManager.GetButtonDown("Special Ability"))
+            else if (CrossPlatformInputManager.GetButtonDown("Special Ability 0"))
             {
                 AttemptSpecialAbility(0);
+            }
+        }
+
+        private void ProcessAbilityKey()
+        {
+            if (CrossPlatformInputManager.GetButtonDown("Special Ability 1"))
+            {
+                AttemptSpecialAbility(1);
+            }
+            else if (CrossPlatformInputManager.GetButtonDown("Special Ability 2"))
+            {
+                AttemptSpecialAbility(2);
+            }
+        }
+
+        private void AttachInitialAbilities()
+        {
+            for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
+            {
+                abilities[abilityIndex].AttachComponentTo(gameObject);
             }
         }
 

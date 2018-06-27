@@ -2271,8 +2271,8 @@ MonoBehaviour:
     m_Bits: 512
   abilities:
   - {fileID: 11400000, guid: 38ea617f1562244459e9a750384ce3ff, type: 2}
-  - {fileID: 11400000, guid: 8c4197f234a0e904e9a399effc733aab, type: 2}
   - {fileID: 11400000, guid: 9fd1dd8bbea866e49bded950f3b23220, type: 2}
+  - {fileID: 11400000, guid: 8c4197f234a0e904e9a399effc733aab, type: 2}
   isInCombat: 0
 --- !u!114 &114466269640955416
 MonoBehaviour:
