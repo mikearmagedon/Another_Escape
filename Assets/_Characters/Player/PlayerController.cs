@@ -92,7 +92,14 @@ namespace RPG.Characters
             }
             else if (CrossPlatformInputManager.GetButtonDown("Special Ability 0"))
             {
-                abilitySystem.AttemptSpecialAbility(0, targets[0].gameObject);
+                if (targets.Length != 0)
+                {
+                    abilitySystem.AttemptSpecialAbility(0, targets[0].gameObject);
+                }
+                else
+                {
+                    abilitySystem.AttemptSpecialAbility(0);
+                }
             }
         }
 
