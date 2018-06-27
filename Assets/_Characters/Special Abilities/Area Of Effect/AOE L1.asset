@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Name: AOE L1
   m_EditorClassIdentifier: 
   energyCost: 10
+  particleFXPrefab: {fileID: 1952537111073404, guid: 8d3e783619e7c3845a527d3a0168e3c3,
+    type: 2}
   radius: 5
   damageToEachTarget: 10
