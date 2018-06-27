@@ -19,7 +19,7 @@ player attacks only the closest target
 
 Special Abilities
 
-regenerate energy
+self heal
 
 Audio
 

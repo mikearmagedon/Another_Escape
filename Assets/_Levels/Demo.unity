@@ -8039,7 +8039,7 @@ Prefab:
         type: 2}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1379759379}
+      objectReference: {fileID: 1425281641}
     - target: {fileID: 114595310213113710, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
         type: 2}
       propertyPath: damageSounds.Array.data[0]
@@ -8070,6 +8070,11 @@ Prefab:
       propertyPath: deathSounds.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 0a14b81c9eeb97d42861fbdd686e65da, type: 3}
+    - target: {fileID: 114708188482719008, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+        type: 2}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 1379759379}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
   m_IsPrefabParent: 0
@@ -9433,6 +9438,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1425281639}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1425281641 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114760893234299200, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 1425281639}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1428417199
 Prefab:
   m_ObjectHideFlags: 0
