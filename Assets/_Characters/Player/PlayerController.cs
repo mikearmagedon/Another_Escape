@@ -16,7 +16,6 @@ namespace RPG.Characters
 
         // State
         public bool wonGame { get; set; }
-        [HideInInspector] public bool isInCombat = false; // TODO consider using State enum
         Collider[] targets;
 
         // Cached components references
@@ -119,24 +118,6 @@ namespace RPG.Characters
         {
             Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
             targets = Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
-            if (targets.Length != 0)
-            {
-                isInCombat = true;
-                StopAllCoroutines();
-            }
-            else
-            {
-                if (isInCombat)
-                {
-                    StartCoroutine(LeavingCombat());
-                }
-            }
-        }
-
-        IEnumerator LeavingCombat()
-        {
-            yield return new WaitForSeconds(2f);
-            isInCombat = false;
         }
     }
 }

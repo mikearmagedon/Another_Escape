@@ -35,6 +35,8 @@ footsteps randomize pitch
 
 Other
 
+consider making the player presist across scenes
+
 enemy types
 
 Post production
