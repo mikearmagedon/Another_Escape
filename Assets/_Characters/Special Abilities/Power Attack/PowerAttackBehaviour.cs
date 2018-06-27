@@ -2,37 +2,22 @@
 
 namespace RPG.Characters
 {
-    public class PowerAttackBehaviour : MonoBehaviour, ISpecialAbility
+    public class PowerAttackBehaviour : AbilityBehaviour
     {
-        PowerAttackConfig config;
-
-        public void SetConfig(PowerAttackConfig powerAttackConfig)
-        {
-            config = powerAttackConfig;
-        }
-
-        public void Use(AbilityUseParams abilityUseParams)
+        public override void Use(AbilityUseParams abilityUseParams)
         {
             if (abilityUseParams.target != null)
             {
                 DealDamage(abilityUseParams);
             }
+            PlayAudioClip();
             PlayParticleEffect();
         }
 
         private void DealDamage(AbilityUseParams abilityUseParams)
         {
-            float damageToDeal = abilityUseParams.baseDamage + config.GetExtraDamage();
+            float damageToDeal = abilityUseParams.baseDamage + (config as PowerAttackConfig).GetExtraDamage();
             abilityUseParams.target.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
-        }
-
-        private void PlayParticleEffect()
-        {
-            GameObject particleFXPrefab = config.GetParticleFXPrefab();
-            var particleFXInstance = Instantiate(particleFXPrefab, transform.position, Quaternion.identity, transform);
-            var particleSystem = particleFXInstance.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            Destroy(particleFXInstance, particleSystem.main.duration);
         }
     }
 }

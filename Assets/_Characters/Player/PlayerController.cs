@@ -13,7 +13,7 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
-        [SerializeField] SpecialAbility[] abilities; // TODO move to its own class
+        [SerializeField] AbilityConfig[] abilities; // TODO move to its own class
 
         // State
         public bool wonGame { get; set; }
@@ -113,7 +113,7 @@ namespace RPG.Characters
         {
             for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
             {
-                abilities[abilityIndex].AttachComponentTo(gameObject);
+                abilities[abilityIndex].AttachAbilityTo(gameObject);
             }
         }
 

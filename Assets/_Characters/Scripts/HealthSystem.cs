@@ -104,9 +104,9 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void Heal(float points)
+    public void Heal(float amountToHeal)
     {
-        currentHealtPoints = Mathf.Clamp(currentHealtPoints + points, 0f, maxHealthPoints);
+        currentHealtPoints = Mathf.Clamp(currentHealtPoints + amountToHeal, 0f, maxHealthPoints);
     }
 
     IEnumerator KillCharacter()

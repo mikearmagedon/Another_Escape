@@ -2,39 +2,28 @@
 
 namespace RPG.Characters
 {
-    public class AreaOfEffectBehaviour : MonoBehaviour, ISpecialAbility
+    public class AreaOfEffectBehaviour : AbilityBehaviour
     {
-        AreaOfEffectConfig config;
-
-        public void SetConfig(AreaOfEffectConfig areaOfEffectConfig)
-        {
-            config = areaOfEffectConfig;
-        }
-
-        public void Use(AbilityUseParams abilityUseParams)
+        public override void Use(AbilityUseParams abilityUseParams)
         {
             DealRadialDamage(abilityUseParams);
+            PlayAudioClip();
             PlayParticleEffect();
         }
 
         private void DealRadialDamage(AbilityUseParams abilityUseParams)
         {
-            Collider[] targets = Physics.OverlapSphere(transform.position, config.GetRadius(), LayerMask.GetMask("Enemy"));
+            Collider[] targets = Physics.OverlapSphere(
+                transform.position,
+                (config as AreaOfEffectConfig).GetRadius(),
+                LayerMask.GetMask("Enemy")
+            );
 
             foreach (Collider target in targets)
             {
-                float damageToDeal = abilityUseParams.baseDamage + config.GetDamageToEachTarget();
+                float damageToDeal = abilityUseParams.baseDamage + (config as AreaOfEffectConfig).GetDamageToEachTarget();
                 target.gameObject.GetComponent<HealthSystem>().TakeDamage(damageToDeal);
             }
-        }
-
-        private void PlayParticleEffect()
-        {
-            GameObject particleFXPrefab = config.GetParticleFXPrefab();
-            var particleFXInstance = Instantiate(particleFXPrefab, transform.position, Quaternion.identity, transform);
-            var particleSystem = particleFXInstance.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            Destroy(particleFXInstance, particleSystem.main.startLifetime.constantMax);
         }
     }
 }
