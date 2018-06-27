@@ -8,7 +8,7 @@ public class HealthSystem : MonoBehaviour
 {
     // Config
     [SerializeField] float maxHealthPoints = 100f;
-    [SerializeField] RawImage healthBar;
+    [SerializeField] Image healthOrb;
     [SerializeField] float healtRegenStartDelay = 5f;
     [SerializeField] float regenHealthPointsPerSecond = 5f;
     [SerializeField] AudioClip[] damageSounds;
@@ -16,7 +16,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] float deathVanishSeconds = 2.0f;
 
     // State
-    public float healthAsPercentage
+    public float HealthAsPercentage
     {
         get
         {
@@ -86,10 +86,9 @@ public class HealthSystem : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        if (healthBar) // NPCs may not have health bars to update
+        if (healthOrb) // NPCs may not have health bars to update
         {
-            float xValue = -(healthAsPercentage / 2f) - 0.5f;
-            healthBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
+            healthOrb.fillAmount = HealthAsPercentage;
         }
     }
 

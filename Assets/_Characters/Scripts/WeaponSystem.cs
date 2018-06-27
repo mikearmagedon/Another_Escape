@@ -40,7 +40,7 @@ namespace RPG.Characters
             else
             {
                 // test if target is dead
-                float targetHealth = target.GetComponent<HealthSystem>().healthAsPercentage;
+                float targetHealth = target.GetComponent<HealthSystem>().HealthAsPercentage;
                 targetIsDead = targetHealth <= Mathf.Epsilon;
 
                 // test if target is out of range
@@ -48,7 +48,7 @@ namespace RPG.Characters
                 targetIsOutOfRange = distanceToTarget > currentWeaponConfig.GetMaxAttackRange();
             }
 
-            float characterHealth = GetComponent<HealthSystem>().healthAsPercentage;
+            float characterHealth = GetComponent<HealthSystem>().HealthAsPercentage;
             bool characterIsDead = characterHealth <= Mathf.Epsilon;
             if (characterIsDead || targetIsOutOfRange || targetIsDead)
             {
@@ -107,8 +107,8 @@ namespace RPG.Characters
 
         IEnumerator AttackTargetRepeatedly()
         {
-            bool attackerStillAlive = GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
-            bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+            bool attackerStillAlive = GetComponent<HealthSystem>().HealthAsPercentage > Mathf.Epsilon;
+            bool targetStillAlive = target.GetComponent<HealthSystem>().HealthAsPercentage > Mathf.Epsilon;
 
             while (attackerStillAlive && targetStillAlive)
             {
@@ -138,7 +138,7 @@ namespace RPG.Characters
         // Attack animation callback
         void Hit()
         {
-            bool targetStillAlive = target && target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+            bool targetStillAlive = target && target.GetComponent<HealthSystem>().HealthAsPercentage > Mathf.Epsilon;
             if (targetStillAlive)
             {
                 audioSource.PlayOneShot(currentWeaponConfig.GetAttackAudioClip());

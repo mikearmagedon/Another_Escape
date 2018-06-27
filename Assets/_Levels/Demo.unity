@@ -3744,7 +3744,7 @@ Prefab:
         type: 2}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 2042483787}
+      objectReference: {fileID: 0}
     - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
         type: 2}
       propertyPath: damageSounds.Array.data[0]
@@ -7813,7 +7813,7 @@ Prefab:
         type: 2}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1633140062}
+      objectReference: {fileID: 0}
     - target: {fileID: 114993737623337384, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
         type: 2}
       propertyPath: deathSounds.Array.data[0]
@@ -8039,7 +8039,7 @@ Prefab:
         type: 2}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1425281641}
+      objectReference: {fileID: 0}
     - target: {fileID: 114595310213113710, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
         type: 2}
       propertyPath: damageSounds.Array.data[0]
@@ -8074,7 +8074,17 @@ Prefab:
         type: 2}
       propertyPath: energyBar
       value: 
-      objectReference: {fileID: 1379759379}
+      objectReference: {fileID: 0}
+    - target: {fileID: 114595310213113710, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+        type: 2}
+      propertyPath: healthOrb
+      value: 
+      objectReference: {fileID: 1425281642}
+    - target: {fileID: 114708188482719008, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+        type: 2}
+      propertyPath: energyOrb
+      value: 
+      objectReference: {fileID: 1425281641}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
   m_IsPrefabParent: 0
@@ -9199,12 +9209,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0cb2c321fdf00a4ba429209e735b448, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1379759379 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114336840948686480, guid: 95746a6397bbc2f42a4412f5112fba01,
-    type: 2}
-  m_PrefabInternal: {fileID: 1425281639}
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1386232898
 Prefab:
   m_ObjectHideFlags: 0
@@ -9440,10 +9444,16 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1425281641 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114760893234299200, guid: 95746a6397bbc2f42a4412f5112fba01,
+  m_PrefabParentObject: {fileID: 114805756331661938, guid: 95746a6397bbc2f42a4412f5112fba01,
     type: 2}
   m_PrefabInternal: {fileID: 1425281639}
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1425281642 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114852387416891634, guid: 95746a6397bbc2f42a4412f5112fba01,
+    type: 2}
+  m_PrefabInternal: {fileID: 1425281639}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1428417199
 Prefab:
   m_ObjectHideFlags: 0
@@ -10908,12 +10918,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8343f60796460854e99b87b08510bae8, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1633140062 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114647918028107092, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1190489686}
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1644796507
 Prefab:
   m_ObjectHideFlags: 0
@@ -13225,12 +13229,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4286643848177324, guid: 33c71a8706524d54fbf4b260904262e4,
     type: 2}
   m_PrefabInternal: {fileID: 2039095657}
---- !u!114 &2042483787 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114647918028107092, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
-    type: 2}
-  m_PrefabInternal: {fileID: 610684203}
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2043948183
 Prefab:
   m_ObjectHideFlags: 0

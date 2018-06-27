@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace RPG.Characters
@@ -7,7 +6,7 @@ namespace RPG.Characters
     public class Energy : MonoBehaviour
     {
         // Config
-        [SerializeField] RawImage energyBar;
+        [SerializeField] Image energyOrb;
         [SerializeField] float maxEnergyPoints = 100f;
         [SerializeField] float regenEnergyPointsPerSecond = 5f;
 
@@ -21,6 +20,7 @@ namespace RPG.Characters
         void Start()
         {
             currentEnergyPoints = maxEnergyPoints;
+            UpdateEnergyBar();
         }
 
         // Update is called once per frame
@@ -52,10 +52,9 @@ namespace RPG.Characters
 
         void UpdateEnergyBar()
         {
-            if (energyBar)
+            if (energyOrb)
             {
-                float xValue = -(EnergyAsPercentage / 2f) - 0.5f;
-                energyBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
+                energyOrb.fillAmount = EnergyAsPercentage;
             }
         }
     }
