@@ -13,7 +13,10 @@ namespace RPG.Characters
 
         public void Use(AbilityUseParams abilityUseParams)
         {
-            DealDamage(abilityUseParams);
+            if (abilityUseParams.target != null)
+            {
+                DealDamage(abilityUseParams);
+            }
             PlayParticleEffect();
         }
 

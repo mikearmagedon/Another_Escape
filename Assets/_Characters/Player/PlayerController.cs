@@ -102,7 +102,15 @@ namespace RPG.Characters
             if (energy.IsEnergyAvailable(abilities[abilityIndex].GetEnergyCost()))
             {
                 energy.ConsumeEnergy(abilities[abilityIndex].GetEnergyCost());
-                var abilityParams = new AbilityUseParams(targets[0].gameObject, 10f); // TODO remove magic number
+                var abilityParams = new AbilityUseParams();
+                if (targets.Length != 0)
+                {
+                    abilityParams = new AbilityUseParams(targets[0].gameObject, 10f); // TODO remove magic number
+                }
+                else
+                {
+                    abilityParams = new AbilityUseParams(null, 10f); // TODO remove magic number
+                }
                 abilities[abilityIndex].Use(abilityParams);
             }
         }

@@ -19,11 +19,8 @@ player attacks only the closest target
 
 Special Abilities
 
-fix null target exception
-
 fix special ability being used on dead enemies
 
-self heal
 
 Audio
 
