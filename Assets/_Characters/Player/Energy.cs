@@ -6,9 +6,9 @@ namespace RPG.Characters
     public class Energy : MonoBehaviour
     {
         // Config
-        [SerializeField] RawImage energyBar;
+        [SerializeField] Image energyOrb;
         [SerializeField] float maxEnergyPoints = 100f;
-        [SerializeField] float pointsPerUse = 10f;
+        [SerializeField] float regenEnergyPointsPerSecond = 5f;
 
         // State
         public float EnergyAsPercentage { get { return currentEnergyPoints / maxEnergyPoints; } }
@@ -20,26 +20,41 @@ namespace RPG.Characters
         void Start()
         {
             currentEnergyPoints = maxEnergyPoints;
+            UpdateEnergyBar();
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            if (currentEnergyPoints < maxEnergyPoints)
+            {
+                AddEnergy();
+                UpdateEnergyBar();
+            }
         }
 
-        public void ConsumeEnergy()
+        private void AddEnergy()
         {
-            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints - pointsPerUse, 0f, maxEnergyPoints);
+            float energyPointsToRegen = regenEnergyPointsPerSecond * Time.deltaTime;
+            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints + energyPointsToRegen, 0, maxEnergyPoints);
+        }
+
+        public bool IsEnergyAvailable(float amount)
+        {
+            return amount <= currentEnergyPoints;
+        }
+
+        public void ConsumeEnergy(float amount)
+        {
+            currentEnergyPoints = Mathf.Clamp(currentEnergyPoints - amount, 0f, maxEnergyPoints);
             UpdateEnergyBar();
         }
 
         void UpdateEnergyBar()
         {
-            if (energyBar)
+            if (energyOrb)
             {
-                float xValue = -(EnergyAsPercentage / 2f) - 0.5f;
-                energyBar.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
+                energyOrb.fillAmount = EnergyAsPercentage;
             }
         }
     }
