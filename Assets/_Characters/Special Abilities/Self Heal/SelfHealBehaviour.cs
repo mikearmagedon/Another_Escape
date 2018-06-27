@@ -2,33 +2,18 @@
 
 namespace RPG.Characters
 {
-    public class SelfHealBehaviour : MonoBehaviour, ISpecialAbility
+    public class SelfHealBehaviour : AbilityBehaviour
     {
-        SelfHealConfig config;
-
-        public void SetConfig(SelfHealConfig selfHealConfig)
+        public override void Use(GameObject target)
         {
-            config = selfHealConfig;
-        }
-
-        public void Use(AbilityUseParams abilityUseParams)
-        {
-            SelfHeal(abilityUseParams);
+            SelfHeal();
+            PlayAudioClip();
             PlayParticleEffect();
         }
 
-        private void SelfHeal(AbilityUseParams abilityUseParams)
+        private void SelfHeal()
         {
-            GetComponent<HealthSystem>().Heal(config.GetExtraHealth());
-        }
-
-        private void PlayParticleEffect()
-        {
-            GameObject particleFXPrefab = config.GetParticleFXPrefab();
-            var particleFXInstance = Instantiate(particleFXPrefab, transform.position, Quaternion.identity, transform);
-            var particleSystem = particleFXInstance.GetComponent<ParticleSystem>();
-            particleSystem.Play();
-            Destroy(particleFXInstance, particleSystem.main.startLifetime.constantMax);
+            GetComponent<HealthSystem>().Heal((config as SelfHealConfig).GetExtraHealth());
         }
     }
 }

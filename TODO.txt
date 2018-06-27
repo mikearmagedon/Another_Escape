@@ -21,7 +21,6 @@ Special Abilities
 
 fix special ability being used on dead enemies
 
-
 Audio
 
 add array of audio clips to the MusicPlayer.cs
