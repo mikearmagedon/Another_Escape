@@ -9,6 +9,7 @@ namespace RPG.Characters
             DealRadialDamage();
             PlayAudioClip();
             PlayParticleEffect();
+            PlayAnimationClip();
         }
 
         private void DealRadialDamage()

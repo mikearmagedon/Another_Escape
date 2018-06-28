@@ -9,6 +9,7 @@ namespace RPG.Characters
             SelfHeal();
             PlayAudioClip();
             PlayParticleEffect();
+            PlayAnimationClip();
         }
 
         private void SelfHeal()

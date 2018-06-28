@@ -21,6 +21,10 @@ Special Abilities
 
 fix special ability being used on dead enemies
 
+separate attack and ability animations
+
+change power attack vfx and sfx
+
 Audio
 
 add array of audio clips to the MusicPlayer.cs
@@ -30,6 +34,8 @@ character volume levels
 footsteps randomize pitch
 
 Other
+
+consider making the player presist across scenes
 
 enemy types
 
