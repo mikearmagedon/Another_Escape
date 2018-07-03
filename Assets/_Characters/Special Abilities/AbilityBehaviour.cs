@@ -21,7 +21,7 @@ namespace RPG.Characters
         protected void PlayParticleEffect()
         {
             GameObject particleFXPrefab = config.GetParticleFXPrefab();
-            var particleFXInstance = Instantiate(particleFXPrefab, transform.position, particleFXPrefab.transform.rotation, transform);
+            var particleFXInstance = Instantiate(particleFXPrefab, transform.position + particleFXPrefab.transform.position, particleFXPrefab.transform.rotation, transform);
             particleFXInstance.GetComponent<ParticleSystem>().Play();
             Destroy(particleFXInstance, PARTICLE_CLEAN_UP_DELAY);
         }
