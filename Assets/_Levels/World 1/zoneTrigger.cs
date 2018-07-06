@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class zoneTrigger : MonoBehaviour {
+public class ZoneTrigger : MonoBehaviour {
 
     public AudioClip clip;
 
-    private background_sound AM;
+    private Background_sound AM;
 
 	// Use this for initialization
 	void Start () {
-        AM = FindObjectOfType<background_sound>();
+        AM = FindObjectOfType<Background_sound>();
 	}
 
-    private void OnTriggerEnter()
+    private void OnTriggerStay()
     {
         AM.ChangeMusic(clip);
     }
 
-    private void OnTriggerExit()
-    {
-        StartCoroutine(AM.FadeOut());
-    }
+    //private void OnTriggerExit()
+    //{
+    //    StartCoroutine(AM.FadeOut());
+    //}
 }

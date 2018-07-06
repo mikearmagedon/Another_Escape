@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class background_sound : MonoBehaviour
+public class Background_sound : MonoBehaviour
 {
 
     public AudioSource music;
+    private AudioSource musicmisc;
+
+    private void Start()
+    {
+        musicmisc = gameObject.AddComponent<AudioSource>();
+    }
 
     public void ChangeMusic(AudioClip clip)
     {
@@ -18,10 +24,19 @@ public class background_sound : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    public void PlayMisc(AudioClip clip)
+    {
+        musicmisc.clip = clip;
+        musicmisc.spatialBlend = 0.5f;
+        musicmisc.loop = false;
+        musicmisc.volume = 0.6f;
+        musicmisc.PlayOneShot(clip);
+    }
+
     public IEnumerator FadeOut()
     {
-        float t = 0.5f;
-        while (t >= 0)
+        float t = 0.3f;
+        while (t >= 0.0f)
         {
             t -= Time.deltaTime;
             music.volume = t;
@@ -36,15 +51,14 @@ public class background_sound : MonoBehaviour
     {
         music.volume = 0.0f;
         music.Play();
-        music.loop = false;
+        music.loop = true;
 
         float t = 0.0f;
-        while (music.volume <= 0.5)
+        while (music.volume <= 0.3f)
         {
             t += Time.deltaTime;
             music.volume = t;
             yield return new WaitForSeconds(0);
         }
-
     }
 }

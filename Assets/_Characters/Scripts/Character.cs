@@ -37,6 +37,7 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 3.5f;
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
+        private Background_sound AM;
         Rigidbody rigidBody;
         Animator animator;
         AudioSource audioSource;
@@ -93,6 +94,7 @@ namespace RPG.Characters
 
         void Start()
         {
+            AM = FindObjectOfType<Background_sound>();
             origGroundCheckDistance = groundCheckDistance;
         }
 
@@ -156,14 +158,16 @@ namespace RPG.Characters
         void FootL()
         {
             AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            audioSource.PlayOneShot(clip);
+            AM.PlayMisc(clip);
+            //audioSource.PlayOneShot(clip);
         }
 
         // Right footstep SFX animation callback
         void FootR()
         {
             AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            audioSource.PlayOneShot(clip);
+            AM.PlayMisc(clip);
+            //audioSource.PlayOneShot(clip);
         }
 
         Vector3 SetForwardAndTurn(Vector3 movement)
