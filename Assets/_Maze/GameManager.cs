@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float levelStartDelay = 3f;
 
     // State
-    public int score;
+    [HideInInspector] public int score;
 
     bool isPaused = false;
     int currentSceneIndex;

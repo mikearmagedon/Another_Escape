@@ -12,8 +12,6 @@ Fix character collisions by
 
 Attack
 
-fix bug when archer attacks set inCombat to true
-
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
 
@@ -41,6 +39,6 @@ enemy types
 
 Post production
 
-post processing
+post processing remove red tint
 
 Video Settings - disable v-sync
