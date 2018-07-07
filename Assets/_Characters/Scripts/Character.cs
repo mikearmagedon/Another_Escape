@@ -12,8 +12,10 @@ namespace RPG.Characters
         [SerializeField] [Range(0.1f, 1f)] float animatorForwardCap = 1f;
 
         [Header("Audio")]
-        [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
-        [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
+        //[SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+        //[SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
+        [SerializeField] AudioClip[] footstepSoundsGrass;
+        [SerializeField] AudioClip[] footstepSoundsStone;
 
         [Header("Capsule Collider")]
         [SerializeField] PhysicMaterial physicMaterial;
@@ -30,7 +32,7 @@ namespace RPG.Characters
         [SerializeField] float moveSpeedMultiplier = 1f;
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
-        [SerializeField] AudioClip[] footstepSounds; 
+
 
         [Header("Nav Mesh Agent")]
         [Tooltip("If false, the parameters below are ignored")]
@@ -39,6 +41,7 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
         private Background_sound AM;
+        private ZoneTrigger ZT;
         Rigidbody rigidBody;
         Animator animator;
         AudioSource audioSource;
@@ -66,10 +69,10 @@ namespace RPG.Characters
             animator.applyRootMotion = true;
 
             // AudioSource
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.spatialBlend = audioSourceSpatialBlend;
-            audioSource.volume = audioSourceVolume;
-            
+            //audioSource = gameObject.AddComponent<AudioSource>();
+            //audioSource.spatialBlend = audioSourceSpatialBlend;
+            //audioSource.volume = audioSourceVolume;
+
             // Capsule Collider
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
             capsuleCollider.material = physicMaterial;
@@ -96,6 +99,7 @@ namespace RPG.Characters
         void Start()
         {
             AM = FindObjectOfType<Background_sound>();
+            ZT = FindObjectOfType<ZoneTrigger>();
             origGroundCheckDistance = groundCheckDistance;
         }
 
@@ -158,16 +162,44 @@ namespace RPG.Characters
         // Left footstep SFX animation callback
         void FootL()
         {
-            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            AM.PlayMisc(clip);
+            if (ZT.type == "stone")
+            {
+                AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
+                AM.PlayMisc(clip);
+            }
+            else if (ZT.type == "grass")
+            {
+                AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
+                AM.PlayMisc(clip);
+            }
+
+            //ZT.GetFootSetpSounds(footstepSoundsGrass, footstepSoundsStone);
+            //AM.PlayMisc(ZT.SetFootSetSounds());
+
+            //Original code
+            //AudioClip clip = footstepSound[Random.Range(0, footstepSound.Length)];
             //audioSource.PlayOneShot(clip);
         }
 
         // Right footstep SFX animation callback
         void FootR()
         {
-            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            AM.PlayMisc(clip);
+            if (ZT.type == "stone")
+            {
+                AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
+                AM.PlayMisc(clip);
+            }
+            else if (ZT.type == "grass")
+            {
+                AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
+                AM.PlayMisc(clip);
+            }
+
+            //ZT.GetFootSetpSounds(footstepSoundsGrass, footstepSoundsStone);
+            //AM.PlayMisc(ZT.SetFootSetSounds());
+
+            //Original code
+            //AudioClip clip = footstepSound[Random.Range(0, footstepSound.Length)];
             //audioSource.PlayOneShot(clip);
         }
 

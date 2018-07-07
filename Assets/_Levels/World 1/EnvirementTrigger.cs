@@ -18,7 +18,7 @@ public class EnvirementTrigger : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        InvokeRepeating("Call",0,5f);
+        InvokeRepeating("Call",0,8f);
     }
 
     private void OnTriggerExit()
