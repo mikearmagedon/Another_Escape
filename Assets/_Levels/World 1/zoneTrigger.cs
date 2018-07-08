@@ -7,55 +7,38 @@ public class ZoneTrigger : MonoBehaviour
 
     public AudioClip clip;
 
-    private Background_sound AM;
-    //AudioClip[] soundgrass;
-    //AudioClip[] soundstone;
-    public string type;
+    private AudioManager audioManager;
+    [HideInInspector] public string type;
 
     // Use this for initialization
     void Start()
     {
-        AM = FindObjectOfType<Background_sound>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
-    private void OnTriggerStay()
+    private void OnTriggerStay(Collider other)
     {
-        AM.ChangeMusic(clip);
-
-    }
-
-    private void OnTriggerEnter()
-    {
-        if (this.gameObject.name == "mainhub_trigger")
+        if (other.gameObject.CompareTag("Player"))
         {
-            type = "stone";
-        }
-        else
-        {
-            type = "grass";
+            audioManager.ChangeMusic(clip);
         }
     }
 
-    //public void GetFootSetpSounds(AudioClip[] grass, AudioClip[] stone)
-    //{
-    //    soundgrass = grass;
-    //    soundstone = stone;
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (this.gameObject.name == "mainhub_trigger")
+            {
+                type = "stone";
+            }
+            else
+            {
+                type = "grass";
 
-    //public AudioClip SetFootSetSounds()
-    //{
-    //    if (type == "stone")
-    //    {
-    //        AudioClip stone = soundstone[Random.Range(0, soundstone.Length)];
-    //        return stone;
-    //    }
-    //    else if (type == "grass")
-    //    {
-    //        AudioClip grass = soundgrass[Random.Range(0, soundgrass.Length)];
-    //        return grass;
-    //    }
-    //    return null;
-    //}
+            }
+        }
+    }
 
     //private void OnTriggerExit()
     //{

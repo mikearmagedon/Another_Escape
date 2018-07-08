@@ -11,7 +11,7 @@ public class BarrierTrigger : MonoBehaviour
     [SerializeField] AudioClip openingGateSFX;
     [SerializeField] Text textBox;
 
-    private Background_sound AM;
+    private AudioManager AM;
     //AudioSource audioSource;
     Vector3 startingPosition;
     Vector3 endingPosition;
@@ -23,7 +23,7 @@ public class BarrierTrigger : MonoBehaviour
 
     void Start()
     {
-        AM = FindObjectOfType<Background_sound>();
+        AM = FindObjectOfType<AudioManager>();
         //audioSource = GetComponent<AudioSource>();
         textBox.text = requiredAmountToUnlock.ToString();
         startingPosition = gate.transform.position;

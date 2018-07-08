@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] AudioClip[] damageSounds;
     [SerializeField] AudioClip[] deathSounds;
     [SerializeField] float deathVanishSeconds = 2.0f;
-    private Background_sound AM;
+    private AudioManager AM;
 
     // State
     public float HealthAsPercentage
@@ -33,7 +33,7 @@ public class HealthSystem : MonoBehaviour
     // Messages and methods
     void Start()
     {
-        AM = FindObjectOfType<Background_sound>();
+        AM = FindObjectOfType<AudioManager>();
         animator = GetComponent<Animator>();
         //audioSource = GetComponent<AudioSource>();
         characterMovement = GetComponent<Character>();

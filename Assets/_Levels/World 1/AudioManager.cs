@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Background_sound : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
 
     public AudioSource music;
@@ -11,6 +11,7 @@ public class Background_sound : MonoBehaviour
     private void Start()
     {
         musicmisc = gameObject.AddComponent<AudioSource>();
+        musicmisc.playOnAwake = false;
     }
 
     public void ChangeMusic(AudioClip clip)
@@ -26,6 +27,10 @@ public class Background_sound : MonoBehaviour
 
     public void PlayMisc(AudioClip clip)
     {
+        //if (musicmisc.isPlaying)
+        //{
+        //    return;
+        //}
         musicmisc.clip = clip;
         musicmisc.spatialBlend = 0.5f;
         musicmisc.loop = false;
@@ -54,7 +59,7 @@ public class Background_sound : MonoBehaviour
         music.loop = true;
 
         float t = 0.0f;
-        while (music.volume <= 0.3f)
+        while (music.volume <= 0.2f)
         {
             t += Time.deltaTime;
             music.volume = t;

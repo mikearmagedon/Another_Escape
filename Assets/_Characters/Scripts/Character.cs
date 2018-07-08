@@ -12,8 +12,8 @@ namespace RPG.Characters
         [SerializeField] [Range(0.1f, 1f)] float animatorForwardCap = 1f;
 
         [Header("Audio")]
-        //[SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
-        //[SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
+        [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+        [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
         [SerializeField] AudioClip[] footstepSoundsGrass;
         [SerializeField] AudioClip[] footstepSoundsStone;
 
@@ -40,8 +40,8 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 3.5f;
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
-        private Background_sound AM;
-        private ZoneTrigger ZT;
+        AudioManager audioManager;
+        string type;
         Rigidbody rigidBody;
         Animator animator;
         AudioSource audioSource;
@@ -54,6 +54,7 @@ namespace RPG.Characters
         Vector3 groundNormal;
         float moveThreshold = 1f;
         bool isAlive = true;
+
 
         void Awake()
         {
@@ -69,9 +70,9 @@ namespace RPG.Characters
             animator.applyRootMotion = true;
 
             // AudioSource
-            //audioSource = gameObject.AddComponent<AudioSource>();
-            //audioSource.spatialBlend = audioSourceSpatialBlend;
-            //audioSource.volume = audioSourceVolume;
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = audioSourceSpatialBlend;
+            audioSource.volume = audioSourceVolume;
 
             // Capsule Collider
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
@@ -98,8 +99,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            AM = FindObjectOfType<Background_sound>();
-            ZT = FindObjectOfType<ZoneTrigger>();
+            audioManager = FindObjectOfType<AudioManager>();
             origGroundCheckDistance = groundCheckDistance;
         }
 
@@ -159,48 +159,46 @@ namespace RPG.Characters
             UpdateAnimator(localMovement);
         }
 
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Stone"))
+            {
+                type = "stone";
+            }
+            else
+            {
+                type = "grass";
+            }
+        }
+
         // Left footstep SFX animation callback
         void FootL()
         {
-            if (ZT.type == "stone")
+            if (type == "stone")
             {
                 AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
-                AM.PlayMisc(clip);
+                audioManager.PlayMisc(clip);
             }
-            else if (ZT.type == "grass")
+            else if (type == "grass")
             {
                 AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
-                AM.PlayMisc(clip);
+                audioManager.PlayMisc(clip);
             }
-
-            //ZT.GetFootSetpSounds(footstepSoundsGrass, footstepSoundsStone);
-            //AM.PlayMisc(ZT.SetFootSetSounds());
-
-            //Original code
-            //AudioClip clip = footstepSound[Random.Range(0, footstepSound.Length)];
-            //audioSource.PlayOneShot(clip);
         }
 
         // Right footstep SFX animation callback
         void FootR()
         {
-            if (ZT.type == "stone")
+            if (type == "stone")
             {
                 AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
-                AM.PlayMisc(clip);
+                audioManager.PlayMisc(clip);
             }
-            else if (ZT.type == "grass")
+            else if (type == "grass")
             {
                 AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
-                AM.PlayMisc(clip);
+                audioManager.PlayMisc(clip);
             }
-
-            //ZT.GetFootSetpSounds(footstepSoundsGrass, footstepSoundsStone);
-            //AM.PlayMisc(ZT.SetFootSetSounds());
-
-            //Original code
-            //AudioClip clip = footstepSound[Random.Range(0, footstepSound.Length)];
-            //audioSource.PlayOneShot(clip);
         }
 
         Vector3 SetForwardAndTurn(Vector3 movement)
