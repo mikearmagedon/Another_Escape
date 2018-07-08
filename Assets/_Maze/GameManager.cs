@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     GameObject levelTransition;
     PlayerController player;
     GameObject pauseMenuCanvas;
+    AudioManager audioManager;
 
     void Awake()
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         initialFixedDelta = Time.fixedDeltaTime;
     }
 
@@ -69,12 +71,14 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
             player.DisableControl();
+            audioManager.music.Pause();
         }
         else
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
             player.EnableControl();
+            audioManager.music.UnPause();
         }
     }
 

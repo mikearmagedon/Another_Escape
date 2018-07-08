@@ -2312,6 +2312,15 @@ MonoBehaviour:
   animatorForwardCap: 1
   audioSourceSpatialBlend: 1
   audioSourceVolume: 0.5
+  footstepSoundsGrass:
+  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
+  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
+  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
+  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
+  footstepSoundsStone:
+  - {fileID: 8300000, guid: 8be898751c19b4b48a810914c7f8995b, type: 3}
+  - {fileID: 8300000, guid: d17c551ea54c54143ae4862452cbd7ce, type: 3}
+  - {fileID: 8300000, guid: a21f42f1341bc624caa8b27ab5aad282, type: 3}
   physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   colliderCenter: {x: 0, y: 0.93, z: 0}
   colliderRadius: 0.45
@@ -2324,11 +2333,6 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.6
   animSpeedMultiplier: 1
   groundCheckDistance: 1
-  footstepSounds:
-  - {fileID: 8300000, guid: 2f96d3d47551ed848be9307342dcd667, type: 3}
-  - {fileID: 8300000, guid: 4901040e735fd2547870b06a27124c49, type: 3}
-  - {fileID: 8300000, guid: 4dcd8f2dc477f5e4aa277ee503048ee8, type: 3}
-  - {fileID: 8300000, guid: 15b220b1b01e9d8469f3b754b8eb2a10, type: 3}
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3

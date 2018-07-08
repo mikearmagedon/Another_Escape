@@ -25,14 +25,9 @@ change power attack vfx and sfx
 
 Audio
 
-add array of audio clips to the MusicPlayer.cs
-
 character volume levels
 
 footsteps randomize pitch
-
-audioManager add to menu
- - add to persist across scenes
 
 Other
 add more npcs

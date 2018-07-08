@@ -2269,7 +2269,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  isInCombat: 0
 --- !u!114 &114466269640955416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2285,8 +2284,18 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 35fe4c09067cd7b40b4f971fc014827c,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  animatorForwardCap: 1
   audioSourceSpatialBlend: 1
   audioSourceVolume: 0.5
+  footstepSoundsGrass:
+  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
+  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
+  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
+  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
+  footstepSoundsStone:
+  - {fileID: 8300000, guid: 8be898751c19b4b48a810914c7f8995b, type: 3}
+  - {fileID: 8300000, guid: d17c551ea54c54143ae4862452cbd7ce, type: 3}
+  - {fileID: 8300000, guid: a21f42f1341bc624caa8b27ab5aad282, type: 3}
   physicMaterial: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   colliderCenter: {x: 0, y: 0.93, z: 0}
   colliderRadius: 0.45
@@ -2299,11 +2308,6 @@ MonoBehaviour:
   moveSpeedMultiplier: 1.5
   animSpeedMultiplier: 1
   groundCheckDistance: 1
-  footstepSounds:
-  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
-  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
-  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
-  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
   createNavMeshAgent: 0
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3
@@ -2319,9 +2323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 500
-  healthOrb: {fileID: 0}
-  healtRegenStartDelay: 5
-  regenHealthPointsPerSecond: 5
+  healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: c329840fc51f97748adb2b3f35cdc35d, type: 3}
   - {fileID: 8300000, guid: 63cdb800cec6ae04cb4fd1c6da860694, type: 3}
