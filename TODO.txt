@@ -3,7 +3,7 @@ UI
 make main menu playable
 
 Maze
-
+add death traps
 
 Movement
 
@@ -31,7 +31,11 @@ character volume levels
 
 footsteps randomize pitch
 
+audioManager add to menu
+ - add to persist across scenes
+
 Other
+add more npcs
 
 consider making the player presist across scenes
 
