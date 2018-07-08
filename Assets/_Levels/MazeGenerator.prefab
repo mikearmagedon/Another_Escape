@@ -57,7 +57,7 @@ MonoBehaviour:
   continuosGeneration: 1
   secondsBetweenGenerations: 20
   mazeEntrance: {x: 0, y: 0}
-  mazeEntranceDirection: 2
+  mazeEntranceDirection: -1
   mazeExit: {x: 0, y: 0}
   mazeExitDirection: -1
   cellPrefab:
