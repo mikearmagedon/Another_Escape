@@ -13,10 +13,11 @@ namespace RPG.Characters
     public class EnemyAI : MonoBehaviour
     {
         // Config
-        [SerializeField] public float chaseRadius = 10f;
+        [SerializeField] float chaseRadius = 10f;
         [SerializeField] WaypointContainer patrolPath;
         [SerializeField] float waypointDwellTime = 2f;
         [SerializeField] float waypointTolerance = 2f;
+        [SerializeField] AudioClip combatMusic;
 
         // State
         State state = State.idle;
@@ -27,12 +28,14 @@ namespace RPG.Characters
         // Cached components references
         GameObject player = null;
         Character character;
+        AudioManager audioManager;
 
         // Messages and methods
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
             character = GetComponent<Character>();
+            audioManager = FindObjectOfType<AudioManager>();
         }
 
         void Update()
@@ -72,6 +75,8 @@ namespace RPG.Characters
                 CycleWaypointWhenClose(nextWaypointPosition);
                 yield return new WaitForSeconds(waypointDwellTime);
             }
+
+            audioManager.PlayMusicBattle(combatMusic, false);
         }
 
         void CycleWaypointWhenClose(Vector3 nextWaypointPosition)
@@ -91,6 +96,8 @@ namespace RPG.Characters
                 character.SetDestination(player.transform.position);
                 yield return new WaitForEndOfFrame();
             }
+
+            audioManager.PlayMusicBattle(combatMusic, true);
         }
 
         void OnDrawGizmos()

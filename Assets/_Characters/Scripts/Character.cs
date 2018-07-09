@@ -14,8 +14,6 @@ namespace RPG.Characters
         [Header("Audio")]
         [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
         [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
-        [SerializeField] AudioClip[] footstepSoundsGrass;
-        [SerializeField] AudioClip[] footstepSoundsStone;
 
         [Header("Capsule Collider")]
         [SerializeField] PhysicMaterial physicMaterial;
@@ -32,6 +30,8 @@ namespace RPG.Characters
         [SerializeField] float moveSpeedMultiplier = 1f;
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
+        [SerializeField] AudioClip[] footstepSoundsGrass;
+        [SerializeField] AudioClip[] footstepSoundsStone;
 
 
         [Header("Nav Mesh Agent")]

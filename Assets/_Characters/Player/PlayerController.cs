@@ -13,14 +13,10 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
-        public AudioClip clip;
 
         // State
         public bool wonGame { get; set; }
         Collider[] targets;
-        [HideInInspector] public bool isInCombat = false; // TODO consider using State enum
-        AudioManager audioManager;
-        EnemyAI enemyAI;
 
         // Cached components references
         Character character;
@@ -32,8 +28,6 @@ namespace RPG.Characters
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
             abilitySystem = GetComponent<AbilitySystem>();
-            audioManager = FindObjectOfType<AudioManager>();
-            enemyAI = FindObjectOfType<EnemyAI>();
 
             SetInitialWinConditionVariables();
         }
@@ -108,7 +102,7 @@ namespace RPG.Characters
             }
         }
 
-        private void ProcessAbilityKey()
+        void ProcessAbilityKey()
         {
             if (CrossPlatformInputManager.GetButtonDown("Special Ability 1"))
             {
@@ -120,31 +114,10 @@ namespace RPG.Characters
             }
         }
 
-        private void FindTargetsInRange()
+        void FindTargetsInRange()
         {
             Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
-            targets = Physics.OverlapSphere(transform.position, enemyAI.chaseRadius, enemyLayerMask);
-
-            if (targets.Length != 0)
-            {
-                isInCombat = true;
-                audioManager.PlayMusicBattle(clip, isInCombat);
-                StopAllCoroutines();
-            }
-            else
-            {
-                if (isInCombat)
-                {
-                    StartCoroutine(LeavingCombat());
-                }
-            }
-        }
-
-        IEnumerator LeavingCombat()
-        {
-            yield return new WaitForSeconds(2f);
-            isInCombat = false;
-            audioManager.PlayMusicBattle(clip, isInCombat);
+            targets = Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
         }
     }
 }
