@@ -2,19 +2,23 @@
 
 public class AudioTrigger : MonoBehaviour
 {
-    [SerializeField] AudioClip clip;
+    [SerializeField] AudioClip[] clips;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float triggerRadius = 5f;
     [SerializeField] bool isOneTimeOnly = true;
+    [SerializeField] bool isRepeatable = false;
 
     bool hasPlayed = false;
-    AudioSource audioSource;
+    //AudioSource audioSource;
+    AudioManager audioManager;
 
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        audioSource.clip = clip;
+        audioManager = FindObjectOfType<AudioManager>();
+        //audioSource = gameObject.AddComponent<AudioSource>();
+        //audioSource.playOnAwake = false;
+        //audioSource.clip = clips[Random.Range(0, clips.Length)];
+
 
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
         sphereCollider.isTrigger = true;
@@ -25,7 +29,14 @@ public class AudioTrigger : MonoBehaviour
     {
         if (layerMask == (layerMask | (1 << other.gameObject.layer)))
         {
-            RequestPlayAudioClip();
+            if (isRepeatable)
+            {
+                InvokeRepeating("PlayMusic", 0, 8f);
+            }
+            else
+            {
+                RequestPlayAudioClip();
+            }
         }
     }
 
@@ -35,9 +46,9 @@ public class AudioTrigger : MonoBehaviour
         {
             return;
         }
-        else if (audioSource.isPlaying == false)
+        else
         {
-            audioSource.Play();
+            audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
             hasPlayed = true;
         }
     }
@@ -46,5 +57,15 @@ public class AudioTrigger : MonoBehaviour
     {
         Gizmos.color = new Color(0, 255f, 0, .5f);
         Gizmos.DrawWireSphere(transform.position, triggerRadius);
+    }
+
+    private void OnTriggerExit()
+    {
+        CancelInvoke();
+    }
+
+    private void PlayMusic()
+    {
+        audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
     }
 }

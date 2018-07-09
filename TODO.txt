@@ -3,7 +3,7 @@ UI
 make main menu playable
 
 Maze
-
+add death traps
 
 Movement
 
@@ -23,7 +23,7 @@ change power attack vfx and sfx
 
 Audio
 
-add array of audio clips to the MusicPlayer.cs
+No script WaterSoundController estou a tentar desativar os gameObjetcs que têm o som das ondas consoante a distancia para o player. O problema é que da erro no Start() pois nao encontra os objetos com a tag Water. Dá uma vista de olhos pois nao sei como resolver, e pode ser algo simples que nao esteja a ver.
 
 character volume levels
 
@@ -37,6 +37,5 @@ enemy types
 
 Post production
 
-post processing remove red tint
 
 Video Settings - disable v-sync

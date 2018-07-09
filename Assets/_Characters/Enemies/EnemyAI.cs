@@ -13,7 +13,7 @@ namespace RPG.Characters
     public class EnemyAI : MonoBehaviour
     {
         // Config
-        [SerializeField] float chaseRadius = 10f;
+        [SerializeField] public float chaseRadius = 10f;
         [SerializeField] WaypointContainer patrolPath;
         [SerializeField] float waypointDwellTime = 2f;
         [SerializeField] float waypointTolerance = 2f;

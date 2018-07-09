@@ -12,8 +12,10 @@ namespace RPG.Characters
         [SerializeField] [Range(0.1f, 1f)] float animatorForwardCap = 1f;
 
         [Header("Audio")]
-        [SerializeField] [Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
-        [SerializeField] [Range(0, 1f)] float audioSourceVolume = 1f;
+        [SerializeField][Range(0, 1f)] float audioSourceSpatialBlend = 0.5f;
+        [SerializeField][Range(0, 1f)] float audioSourceVolume = 1f;
+        [SerializeField] AudioClip[] footstepSoundsGrass;
+        [SerializeField] AudioClip[] footstepSoundsStone;
 
         [Header("Capsule Collider")]
         [SerializeField] PhysicMaterial physicMaterial;
@@ -30,7 +32,7 @@ namespace RPG.Characters
         [SerializeField] float moveSpeedMultiplier = 1f;
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float groundCheckDistance = 0.1f;
-        [SerializeField] AudioClip[] footstepSounds;
+
 
         [Header("Nav Mesh Agent")]
         [Tooltip("If false, the parameters below are ignored")]
@@ -38,6 +40,8 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 3.5f;
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
+        AudioManager audioManager;
+        string type;
         Rigidbody rigidBody;
         Animator animator;
         AudioSource audioSource;
@@ -50,6 +54,7 @@ namespace RPG.Characters
         Vector3 groundNormal;
         float moveThreshold = 1f;
         bool isAlive = true;
+
 
         void Awake()
         {
@@ -94,6 +99,7 @@ namespace RPG.Characters
 
         void Start()
         {
+            audioManager = FindObjectOfType<AudioManager>();
             origGroundCheckDistance = groundCheckDistance;
         }
 
@@ -158,18 +164,46 @@ namespace RPG.Characters
             UpdateAnimator(localMovement);
         }
 
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Stone"))
+            {
+                type = "stone";
+            }
+            else
+            {
+                type = "grass";
+            }
+        }
+
         // Left footstep SFX animation callback
         void FootL()
         {
-            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            audioSource.PlayOneShot(clip);
+            if (type == "stone")
+            {
+                AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
+                audioManager.PlayMisc(clip);
+            }
+            else if (type == "grass")
+            {
+                AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
+                audioManager.PlayMisc(clip);
+            }
         }
 
         // Right footstep SFX animation callback
         void FootR()
         {
-            AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Length)];
-            audioSource.PlayOneShot(clip);
+            if (type == "stone")
+            {
+                AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
+                audioManager.PlayMisc(clip);
+            }
+            else if (type == "grass")
+            {
+                AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
+                audioManager.PlayMisc(clip);
+            }
         }
 
         Vector3 SetForwardAndTurn(Vector3 movement)

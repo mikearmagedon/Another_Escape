@@ -12,6 +12,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] AudioClip[] damageSounds;
     [SerializeField] AudioClip[] deathSounds;
     [SerializeField] float deathVanishSeconds = 2.0f;
+    private AudioManager AM;
 
     // State
     public float HealthAsPercentage
@@ -26,15 +27,16 @@ public class HealthSystem : MonoBehaviour
 
     // Cached components references
     Animator animator;
-    AudioSource audioSource;
-    Character character;
+    //AudioSource audioSource;
+    Character characterMovement;
 
     // Messages and methods
     void Start()
     {
+        AM = FindObjectOfType<AudioManager>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        character = GetComponent<Character>();
+        //audioSource = GetComponent<AudioSource>();
+        characterMovement = GetComponent<Character>();
 
         currentHealtPoints = maxHealthPoints;
 	}
@@ -56,7 +58,10 @@ public class HealthSystem : MonoBehaviour
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-        if (characterDies && character.IsAlive())
+        AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
+        //audioSource.PlayOneShot(clip);
+        AM.PlayMisc(clip);
+        if (characterDies)
         {
             StartCoroutine(KillCharacter());
         }
@@ -83,9 +88,12 @@ public class HealthSystem : MonoBehaviour
         character.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
 
-        audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
-        audioSource.Play(); // override any playing sounds
-        yield return new WaitForSecondsRealtime(audioSource.clip.length);
+        AudioClip clip = deathSounds[Random.Range(0, deathSounds.Length)];
+        AM.PlayMisc(clip);
+        yield return new WaitForSecondsRealtime(clip.length);
+        //audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
+        //audioSource.Play(); // override any playing sounds
+        //yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
         if (playerComponent)
         {

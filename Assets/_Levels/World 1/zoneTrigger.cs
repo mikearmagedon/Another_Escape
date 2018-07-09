@@ -2,24 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class zoneTrigger : MonoBehaviour {
+public class ZoneTrigger : MonoBehaviour
+{
 
     public AudioClip clip;
 
-    private background_sound AM;
+    private AudioManager audioManager;
+    [HideInInspector] public string type;
 
-	// Use this for initialization
-	void Start () {
-        AM = FindObjectOfType<background_sound>();
-	}
-
-    private void OnTriggerEnter()
+    // Use this for initialization
+    void Start()
     {
-        AM.ChangeMusic(clip);
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
-    private void OnTriggerExit()
+    private void OnTriggerStay(Collider other)
     {
-        StartCoroutine(AM.FadeOut());
+        if (other.gameObject.CompareTag("Player"))
+        {
+            audioManager.ChangeMusic(clip);
+        }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (this.gameObject.name == "mainhub_trigger")
+            {
+                type = "stone";
+            }
+            else
+            {
+                type = "grass";
+
+            }
+        }
+    }
+
+    //private void OnTriggerExit()
+    //{
+    //    StartCoroutine(AM.FadeOut());
+    //}
 }
