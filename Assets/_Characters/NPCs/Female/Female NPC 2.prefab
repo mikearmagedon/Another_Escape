@@ -3760,6 +3760,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8be898751c19b4b48a810914c7f8995b, type: 3}
   - {fileID: 8300000, guid: d17c551ea54c54143ae4862452cbd7ce, type: 3}
   - {fileID: 8300000, guid: a21f42f1341bc624caa8b27ab5aad282, type: 3}
+  - {fileID: 8300000, guid: a4643999775b41842a47d55e9f75fbf6, type: 3}
   physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   colliderCenter: {x: 0, y: 0.9, z: 0}
   colliderRadius: 0.3

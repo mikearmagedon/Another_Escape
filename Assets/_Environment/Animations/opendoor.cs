@@ -2,17 +2,27 @@
 
 public class opendoor : MonoBehaviour {
 
-    public GameObject Door;
+    public GameObject boss;
     public GameObject portal;
+    public AudioClip clip;
 
     private Animation anim;
+    AudioManager audioManager;
 
-    void OnTriggerEnter()
+    private void Start()
     {
-        anim = Door.GetComponent<Animation>();
-        anim.Play("door");
-        this.gameObject.GetComponent<Collider>().enabled = false;
-        portal.SetActive(true);
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
+    private void Update()
+    {
+        if(boss == null)
+        {
+            anim = this.GetComponent<Animation>();
+            anim.Play("door");
+            audioManager.PlayMisc(clip);
+            portal.SetActive(true);
+            enabled = false;
+        }
+    }
 }
