@@ -17,8 +17,6 @@ player attacks only the closest target
 
 Special Abilities
 
-fix special ability being used on dead enemies
-
 separate attack and ability animations
 
 change power attack vfx and sfx
@@ -39,6 +37,5 @@ enemy types
 
 Post production
 
-post processing remove red tint //onde tem red tint? em nenhum dos mapas parece ter, para mim.
 
 Video Settings - disable v-sync
