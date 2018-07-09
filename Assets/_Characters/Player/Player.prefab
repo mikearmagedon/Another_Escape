@@ -2269,6 +2269,8 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  clip: {fileID: 8300000, guid: f480091c3c59e4f49a590777b7d70f20, type: 3}
+  isInCombat: 0
 --- !u!114 &114466269640955416
 MonoBehaviour:
   m_ObjectHideFlags: 1

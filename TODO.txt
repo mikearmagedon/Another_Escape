@@ -30,7 +30,6 @@ character volume levels
 footsteps randomize pitch
 
 Other
-add more npcs
 
 consider making the player presist across scenes
 
@@ -38,6 +37,6 @@ enemy types
 
 Post production
 
-post processing remove red tint
+post processing remove red tint //onde tem red tint? em nenhum dos mapas parece ter, para mim.
 
 Video Settings - disable v-sync

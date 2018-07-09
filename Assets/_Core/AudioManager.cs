@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
 
     public AudioSource music;
-    private AudioSource musicmisc;
+    private AudioSource musicMisc;
+    private AudioSource musicBattle;
 
     void Awake()
     {
@@ -23,8 +24,36 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicmisc = gameObject.AddComponent<AudioSource>();
-        musicmisc.playOnAwake = false;
+        musicMisc = gameObject.AddComponent<AudioSource>();
+        musicMisc.playOnAwake = false;
+        musicBattle = gameObject.AddComponent<AudioSource>();
+        musicBattle.playOnAwake = false;
+    }
+
+    public void PlayMusicBattle(AudioClip clip, bool inBattle)
+    {
+        musicBattle.loop = true;
+        musicBattle.volume = 0.3f;
+
+        if (inBattle)
+        {
+            if (musicBattle.isPlaying)
+            {
+                return;
+            }
+            else
+            {
+                musicBattle.clip = clip;
+                StartCoroutine(FadeIn(musicBattle));
+                music.Pause();
+            }
+        }
+        else
+        {
+            StartCoroutine(FadeOut(musicBattle));
+            music.UnPause();
+        }
+
     }
 
     public void ChangeMusic(AudioClip clip)
@@ -35,7 +64,7 @@ public class AudioManager : MonoBehaviour
         }
 
         music.clip = clip;
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn(music));
     }
 
     public void PlayMisc(AudioClip clip)
@@ -44,38 +73,38 @@ public class AudioManager : MonoBehaviour
         //{
         //    return;
         //}
-        musicmisc.clip = clip;
-        musicmisc.spatialBlend = 0.5f;
-        musicmisc.loop = false;
-        musicmisc.volume = 0.6f;
-        musicmisc.PlayOneShot(clip);
+        musicMisc.clip = clip;
+        musicMisc.spatialBlend = 0.5f;
+        musicMisc.loop = false;
+        musicMisc.volume = 0.6f;
+        musicMisc.PlayOneShot(clip);
     }
 
-    //public IEnumerator FadeOut()
-    //{
-    //    float t = 0.3f;
-    //    while (t >= 0.0f)
-    //    {
-    //        t -= Time.deltaTime;
-    //        music.volume = t;
-    //        yield return new WaitForSeconds(0);
-    //    }
-    //    music.volume = 0.0f;
-    //    music.Stop();
-    //    music.loop = false;
-    //}
-
-    IEnumerator FadeIn()
+    public IEnumerator FadeOut(AudioSource source)
     {
-        music.volume = 0.0f;
-        music.Play();
-        music.loop = true;
+        float t = 0.3f;
+        while (t >= 0.0f)
+        {
+            t -= Time.deltaTime;
+            source.volume = t;
+            yield return new WaitForSeconds(0);
+        }
+        source.volume = 0.0f;
+        source.Stop();
+        source.loop = false;
+    }
+
+    IEnumerator FadeIn(AudioSource source)
+    {
+        source.volume = 0.0f;
+        source.Play();
+        source.loop = true;
 
         float t = 0.0f;
-        while (music.volume <= 0.2f)
+        while (source.volume <= 0.2f)
         {
             t += Time.deltaTime;
-            music.volume = t;
+            source.volume = t;
             yield return new WaitForSeconds(0);
         }
     }
