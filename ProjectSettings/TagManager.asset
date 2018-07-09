@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grass
   - Stone
+  - Water
   layers:
   - Default
   - TransparentFX
