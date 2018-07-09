@@ -27,14 +27,14 @@ public class HealthSystem : MonoBehaviour
     // Cached components references
     Animator animator;
     AudioSource audioSource;
-    Character characterMovement;
+    Character character;
 
     // Messages and methods
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        characterMovement = GetComponent<Character>();
+        character = GetComponent<Character>();
 
         currentHealtPoints = maxHealthPoints;
 	}
@@ -56,11 +56,14 @@ public class HealthSystem : MonoBehaviour
     {
         bool characterDies = ((currentHealtPoints - damage) <= 0);
         currentHealtPoints = Mathf.Clamp(currentHealtPoints - damage, 0f, maxHealthPoints);
-        AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
-        audioSource.PlayOneShot(clip);
-        if (characterDies)
+        if (characterDies && character.IsAlive())
         {
             StartCoroutine(KillCharacter());
+        }
+        else
+        {
+            AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
+            audioSource.PlayOneShot(clip);
         }
     }
 
@@ -77,7 +80,7 @@ public class HealthSystem : MonoBehaviour
             playerComponent.enabled = false;
         }
 
-        characterMovement.Kill();
+        character.Kill();
         animator.SetTrigger(DEATH_TRIGGER);
 
         audioSource.clip = deathSounds[Random.Range(0, deathSounds.Length)];
