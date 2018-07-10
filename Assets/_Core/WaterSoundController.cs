@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterSoundController : MonoBehaviour {
+public class WaterSoundController : MonoBehaviour
+{
 
     List<AudioSource> waterSounds;
     GameObject player;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        waterSounds = new List<AudioSource>();
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Water"))
         {
             waterSounds.Add(obj.GetComponent<AudioSource>());
@@ -17,7 +20,8 @@ public class WaterSoundController : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         DetermineClosestWaterSound();
     }
 
