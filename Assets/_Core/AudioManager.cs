@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RPG.Characters;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource music;
     private AudioSource musicMisc;
-    private AudioSource musicBattle;
+    [HideInInspector] public AudioSource musicBattle;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         musicMisc = gameObject.AddComponent<AudioSource>();
         musicMisc.playOnAwake = false;
@@ -32,9 +33,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusicBattle(AudioClip clip, bool inBattle)
     {
-        musicBattle.loop = true;
-        musicBattle.volume = 0.3f;
-
         if (inBattle)
         {
             if (musicBattle.isPlaying)
@@ -82,7 +80,7 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator FadeOut(AudioSource source)
     {
-        float t = 0.3f;
+        float t = 0.2f;
         while (t >= 0.0f)
         {
             t -= Time.deltaTime;

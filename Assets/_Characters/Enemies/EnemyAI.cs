@@ -75,7 +75,6 @@ namespace RPG.Characters
                 CycleWaypointWhenClose(nextWaypointPosition);
                 yield return new WaitForSeconds(waypointDwellTime);
             }
-
             audioManager.PlayMusicBattle(combatMusic, false);
         }
 
@@ -94,10 +93,9 @@ namespace RPG.Characters
             while (distanceToPlayer > currentWeaponRange)
             {
                 character.SetDestination(player.transform.position);
+                audioManager.PlayMusicBattle(combatMusic, true);
                 yield return new WaitForEndOfFrame();
             }
-
-            audioManager.PlayMusicBattle(combatMusic, true);
         }
 
         void OnDrawGizmos()

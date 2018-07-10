@@ -1,6 +1,6 @@
 UI
 
-make main menu playable
+make main menu playable //o player e os pickups aparecem passado alguns segundos(definir quanto), mas o player so mexe para os lados.
 
 Maze
 add death traps
@@ -8,7 +8,7 @@ add death traps
 Movement
 
 Fix character collisions by 
- -using autobraking in navmesh agent
+ -using autobraking in navmesh agent //testei, nao funciona. coloquei rigibody, dá erro pois ja existe um.
 
 Attack
 
@@ -22,6 +22,8 @@ separate attack and ability animations
 change power attack vfx and sfx
 
 Audio
+
+MusicBattle precisa de remodelaçao
 
 tune volume levels
 

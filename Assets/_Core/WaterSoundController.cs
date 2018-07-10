@@ -27,7 +27,7 @@ public class WaterSoundController : MonoBehaviour
 
     void DetermineClosestWaterSound()
     {
-        float distance = 10f;
+        float distance = 30f;
         //Determine which water sound is the closest
         foreach (AudioSource waterSound in waterSounds)
         {
