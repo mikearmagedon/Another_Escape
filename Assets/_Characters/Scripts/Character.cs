@@ -55,6 +55,9 @@ namespace RPG.Characters
         float moveThreshold = 1f;
         bool isAlive = true;
 
+        public delegate void MyDelegate();
+        public event MyDelegate onDeath;
+
 
         void Awake()
         {
@@ -127,6 +130,9 @@ namespace RPG.Characters
         public void Kill()
         {
             isAlive = false;
+            
+            // Call if player dies for checkpoint
+            onDeath.Invoke();
         }
 
         public void SetDestination(Vector3 worldPosition)

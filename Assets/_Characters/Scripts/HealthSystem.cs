@@ -95,7 +95,8 @@ public class HealthSystem : MonoBehaviour
         }
         else // assuming is enemy for now, reconsider for other NPCs
         {
-            Destroy(gameObject, deathVanishSeconds);
+            //Destroy(gameObject, deathVanishSeconds);
+            gameObject.SetActive(false);
         }
 
     }

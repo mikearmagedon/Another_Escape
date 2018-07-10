@@ -1,32 +1,32 @@
 UI
 
 make main menu playable //o player e os pickups aparecem passado alguns segundos(definir quanto), mas o player so mexe para os lados.
-
+------------------------------------------------------------------------------------
 Maze
 add death traps
-
+-----------------------------------------------------------------------------------------------------------------
 Movement
 
 Fix character collisions by 
  -using autobraking in navmesh agent //testei, nao funciona. coloquei rigibody, dá erro pois ja existe um.
-
+-------------------------------------------------------------------------------------
 Attack
 
 refactor AttackTargets to use the private methods of WeaponSystem
 player attacks only the closest target
-
+--------------------------------------------------------------------------------
 Special Abilities
 
 separate attack and ability animations
 
 change power attack vfx and sfx
-
+--------------------------------------------------------------------------
 Audio
 
 MusicBattle precisa de remodelaçao
 
 tune volume levels
-
+-----------------------------------------------------------------------
 Other
 
 consider making the player presist across scenes
@@ -35,5 +35,12 @@ enemy types
 
 Post production
 
-
 Video Settings - disable v-sync
+---------------------------------------------------------------------
+CheckPoint System
+
+implementaçao retirada do site: http://spacelizardstudio.com/devblog/index.php/2016/02/26/unity-how-to-design-a-simple-checkpoint-system/
+da erros que ainda nao estou a conseguir resolver.
+no HealthSystem mudei ao morrer nao usa Destroy mas sim SetActive.
+modifiquei a funçao Kill no Character.
+Se estiveres interesado da uma vista de olhos. 
