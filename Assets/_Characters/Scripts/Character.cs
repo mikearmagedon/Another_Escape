@@ -131,8 +131,11 @@ namespace RPG.Characters
         {
             isAlive = false;
             
-            // Call if player dies for checkpoint
-            onDeath.Invoke();
+            if(this.gameObject.name == "Player")
+            {
+                // Call if player dies for checkpoint
+                onDeath.Invoke();
+            }
         }
 
         public void SetDestination(Vector3 worldPosition)

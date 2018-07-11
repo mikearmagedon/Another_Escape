@@ -18,6 +18,7 @@ public class RespawnController : MonoBehaviour
     public void OnRespawn()
     {
         transform.position = initialPosition;
+        gameObject.SetActive(true);
         onRespawn();
     }
 }

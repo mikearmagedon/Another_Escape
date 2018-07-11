@@ -6,6 +6,7 @@ using UnityStandardAssets.Cameras;
 using UnityStandardAssets.CrossPlatformInput;
 
 using RPG.Characters; // to access PlayerController
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -158,8 +159,9 @@ public class GameManager : MonoBehaviour
         if (!player.enabled)
         {
             messageText.text = "GAME OVER";
+            player.Respawn();
             yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene(currentSceneIndex);
+            //SceneManager.LoadScene(currentSceneIndex);
         }
         else // player finished level
         {

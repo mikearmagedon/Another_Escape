@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
     const string DEATH_TRIGGER = "Death";
-    float currentHealtPoints;
+    public float currentHealtPoints;
 
     // Cached components references
     Animator animator;
@@ -37,12 +37,12 @@ public class HealthSystem : MonoBehaviour
         character = GetComponent<Character>();
 
         currentHealtPoints = maxHealthPoints;
-	}
+    }
 
-	void Update()
+    void Update()
     {
         UpdateHealthBar();
-	}
+    }
 
     void UpdateHealthBar()
     {

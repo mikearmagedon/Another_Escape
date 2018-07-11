@@ -10,6 +10,10 @@ public class CheckPoint : MonoBehaviour
     internal Action<CheckPoint> onTrigger;
     internal Action onRespawn;
 
+    [HideInInspector] public Vector3 newPosition;
+    [HideInInspector] public float health;
+    [HideInInspector] public float power;
+
     void Awake()
     {
         triggered = false;
@@ -37,7 +41,6 @@ public class CheckPoint : MonoBehaviour
     void Trigger(Character character)
     {
         character.onDeath += OnCharacterDeath;
-
         triggered = true;
     }
 

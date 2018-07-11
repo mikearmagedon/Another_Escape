@@ -14,7 +14,7 @@ namespace RPG.Characters
 
         // State
         public float EnergyAsPercentage { get { return currentEnergyPoints / maxEnergyPoints; } }
-        float currentEnergyPoints;
+        public float currentEnergyPoints;
 
         // Messages and methods
         void Start()
