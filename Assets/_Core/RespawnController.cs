@@ -12,7 +12,7 @@ public class RespawnController : MonoBehaviour
     void Awake()
     {
         initialPosition = transform.position;
-        respawningCheckPoint.onRespawn += OnRespawn;
+        //respawningCheckPoint.onRespawn += OnRespawn;
     }
 
     public void OnRespawn()

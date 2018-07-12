@@ -175,5 +175,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponConfig: {fileID: 0}
-  pickUpSFX: {fileID: 0}
+  pickUpSFX: {fileID: 8300000, guid: 974ab62cc577f244abc27eea91f6d571, type: 3}
   destroyAfterPickedUp: 1

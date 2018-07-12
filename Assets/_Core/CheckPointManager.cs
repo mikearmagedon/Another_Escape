@@ -20,7 +20,7 @@ public class CheckPointManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; ++i)
         {
             CheckPoint checkpoint = transform.GetChild(i).GetComponent<CheckPoint>();
-            checkpoint.onTrigger += OnCheckPointTriggered;
+            //checkpoint.onTrigger += OnCheckPointTriggered;
             checkPoints.Add(checkpoint);
 
         }

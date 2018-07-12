@@ -18,23 +18,16 @@ namespace RPG.Characters
         public bool wonGame { get; set; }
         Collider[] targets;
 
-        [HideInInspector] public Transform spawnPosition;
-        [HideInInspector] public float newHealth;
-        [HideInInspector] public float newPower;
-
         // Cached components references
         Character character;
         WeaponSystem weaponSystem;
         AbilitySystem abilitySystem;
-        HealthSystem healthSystem;
 
         void Start()
         {
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
             abilitySystem = GetComponent<AbilitySystem>();
-            healthSystem = GetComponent<HealthSystem>();
-            spawnPosition = transform;
 
             SetInitialWinConditionVariables();
         }
@@ -64,9 +57,7 @@ namespace RPG.Characters
 
             if (other.gameObject.CompareTag("Checkpoint"))
             {
-                spawnPosition = other.transform;
-                newHealth = healthSystem.currentHealtPoints;
-                newPower = abilitySystem.currentEnergyPoints;
+                SaveLoad.Save();
             }
         }
 
@@ -132,15 +123,6 @@ namespace RPG.Characters
         {
             Assert.IsFalse(enemyLayerMask == 0, "Please set enemyLayerMask to the Enemy layer");
             targets = Physics.OverlapSphere(transform.position, weaponSystem.GetCurrentWeapon().GetMaxAttackRange(), enemyLayerMask);
-        }
-
-        public void Respawn()
-        {
-            EnableControl();
-            gameObject.transform.position = spawnPosition.position;
-            gameObject.transform.rotation = spawnPosition.rotation;
-            healthSystem.currentHealtPoints = newHealth;
-            abilitySystem.currentEnergyPoints = newPower;
         }
     }
 }

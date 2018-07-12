@@ -41,6 +41,7 @@ CheckPoint System
 
 implementaçao retirada do site: http://spacelizardstudio.com/devblog/index.php/2016/02/26/unity-how-to-design-a-simple-checkpoint-system/
 da erros que ainda nao estou a conseguir resolver.
-no HealthSystem mudei ao morrer nao usa Destroy mas sim SetActive.
-modifiquei a funçao Kill no Character.
+
+ja nao devemos usar a implementaçao que esta no link. estive a ver o teu DEMO e se calhar usamos o teu scenePersist, e dps gravamos isso de alguma maneira para o save nos checkpoints.
+
 Se estiveres interesado da uma vista de olhos. 

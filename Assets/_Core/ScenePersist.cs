@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class ScenePersist : MonoBehaviour
 {
     int startingSceneIndex;
+    public static ScenePersist current;
 
     void Awake()
     {

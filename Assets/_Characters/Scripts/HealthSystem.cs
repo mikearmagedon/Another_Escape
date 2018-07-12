@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
     const string DEATH_TRIGGER = "Death";
-    public float currentHealtPoints;
+    float currentHealtPoints;
 
     // Cached components references
     Animator animator;
@@ -95,8 +95,7 @@ public class HealthSystem : MonoBehaviour
         }
         else // assuming is enemy for now, reconsider for other NPCs
         {
-            //Destroy(gameObject, deathVanishSeconds);
-            gameObject.SetActive(false);
+            Destroy(gameObject, deathVanishSeconds);
         }
 
     }

@@ -7,12 +7,6 @@ public class CheckPoint : MonoBehaviour
 {
     // have we been triggered?
     bool triggered;
-    internal Action<CheckPoint> onTrigger;
-    internal Action onRespawn;
-
-    [HideInInspector] public Vector3 newPosition;
-    [HideInInspector] public float health;
-    [HideInInspector] public float power;
 
     void Awake()
     {
@@ -33,22 +27,9 @@ public class CheckPoint : MonoBehaviour
             // with characters.
             if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                Trigger(collider.gameObject.GetComponent<Character>());
+                
             }
         }
     }
 
-    void Trigger(Character character)
-    {
-        character.onDeath += OnCharacterDeath;
-        triggered = true;
-    }
-
-    void OnCharacterDeath()
-    {
-        if (CheckPointManager.Instance.CurCheckPoint == this)
-        {
-            onRespawn.Invoke();
-        }
-    }
 }

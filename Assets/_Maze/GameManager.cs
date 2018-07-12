@@ -159,8 +159,8 @@ public class GameManager : MonoBehaviour
         if (!player.enabled)
         {
             messageText.text = "GAME OVER";
-            player.Respawn();
             yield return new WaitForSeconds(3f);
+            SaveLoad.Load();
             //SceneManager.LoadScene(currentSceneIndex);
         }
         else // player finished level
