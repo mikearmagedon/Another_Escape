@@ -44,4 +44,6 @@ da erros que ainda nao estou a conseguir resolver.
 
 ja nao devemos usar a implementaçao que esta no link. estive a ver o teu DEMO e se calhar usamos o teu scenePersist, e dps gravamos isso de alguma maneira para o save nos checkpoints.
 
+ja consegui resolver parte do problema, consigo guardar a vida,energia e position do player ao passar no checkpoint, mas dps ao morrer nao consigo fazer o player aparecer na posiçao do checkpoint. qunato à vida e energia ele atualiza.
+
 Se estiveres interesado da uma vista de olhos. 

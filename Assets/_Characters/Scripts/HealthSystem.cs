@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
     const string DEATH_TRIGGER = "Death";
-    float currentHealtPoints;
+    [SerializeField]public float currentHealtPoints;
 
     // Cached components references
     Animator animator;

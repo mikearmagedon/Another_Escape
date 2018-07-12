@@ -13,6 +13,7 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
+        [SerializeField] public Vector3 position;
 
         // State
         public bool wonGame { get; set; }
@@ -22,12 +23,14 @@ namespace RPG.Characters
         Character character;
         WeaponSystem weaponSystem;
         AbilitySystem abilitySystem;
+        SaveLoad saveLoad;
 
         void Start()
         {
             character = GetComponent<Character>();
             weaponSystem = GetComponent<WeaponSystem>();
             abilitySystem = GetComponent<AbilitySystem>();
+            saveLoad = FindObjectOfType<SaveLoad>();
 
             SetInitialWinConditionVariables();
         }
@@ -57,7 +60,8 @@ namespace RPG.Characters
 
             if (other.gameObject.CompareTag("Checkpoint"))
             {
-                SaveLoad.Save();
+                position = gameObject.transform.position;
+                saveLoad.Save();
             }
         }
 

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     PlayerController player;
     GameObject pauseMenuCanvas;
     AudioManager audioManager;
+    SaveLoad saveLoad;
 
     void Awake()
     {
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        saveLoad = FindObjectOfType<SaveLoad>();
         initialFixedDelta = Time.fixedDeltaTime;
     }
 
@@ -160,8 +162,9 @@ public class GameManager : MonoBehaviour
         {
             messageText.text = "GAME OVER";
             yield return new WaitForSeconds(3f);
-            SaveLoad.Load();
-            //SceneManager.LoadScene(currentSceneIndex);
+            SceneManager.LoadScene(currentSceneIndex);
+            yield return new WaitForSeconds(3f);
+            saveLoad.Load();
         }
         else // player finished level
         {
