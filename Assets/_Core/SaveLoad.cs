@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using System;
 using RPG.Characters;
+using System.Collections.Generic;
 
 public class SaveLoad : MonoBehaviour
 {
@@ -42,6 +43,7 @@ class PlayerData
     public float positionX;
     public float positionY;
     public float positionZ;
+    public List<CheckPointData> checkPoints = new List<CheckPointData>();
 
     public void Get()
     {
@@ -51,13 +53,55 @@ class PlayerData
         positionX = position.x;
         positionY = position.y;
         positionZ = position.z;
+
+        CheckPoint[] checkPoint = CheckPoint.FindObjectsOfType<CheckPoint>();
+        for (int i = 0; i < checkPoint.Length; i++)
+        {
+            CheckPointData checkPointData = new CheckPointData();
+            checkPointData.Get(i);
+            checkPoints.Add(checkPointData);
+        }
     }
 
     public void Set()
     {
+        for (int i = 0; i < checkPoints.Count; i++)
+        {
+            checkPoints[i].Set();
+        }
+
         HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints = health;
         AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints = energy;
-        PlayerController.FindObjectOfType<PlayerController>().position = new Vector3(positionX,positionY,positionZ);
-        Debug.Log("Done");
+        PlayerController.FindObjectOfType<PlayerController>().transform.position = new Vector3(positionX, positionY, positionZ);
+    }
+}
+
+[Serializable]
+class CheckPointData
+{
+    public bool triggered;
+    public string nameCheckpoint;
+
+    public void Get(int i)
+    {
+        CheckPoint[] checkPoints = CheckPoint.FindObjectsOfType<CheckPoint>();
+        nameCheckpoint = checkPoints[i].nameCheckpoint;
+        triggered = checkPoints[i].triggered;
+    }
+
+    public void Set()
+    {
+        CheckPoint[] newCheckpoint = CheckPoint.FindObjectsOfType<CheckPoint>();
+
+        for (int j = 0; j < newCheckpoint.Length; j++)
+        {
+            if (nameCheckpoint == newCheckpoint[j].nameCheckpoint)
+            {
+                if (triggered)
+                {
+                    newCheckpoint[j].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

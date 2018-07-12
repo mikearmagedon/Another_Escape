@@ -6,11 +6,13 @@ using System;
 public class CheckPoint : MonoBehaviour
 {
     // have we been triggered?
-    bool triggered;
+    public bool triggered;
+    public string nameCheckpoint;
 
     void Awake()
     {
         triggered = false;
+        nameCheckpoint = gameObject.name;
     }
 
     // called whenever another collider enters our zone (if layers match)
@@ -19,17 +21,10 @@ public class CheckPoint : MonoBehaviour
         // check we haven't been triggered yet!
         if (!triggered)
         {
-            // check we actually collided with 
-            // a character. It would be best to
-            // setup your layers so this check is
-            // not required, by creating a layer 
-            // "Checkpoint" that will only collide 
-            // with characters.
             if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                
+                triggered = true;
             }
         }
     }
-
 }

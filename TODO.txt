@@ -39,11 +39,6 @@ Video Settings - disable v-sync
 ---------------------------------------------------------------------
 CheckPoint System
 
-implementaçao retirada do site: http://spacelizardstudio.com/devblog/index.php/2016/02/26/unity-how-to-design-a-simple-checkpoint-system/
-da erros que ainda nao estou a conseguir resolver.
-
-ja nao devemos usar a implementaçao que esta no link. estive a ver o teu DEMO e se calhar usamos o teu scenePersist, e dps gravamos isso de alguma maneira para o save nos checkpoints.
-
-ja consegui resolver parte do problema, consigo guardar a vida,energia e position do player ao passar no checkpoint, mas dps ao morrer nao consigo fazer o player aparecer na posiçao do checkpoint. qunato à vida e energia ele atualiza.
-
-Se estiveres interesado da uma vista de olhos. 
+o checkpoint ja funciona e tb ja gravamos para o disco.
+falta adicionar os inimigos e coins para gravar.
+ao passar no checkpoint ele grava a posiçao do checkpoint como tb o estado do player(health, energy). ao morrer fazes spawn no checkpoint e o checkpoint fica desativado.
