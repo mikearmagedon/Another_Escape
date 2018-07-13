@@ -4,10 +4,22 @@ using UnityEngine;
 using System;
 using RPG.Characters;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SaveLoad : MonoBehaviour
 {
-    PlayerData data = new PlayerData();
+    PlayerData data;
+    [HideInInspector] public CheckPoint[] checkPoint;
+    [HideInInspector] public EnemyAI[] enemy;
+    [HideInInspector] public PickupSFX[] pickup;
+
+    private void Awake()
+    {
+        data = new PlayerData();
+        checkPoint = CheckPoint.FindObjectsOfType<CheckPoint>();
+        enemy = EnemyAI.FindObjectsOfType<EnemyAI>();
+        pickup = PickupSFX.FindObjectsOfType<PickupSFX>();
+    }
 
     public void Save()
     {
@@ -38,38 +50,70 @@ public class SaveLoad : MonoBehaviour
 [Serializable]
 class PlayerData
 {
+    public int sceneIndex;
     public float health;
     public float energy;
     public float positionX;
     public float positionY;
     public float positionZ;
+    public int score;
     public List<CheckPointData> checkPoints = new List<CheckPointData>();
+    public List<EnemyData> enemys = new List<EnemyData>();
+    public List<PickupData> pickups = new List<PickupData>();
 
     public void Get()
     {
+        sceneIndex = GameManager.FindObjectOfType<GameManager>().currentSceneIndex;
         health = HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints;
         energy = AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints;
         Vector3 position = PlayerController.FindObjectOfType<PlayerController>().position;
         positionX = position.x;
         positionY = position.y;
         positionZ = position.z;
+        score = GameManager.FindObjectOfType<GameManager>().score;
 
-        CheckPoint[] checkPoint = CheckPoint.FindObjectsOfType<CheckPoint>();
-        for (int i = 0; i < checkPoint.Length; i++)
+        for (int i = 0; i < SaveLoad.FindObjectOfType<SaveLoad>().checkPoint.Length; i++)
         {
             CheckPointData checkPointData = new CheckPointData();
             checkPointData.Get(i);
             checkPoints.Add(checkPointData);
         }
+
+        for (int i = 0; i < SaveLoad.FindObjectOfType<SaveLoad>().enemy.Length; i++)
+        {
+            EnemyData enemyData = new EnemyData();
+            enemyData.Get(i);
+            enemys.Add(enemyData);
+        }
+
+        for (int i = 0; i < SaveLoad.FindObjectOfType<SaveLoad>().pickup.Length; i++)
+        {
+            PickupData pickupData = new PickupData();
+            pickupData.Get(i);
+            pickups.Add(pickupData);
+        }
     }
 
     public void Set()
     {
+        GameManager.FindObjectOfType<GameManager>().currentSceneIndex = sceneIndex;
+
         for (int i = 0; i < checkPoints.Count; i++)
         {
             checkPoints[i].Set();
         }
 
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            enemys[i].Set();
+        }
+
+        for (int i = 0; i < pickups.Count; i++)
+        {
+            pickups[i].Set();
+        }
+
+        GameManager.FindObjectOfType<GameManager>().score = score;
         HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints = health;
         AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints = energy;
         PlayerController.FindObjectOfType<PlayerController>().transform.position = new Vector3(positionX, positionY, positionZ);
@@ -84,9 +128,8 @@ class CheckPointData
 
     public void Get(int i)
     {
-        CheckPoint[] checkPoints = CheckPoint.FindObjectsOfType<CheckPoint>();
-        nameCheckpoint = checkPoints[i].nameCheckpoint;
-        triggered = checkPoints[i].triggered;
+        nameCheckpoint = SaveLoad.FindObjectOfType<SaveLoad>().checkPoint[i].nameCheckpoint;
+        triggered = SaveLoad.FindObjectOfType<SaveLoad>().checkPoint[i].triggered;
     }
 
     public void Set()
@@ -100,6 +143,64 @@ class CheckPointData
                 if (triggered)
                 {
                     newCheckpoint[j].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+}
+
+[Serializable]
+class EnemyData
+{
+    public bool isDead;
+    public string enemyName;
+
+    public void Get(int i)
+    {
+        isDead = SaveLoad.FindObjectOfType<SaveLoad>().enemy[i].isDead;
+        enemyName = SaveLoad.FindObjectOfType<SaveLoad>().enemy[i].enemyName;
+    }
+
+    public void Set()
+    {
+        EnemyAI[] newEnemy = EnemyAI.FindObjectsOfType<EnemyAI>();
+
+        for (int j = 0; j < newEnemy.Length; j++)
+        {
+            if (enemyName == newEnemy[j].enemyName)
+            {
+                if (isDead)
+                {
+                    newEnemy[j].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+}
+
+[Serializable]
+class PickupData
+{
+    public bool isActive;
+    public string pickupName;
+
+    public void Get(int i)
+    {
+        isActive = SaveLoad.FindObjectOfType<SaveLoad>().pickup[i].isActive;
+        pickupName = SaveLoad.FindObjectOfType<SaveLoad>().pickup[i].pickupName;
+    }
+
+    public void Set()
+    {
+        PickupSFX[] newPickup = PickupSFX.FindObjectsOfType<PickupSFX>();
+
+        for (int j = 0; j < newPickup.Length; j++)
+        {
+            if (pickupName == newPickup[j].pickupName)
+            {
+                if (!isActive)
+                {
+                    newPickup[j].gameObject.SetActive(false);
                 }
             }
         }

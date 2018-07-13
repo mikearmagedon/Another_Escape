@@ -6,8 +6,8 @@ using System;
 public class CheckPoint : MonoBehaviour
 {
     // have we been triggered?
-    public bool triggered;
-    public string nameCheckpoint;
+    [HideInInspector] public bool triggered;
+    [HideInInspector] public string nameCheckpoint;
 
     void Awake()
     {
@@ -24,6 +24,7 @@ public class CheckPoint : MonoBehaviour
             if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 triggered = true;
+                GetComponent<Collider>().enabled = false;
             }
         }
     }

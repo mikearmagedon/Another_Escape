@@ -20,6 +20,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadGame()
+    {
+        FindObjectOfType<SaveLoad>().Load();
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR

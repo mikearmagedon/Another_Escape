@@ -18,6 +18,8 @@ namespace RPG.Characters
         [SerializeField] float waypointDwellTime = 2f;
         [SerializeField] float waypointTolerance = 2f;
         [SerializeField] AudioClip combatMusic;
+        [HideInInspector] public bool isDead;
+        [HideInInspector] public string enemyName;
 
         // State
         State state = State.idle;
@@ -29,6 +31,12 @@ namespace RPG.Characters
         GameObject player = null;
         Character character;
         AudioManager audioManager;
+
+        private void Awake()
+        {
+            isDead = false;
+            enemyName = gameObject.name;
+        }
 
         // Messages and methods
         void Start()

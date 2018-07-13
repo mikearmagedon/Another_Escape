@@ -13,7 +13,7 @@ namespace RPG.Characters
     {
         // Config
         [SerializeField] LayerMask enemyLayerMask;
-        [SerializeField] public Vector3 position;
+        [HideInInspector] [SerializeField] public Vector3 position;
 
         // State
         public bool wonGame { get; set; }

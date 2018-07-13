@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int score;
 
     bool isPaused = false;
-    int currentSceneIndex;
+    [HideInInspector] public int currentSceneIndex;
     float initialFixedDelta;
 
     // Cached components references

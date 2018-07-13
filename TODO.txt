@@ -37,8 +37,9 @@ Post production
 
 Video Settings - disable v-sync
 ---------------------------------------------------------------------
-CheckPoint System
+CheckPoint System/ SaveLoad System
 
-o checkpoint ja funciona e tb ja gravamos para o disco.
-falta adicionar os inimigos e coins para gravar.
-ao passar no checkpoint ele grava a posiçao do checkpoint como tb o estado do player(health, energy). ao morrer fazes spawn no checkpoint e o checkpoint fica desativado.
+o sistema de gravar e carregar ja funciona.
+ao passar nos checkpoints ele grava automaticamente, e ao morrer ele carrega o save.
+o que ele grava, podes ver no SaveLoad, na class PlayerData.
+o problema agora é fazer carregar o save no menu principal, devido à maneira do SaveLoad foi implementado.
