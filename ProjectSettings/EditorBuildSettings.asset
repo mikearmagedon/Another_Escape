@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Levels/Demo.unity
     guid: 6e32ebc3a5939044797bc7ec96cbd945
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Levels/World 1.unity
     guid: a21b7d060e3218547981a655fcb51b93
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Levels/Sandbox.unity
     guid: ae22992bda7d6f64ca7711072590be33
   - enabled: 0

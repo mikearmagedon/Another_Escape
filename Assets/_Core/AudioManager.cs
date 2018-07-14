@@ -1,28 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public static AudioManager instance;
     public AudioSource music;
-    private AudioSource musicMisc;
-    private AudioSource musicBattle;
+
+    AudioSource musicMisc;
+    AudioSource musicBattle;
 
     void Awake()
     {
-        int numAudioManager = FindObjectsOfType<AudioManager>().Length;
-        if (numAudioManager > 1)
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
     }
 
-    private void Start()
+    void Start()
     {
         musicMisc = gameObject.AddComponent<AudioSource>();
         musicMisc.playOnAwake = false;

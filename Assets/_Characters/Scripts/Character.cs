@@ -99,7 +99,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            audioManager = FindObjectOfType<AudioManager>();
+            audioManager = AudioManager.instance;
             origGroundCheckDistance = groundCheckDistance;
         }
 

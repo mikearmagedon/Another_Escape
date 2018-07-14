@@ -35,7 +35,7 @@ namespace RPG.Characters
         {
             player = GameObject.FindGameObjectWithTag("Player");
             character = GetComponent<Character>();
-            audioManager = FindObjectOfType<AudioManager>();
+            audioManager = AudioManager.instance;
         }
 
         void Update()

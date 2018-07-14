@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
     // Messages and methods
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
 
