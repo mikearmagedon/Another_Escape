@@ -27,12 +27,14 @@ public class HealthSystem : MonoBehaviour
     // Cached components references
     Animator animator;
     Character character;
-    AudioManager audioManager;
+    AudioSource audioSource;
+    //AudioManager audioManager;
 
     // Messages and methods
     void Start()
     {
-        audioManager = AudioManager.instance;
+        //audioManager = AudioManager.instance;
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
 
@@ -64,7 +66,8 @@ public class HealthSystem : MonoBehaviour
         else if (character.IsAlive())
         {
             AudioClip clip = damageSounds[Random.Range(0, damageSounds.Length)];
-            audioManager.PlayMisc(clip);
+            audioSource.PlayOneShot(clip);
+            //audioManager.PlayMisc(clip);
         }
     }
 
@@ -85,7 +88,8 @@ public class HealthSystem : MonoBehaviour
         animator.SetTrigger(DEATH_TRIGGER);
 
         AudioClip clip = deathSounds[Random.Range(0, deathSounds.Length)];
-        audioManager.PlayMisc(clip);
+        audioSource.PlayOneShot(clip);
+        //audioManager.PlayMisc(clip);
         yield return new WaitForSecondsRealtime(clip.length);
 
         if (playerComponent)

@@ -4,8 +4,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioSource music;
 
+    [SerializeField] AudioSource music;
     AudioSource musicMisc;
     AudioSource musicBattle;
 
@@ -28,6 +28,22 @@ public class AudioManager : MonoBehaviour
         musicMisc.playOnAwake = false;
         musicBattle = gameObject.AddComponent<AudioSource>();
         musicBattle.playOnAwake = false;
+    }
+
+    public void Pause(bool pause)
+    {
+        if (pause)
+        {
+            music.Pause();
+            musicBattle.Pause();
+            musicMisc.Pause();
+        }
+        else
+        {
+            music.UnPause();
+            musicBattle.UnPause();
+            musicMisc.UnPause();
+        }
     }
 
     public void PlayMusicBattle(AudioClip clip, bool inBattle)
@@ -74,7 +90,7 @@ public class AudioManager : MonoBehaviour
         //    return;
         //}
         musicMisc.clip = clip;
-        musicMisc.spatialBlend = 0.5f;
+        musicMisc.spatialBlend = 1f;
         musicMisc.loop = false;
         musicMisc.volume = 0.6f;
         musicMisc.PlayOneShot(clip);

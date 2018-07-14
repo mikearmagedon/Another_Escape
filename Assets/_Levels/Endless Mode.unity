@@ -186,7 +186,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4093069574540702, guid: 97b88fa707f0fad4d9437b3da5586255, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97b88fa707f0fad4d9437b3da5586255, type: 2}
@@ -283,6 +283,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8c0942b0fed68e449b50eaab323fc317, type: 3}
+    - target: {fileID: 1997481484572040, guid: 49c0cf81ed3ff98409d9fb07ecdc0579, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49c0cf81ed3ff98409d9fb07ecdc0579, type: 2}
   m_IsPrefabParent: 0
@@ -312,9 +316,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1237676077}
-  - {fileID: 2058863774}
   - {fileID: 1931167}
   - {fileID: 1182080640}
+  - {fileID: 2058863774}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -643,6 +647,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 606e8567a5f58df4c86a72fcad6e47c3,
         type: 2}
+    - target: {fileID: 114708188482719008, guid: c5bf4fde8e9ec5f42849deedbab91eb2,
+        type: 2}
+      propertyPath: outOfEnergyClip
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5bf4fde8e9ec5f42849deedbab91eb2, type: 2}
   m_IsPrefabParent: 0
@@ -792,6 +801,10 @@ Prefab:
       propertyPath: mazeGenerators.Array.data[0].mazeAlgorithm
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1102854221033714, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
   m_IsPrefabParent: 0
@@ -832,7 +845,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4636675179522974, guid: 4a4a44008b998ed459fc4a158585745a, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a4a44008b998ed459fc4a158585745a, type: 2}
@@ -890,7 +903,7 @@ GameObject:
   - component: {fileID: 2058863777}
   - component: {fileID: 2058863776}
   - component: {fileID: 2058863775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +921,7 @@ Transform:
   m_LocalScale: {x: 4, y: 0.01, z: 4}
   m_Children: []
   m_Father: {fileID: 874869233}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &2058863775
 MeshCollider:

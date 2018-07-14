@@ -71,14 +71,14 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
             player.DisableControl();
-            audioManager.music.Pause();
+            audioManager.Pause(pause);
         }
         else
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
             player.EnableControl();
-            audioManager.music.UnPause();
+            audioManager.Pause(pause);
         }
     }
 

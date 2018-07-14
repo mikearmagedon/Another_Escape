@@ -28,14 +28,14 @@ namespace RPG.Characters
         // Cached components references
         GameObject player = null;
         Character character;
-        AudioManager audioManager;
+        //AudioManager audioManager;
 
         // Messages and methods
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
             character = GetComponent<Character>();
-            audioManager = AudioManager.instance;
+            //audioManager = AudioManager.instance;
         }
 
         void Update()
@@ -76,7 +76,7 @@ namespace RPG.Characters
                 yield return new WaitForSeconds(waypointDwellTime);
             }
 
-            audioManager.PlayMusicBattle(combatMusic, false);
+            //audioManager.PlayMusicBattle(combatMusic, false);
         }
 
         void CycleWaypointWhenClose(Vector3 nextWaypointPosition)
@@ -97,7 +97,7 @@ namespace RPG.Characters
                 yield return new WaitForEndOfFrame();
             }
 
-            audioManager.PlayMusicBattle(combatMusic, true);
+            //audioManager.PlayMusicBattle(combatMusic, true);
         }
 
         void OnDrawGizmos()
