@@ -71,14 +71,14 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
             player.DisableControl();
-            audioManager.music.Pause();
+            audioManager.Pause(pause);
         }
         else
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
             player.EnableControl();
-            audioManager.music.UnPause();
+            audioManager.Pause(pause);
         }
     }
 
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = false;
         player.DisableControl();
-        messageText.text = "Level " + currentSceneIndex;
+        messageText.text = SceneManager.GetActiveScene().name;
         scoreText.text = score.ToString();
         levelTransition.SetActive(true);
         yield return new WaitForSeconds(levelStartDelay);
