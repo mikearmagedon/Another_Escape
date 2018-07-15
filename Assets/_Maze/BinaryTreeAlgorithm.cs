@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BinaryTreeAlgorithm : MazeAlgorithm
 {
-    public BinaryTreeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells)
+    public BinaryTreeAlgorithm(MazeCell[,] cells) : base(cells)
     {
-
     }
 
     public override void CreateMaze()

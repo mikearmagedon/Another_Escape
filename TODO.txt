@@ -1,9 +1,37 @@
-Camera: done
- - fixed
- - rotating with right mouse click
+UI
 
-Player movement:
- - wasd - done
- - mouse point and click - done
- - pathfinding
- - runtime navMesh baking
+make main menu playable
+
+Maze
+add death traps
+
+Movement
+
+Fix character collisions by 
+ -using autobraking in navmesh agent
+
+Attack
+
+refactor AttackTargets to use the private methods of WeaponSystem
+player attacks only the closest target
+
+Special Abilities
+
+separate attack and ability animations
+
+change power attack vfx and sfx
+
+Audio
+
+tune volume levels
+
+Other
+
+consider making the player presist across scenes
+
+enemy types
+
+Post production
+
+
+Video Settings - disable v-sync

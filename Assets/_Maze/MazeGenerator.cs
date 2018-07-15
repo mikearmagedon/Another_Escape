@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
+
+public enum Algorithm {BinaryTree, Sidewinder, HuntAndKill, GrowingTree};
 
 public class MazeGenerator : MonoBehaviour
 {
-    public Vector2Int initialCoordinates;
-    public Vector2Int size;
-    public float secondsBetweenGenerations;
-    public Vector2Int mazeEntrance;
-    public MazeDirection mazeEntranceDirection;
-    public Vector2Int mazeExit;
-    public MazeDirection mazeExitDirection;
-
-    [SerializeField] MazeCell cellPrefab;
+    [SerializeField] Vector3Int initialCoordinates;
+    [SerializeField] Vector2Int size;
+    [SerializeField] Algorithm mazeAlgorithm;
+    [SerializeField] bool continuosGeneration;
+    [SerializeField] float secondsBetweenGenerations;
+    [SerializeField] Vector2Int mazeEntrance;
+    [SerializeField] MazeDirection mazeEntranceDirection;
+    [SerializeField] Vector2Int mazeExit;
+    [SerializeField] MazeDirection mazeExitDirection;
+    [SerializeField] MazeCell[] cellPrefab;
 
     private MazeCell[,] cells;
     private MazeAlgorithm ma;
@@ -22,29 +24,68 @@ public class MazeGenerator : MonoBehaviour
     {
         InitializeMaze();
         ConfigureCells();
-
-        ma = new BinaryTreeAlgorithm(cells);
-        StartCoroutine(ContinuousMazeGeneration());
+        StartAlgorithm();
+        StartCoroutine(ContinuousMazeGeneration(continuosGeneration));
     }
-    
-    // TODO consider using a bool argument to set the continuous generation
-    public IEnumerator ContinuousMazeGeneration()
+
+    private void StartAlgorithm()
+    {
+        switch (mazeAlgorithm)
+        {
+            case Algorithm.BinaryTree:
+                ma = new BinaryTreeAlgorithm(cells);
+                break;
+            case Algorithm.Sidewinder:
+                ma = new SidewinderAlgorithm(cells);
+                break;
+            case Algorithm.HuntAndKill:
+                ma = new HuntAndKillAlgorithm(cells);
+                break;
+            case Algorithm.GrowingTree:
+                ma = new GrowingTreeAlgorithm(cells);
+                break;
+            default:
+                Debug.Log("Unknown algorithm.");
+                break;
+        }
+    }
+
+    public IEnumerator ContinuousMazeGeneration(bool continuousGeneration)
     {
         CreateMazeEntrance(mazeEntrance, mazeEntranceDirection);
         CreateMazeExit(mazeExit, mazeExitDirection);
         ma.CreateMaze();
-        yield return new WaitForSeconds(secondsBetweenGenerations);
-        ResetMaze();
-        StartCoroutine(ContinuousMazeGeneration());
+        CleanOverlappingMazeWalls();
+
+        if (continuousGeneration)
+        {
+            yield return new WaitForSeconds(secondsBetweenGenerations);
+            ResetMaze();
+            StartCoroutine(ContinuousMazeGeneration(true));
+        }
+    }
+
+    private void CleanOverlappingMazeWalls()
+    {
+        foreach (var cell in cells)
+        {
+            foreach (var neighbour in cell.Neighbors)
+            {
+                if (!cell.IsLinked(neighbour))
+                {
+                    neighbour.CreatePassage(cell, false);
+                }
+            }
+        }
     }
 
     private void InitializeMaze()
     {
         cells = new MazeCell[size.x, size.y];
 
-        for (int r = 0; r < size.x; r++)
+        for (int r = 0; r < size.y; r++)
         {
-            for (int c = 0; c < size.y; c++)
+            for (int c = 0; c < size.x; c++)
             {
                 CreateCell(new Vector2Int(c, r));
             }
@@ -54,10 +95,11 @@ public class MazeGenerator : MonoBehaviour
     private void CreateCell(Vector2Int coordinates)
     {
         // Instantiate Cell
-        MazeCell newCell = Instantiate(cellPrefab, transform) as MazeCell;
-        newCell.coordinates = coordinates + initialCoordinates;
-        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.y);
-        newCell.transform.position = new Vector3((coordinates.x + initialCoordinates.x) * MazeCell.cellSize, 0f, (coordinates.y + initialCoordinates.y) * MazeCell.cellSize);
+        MazeCell randomCellPrefab = cellPrefab[Random.Range(0, cellPrefab.Length)];
+        MazeCell newCell = Instantiate(randomCellPrefab, transform) as MazeCell;
+        newCell.coordinates = new Vector2Int(coordinates.x + initialCoordinates.x, coordinates.y + initialCoordinates.z);
+        newCell.name = (coordinates.x + initialCoordinates.x) + "," + (coordinates.y + initialCoordinates.z);
+        newCell.transform.position = new Vector3(initialCoordinates.x + (coordinates.x * MazeCell.cellSize), initialCoordinates.y, initialCoordinates.z + (coordinates.y * MazeCell.cellSize));
 
         // Add to the maze
         cells[coordinates.x, coordinates.y] = newCell;
@@ -72,7 +114,7 @@ public class MazeGenerator : MonoBehaviour
         foreach (var cell in cells)
         {
             int c = cell.coordinates.x - initialCoordinates.x;
-            int r = cell.coordinates.y - initialCoordinates.y;
+            int r = cell.coordinates.y - initialCoordinates.z;
 
             if (r + 1 < size.y)
             {
