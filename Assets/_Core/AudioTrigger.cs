@@ -14,7 +14,7 @@ public class AudioTrigger : MonoBehaviour
 
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         //audioSource = gameObject.AddComponent<AudioSource>();
         //audioSource.playOnAwake = false;
         //audioSource.clip = clips[Random.Range(0, clips.Length)];

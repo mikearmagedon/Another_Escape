@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
     // Messages and methods
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
 
@@ -59,7 +59,7 @@ public class HealthSystem : MonoBehaviour
 
         if (characterDies && character.IsAlive())
         {
-            audioManager.PlayMusicBattle(audioManager.musicBattle.clip, false);
+            audioManager.PlayMusicBattle(null, false);
             StartCoroutine(KillCharacter());
         }
         else if (character.IsAlive())

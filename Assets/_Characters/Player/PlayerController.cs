@@ -52,7 +52,7 @@ namespace RPG.Characters
         {
             if (other.gameObject.CompareTag("Finish"))
             {
-                if (FindObjectOfType<GameManager>().score <= 3)
+                if (GameManager.instance.score <= 3)
                 {
                     wonGame = true;
                 }

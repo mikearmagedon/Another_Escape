@@ -11,7 +11,7 @@ public class BarrierTrigger : MonoBehaviour
     [SerializeField] AudioClip openingGateSFX;
     [SerializeField] Text textBox;
 
-    private AudioManager AM;
+    private AudioManager audioManager;
     //AudioSource audioSource;
     Vector3 startingPosition;
     Vector3 endingPosition;
@@ -23,7 +23,7 @@ public class BarrierTrigger : MonoBehaviour
 
     void Start()
     {
-        AM = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         //audioSource = GetComponent<AudioSource>();
         textBox.text = requiredAmountToUnlock.ToString();
         startingPosition = gate.transform.position;
@@ -35,13 +35,13 @@ public class BarrierTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (isLocked && (FindObjectOfType<GameManager>().score >= requiredAmountToUnlock))
+            if (isLocked && (GameManager.instance.score >= requiredAmountToUnlock))
             {
                 isLocked = false;
                 GetComponentInChildren<Canvas>().enabled = false;
                 GetComponent<BoxCollider>().enabled = false;
                 timeStartedLerping = Time.time;
-                AM.PlayMisc(openingGateSFX);
+                audioManager.PlayMisc(openingGateSFX);
                 //audioSource.PlayOneShot(openingGateSFX);
                 StartCoroutine(UnlockGate());
             }

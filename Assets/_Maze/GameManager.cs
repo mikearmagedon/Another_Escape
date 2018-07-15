@@ -10,6 +10,8 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     // Config
     [SerializeField] float levelStartDelay = 3f;
 
@@ -31,15 +33,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // Enforce singleton pattern
-        int numGameManager = FindObjectsOfType<GameManager>().Length;
-        if (numGameManager > 1)
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -74,14 +75,14 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Time.fixedDeltaTime = 0;
             player.DisableControl();
-            audioManager.music.Pause();
+            audioManager.Pause(pause);
         }
         else
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = initialFixedDelta;
             player.EnableControl();
-            audioManager.music.UnPause();
+            audioManager.Pause(pause);
         }
     }
 
@@ -162,9 +163,13 @@ public class GameManager : MonoBehaviour
         {
             messageText.text = "GAME OVER";
             yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene(currentSceneIndex);
-            yield return new WaitForSeconds(3f);
-            saveLoad.Load();
+            StartCoroutine(saveLoad.ReloadScene());
+            //print(Time.time + "StartCoroutine(saveLoad.LoadSavedScene());");
+            ////StartCoroutine(saveLoad.LoadSavedScene());
+            //SceneManager.LoadScene(currentSceneIndex);
+            //yield return new WaitForSeconds(3f);
+            //print(Time.time + "saveLoad.Load();");
+            //saveLoad.Load();
         }
         else // player finished level
         {

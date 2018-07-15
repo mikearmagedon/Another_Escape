@@ -1,25 +1,24 @@
-﻿using RPG.Characters;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
 
-    public AudioSource music;
-    private AudioSource musicMisc;
-    [HideInInspector] public AudioSource musicBattle;
+    [SerializeField] AudioSource music;
+    AudioSource musicMisc;
+    AudioSource musicBattle;
 
     void Awake()
     {
-        int numAudioManager = FindObjectsOfType<AudioManager>().Length;
-        if (numAudioManager > 1)
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -31,8 +30,27 @@ public class AudioManager : MonoBehaviour
         musicBattle.playOnAwake = false;
     }
 
+    public void Pause(bool pause)
+    {
+        if (pause)
+        {
+            music.Pause();
+            musicBattle.Pause();
+            musicMisc.Pause();
+        }
+        else
+        {
+            music.UnPause();
+            musicBattle.UnPause();
+            musicMisc.UnPause();
+        }
+    }
+
     public void PlayMusicBattle(AudioClip clip, bool inBattle)
     {
+        musicBattle.loop = true;
+        musicBattle.volume = 0.3f;
+
         if (inBattle)
         {
             if (musicBattle.isPlaying)
@@ -72,7 +90,7 @@ public class AudioManager : MonoBehaviour
         //    return;
         //}
         musicMisc.clip = clip;
-        musicMisc.spatialBlend = 0.5f;
+        musicMisc.spatialBlend = 1f;
         musicMisc.loop = false;
         musicMisc.volume = 0.6f;
         musicMisc.PlayOneShot(clip);
@@ -80,7 +98,7 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator FadeOut(AudioSource source)
     {
-        float t = 0.2f;
+        float t = 0.3f;
         while (t >= 0.0f)
         {
             t -= Time.deltaTime;

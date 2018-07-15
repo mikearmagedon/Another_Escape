@@ -22,7 +22,10 @@ public class WaterSoundController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        DetermineClosestWaterSound();
+        if (player)
+        {
+            DetermineClosestWaterSound();
+        }
     }
 
     void DetermineClosestWaterSound()

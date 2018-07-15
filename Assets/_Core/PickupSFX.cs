@@ -17,7 +17,7 @@ public class PickupSFX : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<GameManager>().AddToScore(pickupScoreValue);
+            GameManager.instance.AddToScore(pickupScoreValue);
             AudioSource.PlayClipAtPoint(pickupSFX, transform.position, 0.5f);
             //Destroy(gameObject);
             isActive = false;

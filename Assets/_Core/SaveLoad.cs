@@ -5,6 +5,7 @@ using System;
 using RPG.Characters;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SaveLoad : MonoBehaviour
 {
@@ -13,12 +14,13 @@ public class SaveLoad : MonoBehaviour
     [HideInInspector] public EnemyAI[] enemy;
     [HideInInspector] public PickupSFX[] pickup;
 
-    private void Awake()
+    private void Start()
     {
         data = new PlayerData();
         checkPoint = CheckPoint.FindObjectsOfType<CheckPoint>();
         enemy = EnemyAI.FindObjectsOfType<EnemyAI>();
         pickup = PickupSFX.FindObjectsOfType<PickupSFX>();
+        LoadDataFromFile();
     }
 
     public void Save()
@@ -27,13 +29,36 @@ public class SaveLoad : MonoBehaviour
         //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
         FileStream file = File.Create(Application.persistentDataPath + "/savedGame.gd"); //you can call it anything you want
 
+        data.Clear();
+
         data.Get();
 
         bf.Serialize(file, data);
         file.Close();
     }
 
-    public void Load()
+    public IEnumerator ReloadScene()
+    {
+        //LoadDataFromFile();
+        SceneManager.LoadSceneAsync(data.sceneIndex, LoadSceneMode.Additive);
+        yield return new WaitForSeconds(3f);
+        Load();
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
+    }
+
+    //public IEnumerator LoadSavedScene()
+    //{
+    //    SceneManager.LoadScene(data.sceneIndex);
+    //    yield return new WaitForSeconds(3f);
+    //}
+
+    void Load()
+    {
+        data.Set();
+    }
+
+    void LoadDataFromFile()
     {
         if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
@@ -41,8 +66,6 @@ public class SaveLoad : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
             data = (PlayerData)bf.Deserialize(file);
             file.Close();
-
-            data.Set();
         }
     }
 }
@@ -63,14 +86,14 @@ class PlayerData
 
     public void Get()
     {
-        sceneIndex = GameManager.FindObjectOfType<GameManager>().currentSceneIndex;
+        sceneIndex = GameManager.instance.currentSceneIndex;
         health = HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints;
         energy = AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints;
         Vector3 position = PlayerController.FindObjectOfType<PlayerController>().position;
         positionX = position.x;
         positionY = position.y;
         positionZ = position.z;
-        score = GameManager.FindObjectOfType<GameManager>().score;
+        score = GameManager.instance.score;
 
         for (int i = 0; i < SaveLoad.FindObjectOfType<SaveLoad>().checkPoint.Length; i++)
         {
@@ -96,7 +119,7 @@ class PlayerData
 
     public void Set()
     {
-        GameManager.FindObjectOfType<GameManager>().currentSceneIndex = sceneIndex;
+        //GameManager.instance.currentSceneIndex = sceneIndex;
 
         for (int i = 0; i < checkPoints.Count; i++)
         {
@@ -113,10 +136,17 @@ class PlayerData
             pickups[i].Set();
         }
 
-        GameManager.FindObjectOfType<GameManager>().score = score;
+        GameManager.instance.score = score;
         HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints = health;
         AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints = energy;
         PlayerController.FindObjectOfType<PlayerController>().transform.position = new Vector3(positionX, positionY, positionZ);
+    }
+
+    public void Clear()
+    {
+        checkPoints.Clear();
+        enemys.Clear();
+        pickups.Clear();
     }
 }
 

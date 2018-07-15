@@ -13,7 +13,7 @@ public class ZoneTrigger : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     private void OnTriggerStay(Collider other)

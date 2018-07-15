@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &501902448
 Transform:
   m_ObjectHideFlags: 0
@@ -494,6 +494,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34efea01236c1ed4082a40d39408ccd9, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &810269870 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1435365049202544, guid: 34efea01236c1ed4082a40d39408ccd9,
+    type: 2}
+  m_PrefabInternal: {fileID: 781912905}
+--- !u!114 &810269871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 810269870}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c987c69a8b8cd640a45a3332d08e417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 1
 --- !u!1001 &959217618
 Prefab:
   m_ObjectHideFlags: 0
@@ -999,6 +1016,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1102854221033714, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea035ba481f6baf4686370d5b42b2874, type: 2}
   m_IsPrefabParent: 0
@@ -1079,7 +1100,6 @@ GameObject:
   - component: {fileID: 2058863777}
   - component: {fileID: 2058863776}
   - component: {fileID: 2058863775}
-  - component: {fileID: 2058863778}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1156,18 +1176,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2058863773}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2058863778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2058863773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c987c69a8b8cd640a45a3332d08e417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitTime: 10
 --- !u!1 &2113975383
 GameObject:
   m_ObjectHideFlags: 0

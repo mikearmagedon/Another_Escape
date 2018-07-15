@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
 
     public void ContinueGame()
     {
-        FindObjectOfType<GameManager>().PauseGame(false);
+        GameManager.instance.PauseGame(false);
     }
 
     public void LoadMainMenu()
@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
 
     public void LoadGame()
     {
-        FindObjectOfType<SaveLoad>().Load();
+        StartCoroutine(FindObjectOfType<SaveLoad>().ReloadScene());
     }
 
     public void QuitGame()
