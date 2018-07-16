@@ -11,7 +11,7 @@ public class opendoor : MonoBehaviour {
 
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
     }
 
     private void Update()

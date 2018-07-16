@@ -7,7 +7,7 @@ public class MenuMusic : MonoBehaviour
 
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         audioManager.ChangeMusic(clip);
     }
 

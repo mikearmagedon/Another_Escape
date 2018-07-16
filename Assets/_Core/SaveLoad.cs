@@ -20,7 +20,6 @@ public class SaveLoad : MonoBehaviour
         checkPoint = CheckPoint.FindObjectsOfType<CheckPoint>();
         enemy = EnemyAI.FindObjectsOfType<EnemyAI>();
         pickup = PickupSFX.FindObjectsOfType<PickupSFX>();
-        LoadDataFromFile();
     }
 
     public void Save()
@@ -37,28 +36,7 @@ public class SaveLoad : MonoBehaviour
         file.Close();
     }
 
-    public IEnumerator ReloadScene()
-    {
-        //LoadDataFromFile();
-        SceneManager.LoadSceneAsync(data.sceneIndex, LoadSceneMode.Additive);
-        yield return new WaitForSeconds(3f);
-        Load();
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
-    }
-
-    //public IEnumerator LoadSavedScene()
-    //{
-    //    SceneManager.LoadScene(data.sceneIndex);
-    //    yield return new WaitForSeconds(3f);
-    //}
-
-    void Load()
-    {
-        data.Set();
-    }
-
-    void LoadDataFromFile()
+    public void Load()
     {
         if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
@@ -66,9 +44,26 @@ public class SaveLoad : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
             data = (PlayerData)bf.Deserialize(file);
             file.Close();
+
+            data.Set();
         }
     }
+
+    public int LoadMenu()
+    {
+        if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
+            data = (PlayerData)bf.Deserialize(file);
+            file.Close();
+
+            return data.sceneIndex;
+        }
+        return 0;
+    }
 }
+
 
 [Serializable]
 class PlayerData
@@ -87,7 +82,16 @@ class PlayerData
     public void Get()
     {
         sceneIndex = GameManager.instance.currentSceneIndex;
-        health = HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints;
+
+        var a = HealthSystem.FindObjectsOfType<HealthSystem>();
+        for (int i = 0; i < a.Length; i++)
+        {
+            if (a[i].name == "Player")
+            {
+                health = a[i].currentHealtPoints;
+            }
+        }
+
         energy = AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints;
         Vector3 position = PlayerController.FindObjectOfType<PlayerController>().position;
         positionX = position.x;
@@ -119,7 +123,7 @@ class PlayerData
 
     public void Set()
     {
-        //GameManager.instance.currentSceneIndex = sceneIndex;
+        GameManager.instance.currentSceneIndex = sceneIndex;
 
         for (int i = 0; i < checkPoints.Count; i++)
         {
@@ -137,7 +141,16 @@ class PlayerData
         }
 
         GameManager.instance.score = score;
-        HealthSystem.FindObjectOfType<HealthSystem>().currentHealtPoints = health;
+
+        var a = HealthSystem.FindObjectsOfType<HealthSystem>();
+        for (int i = 0; i < a.Length; i++)
+        {
+            if (a[i].name == "Player")
+            {
+                a[i].currentHealtPoints = health;
+            }
+        }
+        
         AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints = energy;
         PlayerController.FindObjectOfType<PlayerController>().transform.position = new Vector3(positionX, positionY, positionZ);
     }

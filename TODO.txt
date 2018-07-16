@@ -40,6 +40,4 @@ Video Settings - disable v-sync
 CheckPoint System/ SaveLoad System
 
 o sistema de gravar e carregar ja funciona.
-ao passar nos checkpoints ele grava automaticamente, e ao morrer ele carrega o save.
-o que ele grava, podes ver no SaveLoad, na class PlayerData.
-o problema agora é fazer carregar o save no menu principal, devido à maneira do SaveLoad foi implementado.
+no mainmenu tambem funciona.

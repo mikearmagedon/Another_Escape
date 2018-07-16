@@ -27,7 +27,6 @@ public class MenuEasterEgg : MonoBehaviour {
 
     void ActivatePlayer()
     {
-        Debug.Log(player);
         if (timer > waitTime)
         {
             player.SetActive(true);

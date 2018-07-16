@@ -95,9 +95,9 @@ public class HealthSystem : MonoBehaviour
         }
         else // assuming is enemy for now, reconsider for other NPCs
         {
-            //Destroy(gameObject, deathVanishSeconds);
             GetComponent<EnemyAI>().isDead = true;
-            gameObject.SetActive(false);  
+            Destroy(gameObject, deathVanishSeconds);
+            //gameObject.SetActive(false);  
         }
 
     }

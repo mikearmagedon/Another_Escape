@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = AudioManager.instance;
         saveLoad = FindObjectOfType<SaveLoad>();
         initialFixedDelta = Time.fixedDeltaTime;
     }
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
         messageText.text = string.Empty;
         messageText.enabled = false;
         GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = true;
+        saveLoad.Load();
     }
 
     IEnumerator PlayGame()
@@ -163,13 +164,11 @@ public class GameManager : MonoBehaviour
         {
             messageText.text = "GAME OVER";
             yield return new WaitForSeconds(3f);
-            StartCoroutine(saveLoad.ReloadScene());
+            //StartCoroutine(saveLoad.ReloadScene());
             //print(Time.time + "StartCoroutine(saveLoad.LoadSavedScene());");
             ////StartCoroutine(saveLoad.LoadSavedScene());
-            //SceneManager.LoadScene(currentSceneIndex);
-            //yield return new WaitForSeconds(3f);
-            //print(Time.time + "saveLoad.Load();");
-            //saveLoad.Load();
+            SceneManager.LoadScene(currentSceneIndex);
+            yield return new WaitForSeconds(3f);
         }
         else // player finished level
         {

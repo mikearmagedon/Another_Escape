@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
 
     public void LoadGame()
     {
-        StartCoroutine(FindObjectOfType<SaveLoad>().ReloadScene());
+        SceneManager.LoadScene(FindObjectOfType<SaveLoad>().LoadMenu());
     }
 
     public void QuitGame()
