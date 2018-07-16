@@ -2313,7 +2313,7 @@ MonoBehaviour:
   runCycleLegOffset: 0.2
   moveSpeedMultiplier: 1
   animSpeedMultiplier: 1
-  groundCheckDistance: 0.1
+  groundCheckDistance: 1
   footstepSoundsGrass:
   - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
   - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}

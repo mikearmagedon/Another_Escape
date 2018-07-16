@@ -40,8 +40,8 @@ namespace RPG.Characters
         [SerializeField] float navMeshAgentSteeringSpeed = 3.5f;
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
 
-        AudioManager audioManager;
-        string type;
+        //AudioManager audioManager;
+        string type = "grass";
         Rigidbody rigidBody;
         Animator animator;
         AudioSource audioSource;
@@ -98,7 +98,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            audioManager = AudioManager.instance;
+            //audioManager = AudioManager.instance;
             origGroundCheckDistance = groundCheckDistance;
         }
 
@@ -165,6 +165,7 @@ namespace RPG.Characters
 
         void OnTriggerEnter(Collider other)
         {
+            // TODO check if the collider is a floorTrigger(aka zoneTrigger.cs) and then check the tag
             if (other.gameObject.CompareTag("Stone"))
             {
                 type = "stone";
@@ -181,12 +182,14 @@ namespace RPG.Characters
             if (type == "stone")
             {
                 AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
-                audioManager.PlayMisc(clip);
+                audioSource.PlayOneShot(clip);
+                //audioManager.PlayMisc(clip);
             }
             else if (type == "grass")
             {
                 AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
-                audioManager.PlayMisc(clip);
+                audioSource.PlayOneShot(clip);
+                //audioManager.PlayMisc(clip);
             }
         }
 
@@ -196,12 +199,14 @@ namespace RPG.Characters
             if (type == "stone")
             {
                 AudioClip clip = footstepSoundsStone[Random.Range(0, footstepSoundsStone.Length)];
-                audioManager.PlayMisc(clip);
+                audioSource.PlayOneShot(clip);
+                //audioManager.PlayMisc(clip);
             }
             else if (type == "grass")
             {
                 AudioClip clip = footstepSoundsGrass[Random.Range(0, footstepSoundsGrass.Length)];
-                audioManager.PlayMisc(clip);
+                audioSource.PlayOneShot(clip);
+                //audioManager.PlayMisc(clip);
             }
         }
 

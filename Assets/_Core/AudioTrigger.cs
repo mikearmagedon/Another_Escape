@@ -9,15 +9,15 @@ public class AudioTrigger : MonoBehaviour
     [SerializeField] bool isRepeatable = false;
 
     bool hasPlayed = false;
-    //AudioSource audioSource;
-    AudioManager audioManager;
+    AudioSource audioSource;
+    //AudioManager audioManager;
 
     void Start()
     {
-        audioManager = AudioManager.instance;
-        //audioSource = gameObject.AddComponent<AudioSource>();
-        //audioSource.playOnAwake = false;
-        //audioSource.clip = clips[Random.Range(0, clips.Length)];
+        //audioManager = FindObjectOfType<AudioManager>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = clips[Random.Range(0, clips.Length)];
 
 
         SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
@@ -48,7 +48,8 @@ public class AudioTrigger : MonoBehaviour
         }
         else
         {
-            audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
+            //audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
+            audioSource.Play();
             hasPlayed = true;
         }
     }
@@ -66,6 +67,7 @@ public class AudioTrigger : MonoBehaviour
 
     private void PlayMusic()
     {
-        audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
+        audioSource.Play();
+        //audioManager.PlayMisc(clips[Random.Range(0, clips.Length)]);
     }
 }
