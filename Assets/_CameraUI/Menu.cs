@@ -1,9 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+
+    private void Start()
+    {
+        if (GetComponent<Button>().name == "Load Button")
+        {
+            if (FindObjectOfType<SaveLoad>().SaveExists())
+            {
+                GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = false;
+            }
+        }
+    }
 
     public void LoadFirstLevel()
     {
@@ -25,6 +41,7 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(FindObjectOfType<SaveLoad>().LoadMenu());
         FindObjectOfType<SaveLoad>().loadGame = true;
+
     }
 
     public void QuitGame()

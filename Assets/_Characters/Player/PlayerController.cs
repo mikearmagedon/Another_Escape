@@ -32,6 +32,7 @@ namespace RPG.Characters
             abilitySystem = GetComponent<AbilitySystem>();
             saveLoad = FindObjectOfType<SaveLoad>();
 
+            position = transform.position;
             SetInitialWinConditionVariables();
         }
 

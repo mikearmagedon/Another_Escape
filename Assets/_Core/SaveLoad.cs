@@ -40,7 +40,7 @@ public class SaveLoad : MonoBehaviour
 
     public void Load()
     {
-        if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
+        if (SaveExists())
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
@@ -53,16 +53,21 @@ public class SaveLoad : MonoBehaviour
 
     public int LoadMenu()
     {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
+        data = (PlayerData)bf.Deserialize(file);
+        file.Close();
+
+        return data.sceneIndex;
+    }
+
+    public bool SaveExists()
+    {
         if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
-            data = (PlayerData)bf.Deserialize(file);
-            file.Close();
-
-            return data.sceneIndex;
+            return true;
         }
-        return 0;
+        return false;
     }
 }
 
@@ -152,7 +157,7 @@ class PlayerData
                 a[i].currentHealtPoints = health;
             }
         }
-        
+
         AbilitySystem.FindObjectOfType<AbilitySystem>().currentEnergyPoints = energy;
         PlayerController.FindObjectOfType<PlayerController>().transform.position = new Vector3(positionX, positionY, positionZ);
     }

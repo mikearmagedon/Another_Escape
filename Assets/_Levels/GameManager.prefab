@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4154438571997390}
   - component: {fileID: 114510784787657738}
+  - component: {fileID: 114252429450585522}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -33,13 +34,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102854221033714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.000000026061207, y: -0.7071064, z: -0.00000003220696, w: 0.70710725}
+  m_LocalPosition: {x: 200.59982, y: -0.0000009536743, z: -134.00005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!114 &114252429450585522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102854221033714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecef6ec360857a4080c69756fc02466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoint: []
+  enemy: []
+  pickup: []
+  loadGame: 0
 --- !u!114 &114510784787657738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,10 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c510da20c9d53784294b549d6eafc4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageText: {fileID: 0}
-  levelTransition: {fileID: 0}
   levelStartDelay: 3
-  player: {fileID: 0}
-  mazeGeneratorPrefab: {fileID: 1960230491223570, guid: 4a4a44008b998ed459fc4a158585745a,
-    type: 2}
-  mazeGenerators: []
+  score: 0
+  currentSceneIndex: 0

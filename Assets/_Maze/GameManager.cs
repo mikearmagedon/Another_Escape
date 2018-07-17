@@ -149,12 +149,14 @@ public class GameManager : MonoBehaviour
             saveLoad.loadGame = false;
         }
 
+        //saveLoad.Save();
     }
 
     IEnumerator PlayGame()
     {
         player.EnableControl();
-
+        yield return new WaitForSeconds(1f);
+        saveLoad.Save();
         while (!player.wonGame)
         {
             yield return null;
