@@ -164,11 +164,8 @@ public class GameManager : MonoBehaviour
         {
             messageText.text = "GAME OVER";
             yield return new WaitForSeconds(3f);
-            //StartCoroutine(saveLoad.ReloadScene());
-            //print(Time.time + "StartCoroutine(saveLoad.LoadSavedScene());");
-            ////StartCoroutine(saveLoad.LoadSavedScene());
             SceneManager.LoadScene(currentSceneIndex);
-            yield return new WaitForSeconds(3f);
+
         }
         else // player finished level
         {
