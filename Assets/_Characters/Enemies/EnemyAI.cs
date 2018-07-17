@@ -102,7 +102,7 @@ namespace RPG.Characters
             while (distanceToPlayer > currentWeaponRange)
             {
                 character.SetDestination(player.transform.position);
-                audioManager.PlayMusicBattle(combatMusic, true);
+                //audioManager.PlayMusicBattle(combatMusic, true);
                 yield return new WaitForEndOfFrame();
             }
 

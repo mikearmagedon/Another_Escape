@@ -61,7 +61,7 @@ public class HealthSystem : MonoBehaviour
 
         if (characterDies && character.IsAlive())
         {
-            audioManager.PlayMusicBattle(null, false);
+            //audioManager.PlayMusicBattle(null, false);
             StartCoroutine(KillCharacter());
         }
         else if (character.IsAlive())
