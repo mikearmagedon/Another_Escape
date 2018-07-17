@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 
 public class Menu : MonoBehaviour
 {
+
     public void LoadFirstLevel()
     {
         Assert.IsTrue(SceneManager.sceneCountInBuildSettings > 1, "Please add more than one scene to the build settings");
@@ -23,6 +24,7 @@ public class Menu : MonoBehaviour
     public void LoadGame()
     {
         SceneManager.LoadScene(FindObjectOfType<SaveLoad>().LoadMenu());
+        FindObjectOfType<SaveLoad>().loadGame = true;
     }
 
     public void QuitGame()

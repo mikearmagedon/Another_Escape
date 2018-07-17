@@ -14,6 +14,8 @@ public class SaveLoad : MonoBehaviour
     [HideInInspector] public EnemyAI[] enemy;
     [HideInInspector] public PickupSFX[] pickup;
 
+    [HideInInspector] public bool loadGame = false;
+
     private void Start()
     {
         data = new PlayerData();

@@ -7,8 +7,7 @@ add death traps
 -----------------------------------------------------------------------------------------------------------------
 Movement
 
-Fix character collisions by 
- -using autobraking in navmesh agent //testei, nao funciona. coloquei rigibody, dá erro pois ja existe um.
+
 -------------------------------------------------------------------------------------
 Attack
 
@@ -41,3 +40,4 @@ CheckPoint System/ SaveLoad System
 
 o sistema de gravar e carregar ja funciona.
 no mainmenu tambem funciona.
+uso uma variavel bool para saber se fazemos LoadGame no mainmenu.

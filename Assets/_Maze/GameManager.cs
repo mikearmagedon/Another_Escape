@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
 
         StartCoroutine(GameLoop());
-	}
+    }
 
     IEnumerator GameLoop()
     {
@@ -142,7 +142,13 @@ public class GameManager : MonoBehaviour
         messageText.text = string.Empty;
         messageText.enabled = false;
         GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = true;
-        saveLoad.Load();
+
+        if (saveLoad.loadGame)
+        {
+            saveLoad.Load();
+            saveLoad.loadGame = false;
+        }
+
     }
 
     IEnumerator PlayGame()
@@ -154,7 +160,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
-    
+
     IEnumerator EndGame()
     {
         messageText.enabled = true;
@@ -165,7 +171,8 @@ public class GameManager : MonoBehaviour
             messageText.text = "GAME OVER";
             yield return new WaitForSeconds(3f);
             SceneManager.LoadScene(currentSceneIndex);
-
+            yield return new WaitForSeconds(3f);
+            saveLoad.Load();
         }
         else // player finished level
         {

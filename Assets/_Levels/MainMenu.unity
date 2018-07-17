@@ -548,7 +548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4166395549489852, guid: c2bedb327ebcf954297270d21daecb39, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4166395549489852, guid: c2bedb327ebcf954297270d21daecb39, type: 2}
       propertyPath: m_LocalScale.y
@@ -898,7 +898,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4636675179522974, guid: 4a4a44008b998ed459fc4a158585745a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114269166469418910, guid: 4a4a44008b998ed459fc4a158585745a,
         type: 2}
@@ -970,7 +970,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4879243729190884, guid: 49c0cf81ed3ff98409d9fb07ecdc0579, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 82448635260404740, guid: 49c0cf81ed3ff98409d9fb07ecdc0579,
         type: 2}
@@ -1050,6 +1050,7 @@ MonoBehaviour:
   checkPoint: []
   enemy: []
   pickup: []
+  loadGame: 0
 --- !u!224 &2026807050 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224712088605601422, guid: 34efea01236c1ed4082a40d39408ccd9,
@@ -1092,7 +1093,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4923602683450104, guid: ac9d60bfc75d4084085823f6c3a2362c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac9d60bfc75d4084085823f6c3a2362c, type: 2}
