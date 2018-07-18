@@ -564,12 +564,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224239719101366616, guid: 9a9d70d10b9331d469e57254147e0430,
     type: 2}
   m_PrefabInternal: {fileID: 85128011}
---- !u!114 &85128013 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114967801983543224, guid: 9a9d70d10b9331d469e57254147e0430,
-    type: 2}
-  m_PrefabInternal: {fileID: 85128011}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &91888473
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,78 +859,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95746a6397bbc2f42a4412f5112fba01, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &186954242
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 186954243}
-  - component: {fileID: 186954245}
-  - component: {fileID: 186954244}
-  m_Layer: 0
-  m_Name: SM_Wep_Broadsword_01(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &186954243
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 186954242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1307300346}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &186954244
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 186954242}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: 31b16fd87cf33014c946e9d512d1e03c, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &186954245
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 186954242}
-  m_Mesh: {fileID: 4300000, guid: 28ede36dccb55964482c9195b4eb2a91, type: 3}
 --- !u!1 &190187698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1168,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229fd9a791e64c4ab7f4379f7269f8e, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &298391496 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4123344725853196, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 298391495}
 --- !u!1 &302604232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1798,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1554262005}
+  - {fileID: 298391496}
   - {fileID: 1892666774}
   - {fileID: 307504795}
   m_Father: {fileID: 2078369316}
@@ -3585,6 +3512,78 @@ Transform:
   m_Father: {fileID: 1649335744}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1209823323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1209823324}
+  - component: {fileID: 1209823326}
+  - component: {fileID: 1209823325}
+  m_Layer: 0
+  m_Name: SM_Wep_Broadsword_01(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1209823324
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209823323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1307300346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1209823325
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209823323}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 31b16fd87cf33014c946e9d512d1e03c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1209823326
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1209823323}
+  m_Mesh: {fileID: 4300000, guid: 28ede36dccb55964482c9195b4eb2a91, type: 3}
 --- !u!1 &1230141944
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,11 +4620,6 @@ Transform:
   m_Father: {fileID: 1653061299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1554262005 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4544464622683468, guid: 8229fd9a791e64c4ab7f4379f7269f8e,
-    type: 2}
-  m_PrefabInternal: {fileID: 298391495}
 --- !u!1001 &1574687183
 Prefab:
   m_ObjectHideFlags: 0
@@ -5949,12 +5943,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 200
-  healthOrb: {fileID: 85128013}
+  healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: e5afb3612f411224887c2576b4f8a2db, type: 3}
   deathSounds:
   - {fileID: 8300000, guid: 123d66d4c88b7c142a24e7b55b449e5a, type: 3}
   deathVanishSeconds: 2
+  currentHealtPoints: 0
 --- !u!114 &1936481057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5971,6 +5966,9 @@ MonoBehaviour:
   patrolPath: {fileID: 1730530620}
   waypointDwellTime: 2
   waypointTolerance: 5
+  combatMusic: {fileID: 0}
+  isDead: 0
+  enemyName: 
 --- !u!114 &1936481058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5987,6 +5985,7 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 18959ecb3abd95c4cbcdbbc8e74cf95f,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  animatorForwardCap: 1
   audioSourceSpatialBlend: 1
   audioSourceVolume: 0.5
   physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
@@ -6001,11 +6000,8 @@ MonoBehaviour:
   moveSpeedMultiplier: 1
   animSpeedMultiplier: 1
   groundCheckDistance: 1
-  footstepSounds:
-  - {fileID: 8300000, guid: 2f96d3d47551ed848be9307342dcd667, type: 3}
-  - {fileID: 8300000, guid: 4901040e735fd2547870b06a27124c49, type: 3}
-  - {fileID: 8300000, guid: 4dcd8f2dc477f5e4aa277ee503048ee8, type: 3}
-  - {fileID: 8300000, guid: 15b220b1b01e9d8469f3b754b8eb2a10, type: 3}
+  footstepSoundsGrass: []
+  footstepSoundsStone: []
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3
@@ -6336,12 +6332,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a9d70d10b9331d469e57254147e0430, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1963978854 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114967801983543224, guid: 9a9d70d10b9331d469e57254147e0430,
-    type: 2}
-  m_PrefabInternal: {fileID: 1963978853}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1966447620 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114805756331661938, guid: 95746a6397bbc2f42a4412f5112fba01,
@@ -6472,7 +6462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  healthOrb: {fileID: 1963978854}
+  healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: 032a4f39620b7994aa36483d2e211ff1, type: 3}
   - {fileID: 8300000, guid: 9e4c5f2327fc67c49ac5c94471e3107a, type: 3}
@@ -6487,6 +6477,7 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: 123d66d4c88b7c142a24e7b55b449e5a, type: 3}
   deathVanishSeconds: 2
+  currentHealtPoints: 0
 --- !u!114 &1993019815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6503,6 +6494,9 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointDwellTime: 2
   waypointTolerance: 2
+  combatMusic: {fileID: 0}
+  isDead: 0
+  enemyName: 
 --- !u!114 &1993019816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6519,6 +6513,7 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: 18959ecb3abd95c4cbcdbbc8e74cf95f,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  animatorForwardCap: 1
   audioSourceSpatialBlend: 1
   audioSourceVolume: 0.5
   physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
@@ -6533,11 +6528,8 @@ MonoBehaviour:
   moveSpeedMultiplier: 1
   animSpeedMultiplier: 1
   groundCheckDistance: 1
-  footstepSounds:
-  - {fileID: 8300000, guid: 2f96d3d47551ed848be9307342dcd667, type: 3}
-  - {fileID: 8300000, guid: 4901040e735fd2547870b06a27124c49, type: 3}
-  - {fileID: 8300000, guid: 4dcd8f2dc477f5e4aa277ee503048ee8, type: 3}
-  - {fileID: 8300000, guid: 15b220b1b01e9d8469f3b754b8eb2a10, type: 3}
+  footstepSoundsGrass: []
+  footstepSoundsStone: []
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 3.5
   navMeshAgentStoppingDistance: 1.3

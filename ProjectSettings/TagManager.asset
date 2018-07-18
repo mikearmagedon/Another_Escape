@@ -8,6 +8,8 @@ TagManager:
   - Stone
   - Water
   - Checkpoint
+  - Pickup
+  - Trap
   layers:
   - Default
   - TransparentFX

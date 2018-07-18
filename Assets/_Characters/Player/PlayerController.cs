@@ -64,6 +64,11 @@ namespace RPG.Characters
                 position = gameObject.transform.position;
                 saveLoad.Save();
             }
+
+            if (other.gameObject.CompareTag("Trap"))
+            {
+                GetComponent<HealthSystem>().TakeDamage(20f);
+            }
         }
 
         public void DisableControl()
