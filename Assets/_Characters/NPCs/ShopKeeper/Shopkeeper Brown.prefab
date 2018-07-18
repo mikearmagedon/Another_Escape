@@ -203,7 +203,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4506983972537008}
-  - component: {fileID: 95408536859445374}
   - component: {fileID: 114625674592382350}
   - component: {fileID: 114001474992250896}
   - component: {fileID: 114971631554126788}
@@ -2345,31 +2344,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1866117389135722}
   m_Mesh: {fileID: 4300000, guid: fd7d68a65822e4a44a9ef78850e64cfc, type: 3}
---- !u!95 &95408536859445374
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1125016779090146}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fd7d68a65822e4a44a9ef78850e64cfc, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114001474992250896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125016779090146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbcc934c744ebb4488dbe301dad2b097, type: 3}
   m_Name: 
@@ -2392,6 +2373,9 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointDwellTime: 0
   waypointTolerance: 2
+  combatMusic: {fileID: 0}
+  isDead: 0
+  enemyName: 
 --- !u!114 &114625674592382350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2403,23 +2387,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4599123dd82c34ea9cb04c346325b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: bbc90c36fbbd70e46ae0938f9df00bbd,
+  animatorController: {fileID: 9100000, guid: 0ff566ad48f6c8b4cbf849b503c7d82e, type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: 18959ecb3abd95c4cbcdbbc8e74cf95f,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: 409520c9226982345a49c9803624f208, type: 3}
   animatorForwardCap: 0.5
   audioSourceSpatialBlend: 1
   audioSourceVolume: 0.5
-  footstepSoundsGrass:
-  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
-  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
-  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
-  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
-  footstepSoundsStone:
-  - {fileID: 8300000, guid: 8be898751c19b4b48a810914c7f8995b, type: 3}
-  - {fileID: 8300000, guid: d17c551ea54c54143ae4862452cbd7ce, type: 3}
-  - {fileID: 8300000, guid: a21f42f1341bc624caa8b27ab5aad282, type: 3}
-  - {fileID: 8300000, guid: a4643999775b41842a47d55e9f75fbf6, type: 3}
   physicMaterial: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   colliderCenter: {x: 0, y: 0.9, z: 0}
   colliderRadius: 0.3
@@ -2432,6 +2406,16 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.5
   animSpeedMultiplier: 0.7
   groundCheckDistance: 0.1
+  footstepSoundsGrass:
+  - {fileID: 8300000, guid: e85ebefcaa228bc42adb2554e5a428d4, type: 3}
+  - {fileID: 8300000, guid: 363fb6bde7237674c9ab1b4ea4db05a3, type: 3}
+  - {fileID: 8300000, guid: bd2e21727b290c94586e70231e309cbd, type: 3}
+  - {fileID: 8300000, guid: 7e30146df5f9bb84d9d63ed8211311b9, type: 3}
+  footstepSoundsStone:
+  - {fileID: 8300000, guid: 8be898751c19b4b48a810914c7f8995b, type: 3}
+  - {fileID: 8300000, guid: d17c551ea54c54143ae4862452cbd7ce, type: 3}
+  - {fileID: 8300000, guid: a21f42f1341bc624caa8b27ab5aad282, type: 3}
+  - {fileID: 8300000, guid: a4643999775b41842a47d55e9f75fbf6, type: 3}
   createNavMeshAgent: 1
   navMeshAgentSteeringSpeed: 1
   navMeshAgentStoppingDistance: 1.3
@@ -2441,7 +2425,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125016779090146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8302c830d66b724382b3ac9c799c0bf, type: 3}
   m_Name: 
@@ -2451,6 +2435,7 @@ MonoBehaviour:
   damageSounds: []
   deathSounds: []
   deathVanishSeconds: 2
+  currentHealtPoints: 0
 --- !u!137 &137338863493410754
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

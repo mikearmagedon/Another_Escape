@@ -6,9 +6,11 @@ Maze
 add death traps
 -----------------------------------------------------------------------------------------------------------------
 Movement
-
-
 -------------------------------------------------------------------------------------
+NPCs
+
+npcs precisam de animator?? ao correr o jogo eles ficam com o mesh todo torto e aparece os bocados dos corpors deles no ar.
+------------------------------------------------------------------------------
 Attack
 
 refactor AttackTargets to use the private methods of WeaponSystem
