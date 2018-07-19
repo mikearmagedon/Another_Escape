@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Maze_Trap : MonoBehaviour {
 
-    public AudioClip clip;
-    AudioManager audioManager;
-
+    AudioSource clip;
+   
 	// Use this for initialization
 	void Start () {
-        audioManager = AudioManager.instance;
+        clip = GetComponent<AudioSource>();
         InvokeRepeating("PlayAnimation", 0f,2f);
 	}
 
@@ -17,6 +16,6 @@ public class Maze_Trap : MonoBehaviour {
     {
         GetComponent<Animation>()["Maze_Trap"].speed = 2f;
         GetComponent<Animation>().Play();
-        audioManager.PlayMisc(clip);
+        clip.Play();
     }
 }

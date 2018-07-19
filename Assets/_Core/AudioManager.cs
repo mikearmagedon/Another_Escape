@@ -93,6 +93,7 @@ public class AudioManager : MonoBehaviour
         musicMisc.spatialBlend = 1f;
         musicMisc.loop = false;
         musicMisc.volume = 0.6f;
+        musicMisc.maxDistance = 5f;
         musicMisc.PlayOneShot(clip);
     }
 
